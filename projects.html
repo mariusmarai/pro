@@ -1,0 +1,1183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.png">
+  <title>Projects | mariusmarAI</title>
+  <link rel="icon" type="image/jpeg" href="mariusmarAI_Logo.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-primary: #0B1220;
+      --bg-secondary: #111A2E;
+      --bg-card: #162238;
+      --bg-card-hover: #1C2B47;
+      --text-primary: #F8FAFC;
+      --text-secondary: #CBD5E1;
+      --text-muted: #94A3B8;
+      --accent: #F59E0B;
+      --accent-hover: #D97706;
+      --accent-soft: rgba(245, 158, 11, 0.14);
+      --cyan: #38BDF8;
+      --cyan-soft: rgba(56, 189, 248, 0.12);
+      --danger-soft: rgba(239, 68, 68, 0.12);
+      --danger-border: rgba(239, 68, 68, 0.42);
+      --success: #10B981;
+      --border: rgba(148, 163, 184, 0.16);
+      --border-strong: rgba(245, 158, 11, 0.42);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    html, body { max-width: 100%; overflow-x: clip; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Unified Sticky Header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 9999;
+      background: rgba(11, 18, 32, 0.96);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      width: 100%;
+    }
+    .header-inner {
+      max-width: 1060px;
+      margin: 0 auto;
+      padding: 0.65rem 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+    }
+    .header-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      gap: 0.75rem;
+    }
+    .brand-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      text-decoration: none;
+      color: var(--text-primary);
+      min-width: 0;
+    }
+    .brand-logo {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1.5px solid var(--border-strong);
+      flex-shrink: 0;
+      display: block;
+    }
+    .brand-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+    }
+    .brand-title span { color: var(--accent); }
+    .hamburger-btn {
+      margin-left: auto;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: var(--bg-secondary);
+      color: var(--text-primary);
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      font-size: 1.25rem;
+      line-height: 1;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+    }
+    .hamburger-btn:hover,
+    .hamburger-btn[aria-expanded="true"] {
+      border-color: var(--border-strong);
+      background: var(--bg-card);
+      color: var(--accent);
+    }
+    .lang-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+    }
+    .lang-switcher {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.22rem;
+      background: var(--bg-secondary);
+      padding: 0.22rem;
+      border-radius: 9px;
+      border: 1px solid var(--border);
+    }
+    .lang-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.74rem;
+      font-weight: 600;
+      padding: 0.28rem 0.54rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .lang-btn:hover { color: var(--text-primary); background: rgba(255, 255, 255, 0.06); }
+    .lang-btn.active { background: var(--accent); color: #0B1220; }
+
+    .nav-drawer {
+      display: none;
+      flex-direction: column;
+      gap: 0.35rem;
+      width: 100%;
+      padding-top: 0.55rem;
+      border-top: 1px solid var(--border);
+    }
+    .nav-drawer.open { display: flex; }
+    .nav-link {
+      text-decoration: none;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 0.58rem 0.85rem;
+      border-radius: 9px;
+      border: 1px solid transparent;
+      transition: all 0.2s ease;
+      display: block;
+    }
+    .nav-link:hover { color: var(--text-primary); background: var(--bg-card); border-color: var(--border); }
+    .nav-link.active {
+      color: var(--accent);
+      background: var(--accent-soft);
+      border-color: var(--border-strong);
+      font-weight: 600;
+    }
+
+    @media (max-width: 400px) {
+      .header-inner { padding: 0.55rem 0.85rem; gap: 0.45rem; }
+      .brand-logo { width: 34px; height: 34px; }
+      .brand-title { font-size: 1.02rem; }
+      .hamburger-btn { width: 36px; height: 36px; font-size: 1.1rem; }
+      .lang-btn { font-size: 0.7rem; padding: 0.24rem 0.44rem; }
+    }
+
+    /* Main Container */
+    .container { max-width: 1020px; margin: 0 auto; padding: 2.75rem 1.25rem 4.5rem; }
+    .hero { max-width: 840px; margin-bottom: 3.25rem; }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      background: var(--accent-soft);
+      color: var(--accent);
+      border: 1px solid var(--border-strong);
+      padding: 0.34rem 0.85rem;
+      border-radius: 999px;
+      font-size: 0.76rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 1.15rem;
+    }
+    h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(1.95rem, 4.3vw, 2.95rem);
+      line-height: 1.16;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 1.15rem;
+    }
+    .hero-sub { font-size: 1.05rem; color: var(--text-secondary); margin-bottom: 1.75rem; max-width: 780px; }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      background: var(--accent);
+      color: #0B1220;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.92rem;
+      padding: 0.78rem 1.35rem;
+      border-radius: 9px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.15s ease;
+    }
+    .btn-primary:hover { background: var(--accent-hover); transform: translateY(-1px); }
+
+    .section-kicker {
+      display: block;
+      font-size: 0.76rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--accent);
+      margin-bottom: 0.35rem;
+    }
+
+    .card-tag {
+      display: inline-block;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0.24rem 0.62rem;
+      border-radius: 6px;
+      margin-bottom: 0.8rem;
+      align-self: flex-start;
+    }
+
+    /* Sub-tabs */
+    .tab-bar {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(195px, 1fr));
+      gap: 0.7rem;
+      margin-bottom: 2rem;
+    }
+    .tab-btn {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      padding: 0.85rem 1rem;
+      border-radius: 10px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-align: left;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .tab-btn:hover { background: var(--bg-card); color: var(--text-primary); border-color: var(--border-strong); }
+    .tab-btn.active { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; animation: fadeIn 0.22s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+
+    .panel-box {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      padding: 1.75rem;
+      margin-bottom: 1.5rem;
+    }
+    .panel-box h3 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.28rem;
+      color: var(--text-primary);
+      margin-bottom: 0.65rem;
+    }
+    .panel-box p { font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 0.9rem; line-height: 1.68; }
+    .clean-list { list-style: none; display: flex; flex-direction: column; gap: 0.65rem; margin-top: 0.75rem; }
+    .clean-list li {
+      position: relative;
+      padding-left: 1.25rem;
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+    .clean-list li::before {
+      content: "▸";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 700;
+    }
+    .clean-list strong { color: var(--text-primary); }
+
+    /* Footer */
+    .site-footer {
+      border-top: 1px solid var(--border);
+      background: var(--bg-secondary);
+      padding: 2.35rem 1.25rem;
+      text-align: center;
+    }
+    .footer-inner { max-width: 960px; margin: 0 auto; }
+    .footer-brand {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      margin-bottom: 1rem;
+      text-decoration: none;
+      color: var(--text-primary);
+    }
+    .footer-logo {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1px solid var(--border-strong);
+      display: block;
+    }
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.15rem;
+      margin-bottom: 1.15rem;
+    }
+    .footer-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+    .footer-links a:hover { color: var(--accent); }
+    .footer-share {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 1.25rem;
+    }
+    .footer-share-label {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      margin-right: 2px;
+    }
+    .share-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      padding: 0;
+      color: var(--text-secondary);
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease, transform 0.15s ease;
+    }
+    .share-btn:hover {
+      border-color: var(--border-strong);
+      color: var(--accent);
+      background: var(--bg-card-hover);
+      transform: translateY(-1px);
+    }
+    .share-btn svg {
+      width: 18px;
+      height: 18px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.75;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .footer-copy { font-size: 0.8rem; color: var(--text-muted); }
+    .footer-legal-line { margin-top: 0.45rem; }
+    .footer-legal-line a { color: inherit; text-decoration: none; transition: color 0.2s ease; }
+    .footer-legal-line a:hover { color: var(--accent); text-decoration: underline; }
+
+    .callout-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.15rem;
+      margin: 1.25rem 0;
+    }
+    .callout-box {
+      background: var(--bg-primary);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem;
+    }
+    .callout-box.accent-box { border-color: var(--border-strong); }
+    .callout-box.cyan-box { border-color: rgba(56, 189, 248, 0.38); }
+    .callout-box h4 {
+      font-size: 0.98rem;
+      color: var(--accent);
+      margin-bottom: 0.45rem;
+    }
+    .callout-box.cyan-box h4 { color: var(--cyan); }
+    .callout-box p { font-size: 0.89rem; color: var(--text-secondary); margin-bottom: 0; }
+    .holi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.15rem;
+      margin-top: 1.25rem;
+    }
+    .holi-card {
+      background: var(--bg-primary);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.35rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .holi-card h4 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.1rem;
+      color: var(--text-primary);
+      margin-bottom: 0.4rem;
+    }
+    .holi-card p { font-size: 0.89rem; color: var(--text-secondary); margin-bottom: 0; }
+    .holi-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.62rem 0.95rem;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-decoration: none;
+      background: var(--bg-card);
+      color: var(--text-primary);
+      border: 1px solid var(--border-strong);
+      transition: all 0.2s ease;
+    }
+    .holi-btn:hover { background: var(--accent); color: #0B1220; }
+  </style>
+  <script data-goatcounter="https://mariusmarai.goatcounter.com/count"
+          async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="header-top">
+        <a href="index.html" class="brand-link">
+          <img src="mariusmarAI_Logo.jpg" alt="mariusmarAI Logo" class="brand-logo" />
+          <span class="brand-title">mariusmar<span>AI</span></span>
+        </a>
+        <button type="button" class="hamburger-btn" id="hamburger-btn" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-drawer">☰</button>
+      </div>
+      <div class="lang-row">
+        <div class="lang-switcher" aria-label="Language selector">
+          <button type="button" class="lang-btn active" data-lang="en">EN</button>
+          <button type="button" class="lang-btn" data-lang="es">ES</button>
+          <button type="button" class="lang-btn" data-lang="fr">FR</button>
+          <button type="button" class="lang-btn" data-lang="it">IT</button>
+          <button type="button" class="lang-btn" data-lang="pt">PT</button>
+          <button type="button" class="lang-btn" data-lang="ro">RO</button>
+        </div>
+      </div>
+      <nav class="nav-drawer" id="nav-drawer" aria-label="Main navigation">
+        <a href="index.html" class="nav-link" data-i18n="nav_home">Home</a>
+        <a href="cv.html" class="nav-link" data-i18n="nav_cv">CV</a>
+        <a href="projects.html" class="nav-link active" data-i18n="nav_projects">Projects</a>
+        <a href="interactive-play.html" class="nav-link" data-i18n="nav_play">Interactive Play</a>
+        <a href="blog/en/" class="nav-link" id="menu-blog-link" data-i18n="nav_blog">Blog</a>
+        <a href="contact.html" class="nav-link" data-i18n="nav_contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero" style="margin-bottom: 2rem;">
+      <div class="eyebrow" data-i18n="pr_badge">Applied Architecture & Community</div>
+      <h1 data-i18n="pr_title">Projects, Automation Philosophy & Growth Ecosystem</h1>
+      <p class="hero-sub" style="margin-bottom: 0;" data-i18n="pr_sub">
+        Explore why intelligent automation requires balancing AI with deterministic Excel/VBA engineering, alongside the Humans of Linked In (HoLI), Mentoring, and Coaching pillars.
+      </p>
+    </section>
+
+    <div class="tab-bar" role="tablist">
+      <button type="button" class="tab-btn active" data-tab="automation" data-i18n="tab_auto">01. Automation</button>
+      <button type="button" class="tab-btn" data-tab="humans-of-linkedin" data-i18n="tab_holi">02. Humans of Linked In</button>
+      <button type="button" class="tab-btn" data-tab="mentoring" data-i18n="tab_ment">03. Mentoring</button>
+      <button type="button" class="tab-btn" data-tab="coaching" data-i18n="tab_coach">04. Coaching</button>
+    </div>
+
+    <!-- TAB 1: AUTOMATION -->
+    <section class="tab-panel active" id="panel-automation">
+      <div class="panel-box">
+        <span class="section-kicker" data-i18n="au_k1">Strategic Necessity</span>
+        <h3 data-i18n="au_h1">Why Automation & Operational Efficiency Matter Now</h3>
+        <p data-i18n="au_p1">
+          In high-scale organizations, manual reporting, fragmented handoffs, and repetitive administrative loops quietly drain operating margins and leadership focus. True operational efficiency is never about adopting technology for novelty—it is about removing recurring friction so teams invest their judgment in customers, strategy, and sustainable P&L growth.
+        </p>
+      </div>
+
+      <div class="panel-box">
+        <span class="section-kicker" data-i18n="au_k2">AI Economics & Strategic Fit</span>
+        <h3 data-i18n="au_h2">Automation with AI: Where It Delivers Value — and What It Actually Costs</h3>
+        <p data-i18n="au_p2">
+          Artificial intelligence creates measurable business value when applied selectively to high-friction cognitive work—such as synthesizing complex operational data, structuring executive narratives, and accelerating decision preparation. However, capability alone does not equal return on investment. Before scaling any AI initiative, leadership must weigh speed gains against full lifecycle economics: infrastructure, licensing, governance, and ongoing maintenance.
+        </p>
+        <div class="callout-grid">
+          <div class="callout-box accent-box">
+            <h4 data-i18n="au_c1_h">In-House AI Infrastructure Costs</h4>
+            <p data-i18n="au_c1_p">Running private or self-hosted models requires major capital expenditure: enterprise GPU clusters, high-density servers, specialized cooling, continuous power consumption, and dedicated MLOps engineering.</p>
+          </div>
+          <div class="callout-box cyan-box">
+            <h4 data-i18n="au_c2_h">External API & License Economics</h4>
+            <p data-i18n="au_c2_p">Cloud AI platforms carry recurring per-seat licenses, token/credit consumption fees, rate limits, and strict data-privacy governance. Every AI deployment must pass a disciplined ROI threshold.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel-box">
+        <span class="section-kicker" data-i18n="au_k3">Deterministic Control & Data Integrity</span>
+        <h3 data-i18n="au_h3">The Role of Deterministic Engineering: Where Probabilistic AI Reaches Its Limits</h3>
+        <p data-i18n="au_p3">
+          Generative AI is inherently probabilistic—making it powerful for synthesis, yet structurally unsuitable for workloads that demand 100% mathematical certainty, strict compliance, and zero-error execution. Enterprise-grade automation still relies on deterministic engineering (Excel, Power Query, VBA, and structured rules) across three critical boundaries:
+        </p>
+        <ul class="clean-list" data-i18n-html="au_excel_list"></ul>
+      </div>
+
+      <div class="panel-box" style="border-color: var(--border-strong);">
+        <span class="section-kicker" data-i18n="au_k4">Target Operating Model</span>
+        <h3 data-i18n="au_h4">Hybrid Human-in-the-Loop Architecture: Deterministic Core, Cognitive Layer</h3>
+        <p data-i18n="au_p4">
+          Sustainable operational excellence does not come from choosing between traditional automation and AI—it comes from orchestrating both under clear human accountability. In a high-ROI architecture, deterministic engines handle data ingestion, validation, and rule-based execution with 100% mathematical precision, while AI operates as a cognitive layer to synthesize anomalies, frame executive insights, and accelerate decision-making. The result is enterprise speed and lower operating costs without sacrificing control or auditability.
+        </p>
+      </div>
+    </section>
+
+    <!-- TAB 2: HUMANS OF LINKED IN -->
+    <section class="tab-panel" id="panel-humans-of-linkedin">
+      <div class="panel-box">
+        <span class="section-kicker" data-i18n="ho_k1">Career Architecture & Peer Trust</span>
+        <h3 data-i18n="ho_h1">Why Mentorship, Coaching & Peer Ecosystems Accelerate Careers</h3>
+        <p data-i18n-html="ho_p1"></p>
+
+        <div class="holi-grid">
+          <div class="holi-card">
+            <div>
+              <span class="card-tag" data-i18n="ho_c1_tag">Career Growth & Career Shift</span>
+              <h4>Humans of Linked In (HoLI)</h4>
+              <p data-i18n="ho_c1_p">Practical essays, real-world transition stories, and frameworks for expanding leadership scope or pivoting across industries without starting over.</p>
+            </div>
+            <a href="https://www.linkedin.com/newsletters/humans-of-linked-in-holi-7161329778250162176/" target="_blank" rel="noopener noreferrer" class="holi-btn" data-i18n="ho_c1_btn">Read HoLI Newsletter ↗</a>
+          </div>
+
+          <div class="holi-card">
+            <div>
+              <span class="card-tag" data-i18n="ho_c2_tag">Networking</span>
+              <h4>Humans of Linked In (HoLI Networking)</h4>
+              <p data-i18n="ho_c2_p">Moving beyond transactional connection requests toward high-trust peer dialogue, warm introductions, and cross-border collaboration.</p>
+            </div>
+            <a href="https://www.linkedin.com/groups/40607397/" target="_blank" rel="noopener noreferrer" class="holi-btn" data-i18n="ho_c2_btn">Join HoLI Networking ↗</a>
+          </div>
+
+          <div class="holi-card">
+            <div>
+              <span class="card-tag" data-i18n="ho_c3_tag">Job Finding Support</span>
+              <h4>Humans Of Linked In (HoLI Jobs)</h4>
+              <p data-i18n="ho_c3_p">Surfacing unadvertised roles, hiring signals, and market intelligence across global teams so professionals spot inflection points early.</p>
+            </div>
+            <a href="https://www.linkedin.com/groups/14608931/" target="_blank" rel="noopener noreferrer" class="holi-btn" data-i18n="ho_c3_btn">Join HoLI Jobs ↗</a>
+          </div>
+
+          <div class="holi-card">
+            <div>
+              <span class="card-tag" data-i18n="ho_c4_tag">Candidates Support</span>
+              <h4>Humans of Linked In (HoLI)</h4>
+              <p data-i18n="ho_c4_p">A dedicated visibility hub for professionals in active transition to sharpen their positioning and connect directly with hiring leaders.</p>
+            </div>
+            <a href="https://www.linkedin.com/groups/16185013/" target="_blank" rel="noopener noreferrer" class="holi-btn" data-i18n="ho_c4_btn">Join HoLI Candidates ↗</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: MENTORING -->
+    <section class="tab-panel" id="panel-mentoring">
+      <div class="panel-box">
+        <span class="section-kicker" data-i18n="me_k1">Applied Leadership Experience</span>
+        <h3 data-i18n="me_h1">Strategic & Operational Mentoring</h3>
+        <p data-i18n="me_p1">
+          Grounded in 20+ years of international sales and 14+ years leading multi-country operations across Amazon, Veeam, Schneider Electric, and Oracle, mentoring provides practical, pattern-tested guidance for professionals stepping into broader leadership mandates.
+        </p>
+        <ul class="clean-list" data-i18n-html="me_list"></ul>
+        <div style="margin-top: 1.35rem;">
+          <a href="https://www.linkedin.com/in/marius-marai" target="_blank" rel="noopener noreferrer" class="btn-primary" data-i18n="me_cta">Connect with mariusmarAI on LinkedIn ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 4: COACHING -->
+    <section class="tab-panel" id="panel-coaching">
+      <div class="panel-box">
+        <span class="section-kicker" data-i18n="co_k1">Clarity & Accountability</span>
+        <h3 data-i18n="co_h1">Career & Performance Coaching</h3>
+        <p data-i18n="co_p1">
+          Whether you are an individual contributor planning your next step or a seasoned manager navigating an organizational transition, structured coaching helps separate temporary noise from long-term alignment and turns intent into disciplined execution.
+        </p>
+        <ul class="clean-list" data-i18n-html="co_list"></ul>
+        <div style="margin-top: 1.35rem;">
+          <a href="interactive-play.html" class="btn-primary" data-i18n="co_cta">Try the Interactive Play Checklists →</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <a href="index.html" class="footer-brand">
+        <img src="mariusmarAI_Logo.jpg" alt="mariusmarAI" class="footer-logo" />
+        <span style="font-family: 'Playfair Display', Georgia, serif; font-weight: 700; font-size: 1rem;">mariusmar<span style="color: var(--accent);">AI</span></span>
+      </a>
+      <div class="footer-links">
+        <a href="https://www.linkedin.com/in/marius-marai" target="_blank" rel="noopener noreferrer" data-i18n="ft_profile">mariusmarAI on LinkedIn ↗</a>
+        <a href="https://www.linkedin.com/newsletters/humans-of-linked-in-holi-7161329778250162176/" target="_blank" rel="noopener noreferrer" data-i18n="ft_news">Humans of Linked In (HoLI) ↗</a>
+        <a href="https://www.linkedin.com/groups/40607397/" target="_blank" rel="noopener noreferrer" data-i18n="ft_net">HoLI Networking ↗</a>
+        <a href="https://www.linkedin.com/groups/14608931/" target="_blank" rel="noopener noreferrer" data-i18n="ft_jobs">HoLI Jobs ↗</a>
+        <a href="https://www.linkedin.com/groups/16185013/" target="_blank" rel="noopener noreferrer" data-i18n="ft_cand">HoLI Candidates ↗</a>
+      </div>
+      <div class="footer-share" aria-label="Share this page">
+        <span class="footer-share-label" data-i18n="ft_share">Share page:</span>
+        <a class="share-btn" id="share-linkedin" target="_blank" rel="noopener noreferrer" title="LinkedIn" aria-label="Share on LinkedIn">
+          <svg viewBox="0 0 24 24">
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+            <rect x="2" y="9" width="4" height="12"/>
+            <circle cx="4" cy="4" r="2"/>
+          </svg>
+        </a>
+        <a class="share-btn" id="share-whatsapp" target="_blank" rel="noopener noreferrer" title="WhatsApp" aria-label="Share on WhatsApp">
+          <svg viewBox="0 0 24 24">
+            <path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21"/>
+            <path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1"/>
+          </svg>
+        </a>
+        <a class="share-btn" id="share-email" title="Email" aria-label="Share via Email">
+          <svg viewBox="0 0 24 24">
+            <rect x="2" y="4" width="20" height="16" rx="2"/>
+            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+          </svg>
+        </a>
+        <button type="button" class="share-btn" id="share-copy" title="Copy link" aria-label="Copy page link">
+          <svg id="icon-copy" viewBox="0 0 24 24">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+          <svg id="icon-check" viewBox="0 0 24 24" style="display: none; color: var(--accent);">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        </button>
+      </div>
+      <p class="footer-copy" data-i18n="ft_copy">© mariusmarAI. Global Operations, Commercial Leadership & AI-Driven Transformation.</p>
+      <p class="footer-copy footer-legal-line">
+        <a href="terms.html" data-i18n="ft_terms">Terms and Conditions</a>
+        <span> · </span>
+        <a href="privacy.html" data-i18n="ft_privacy">Privacy Policy</a>
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    const translations = {
+      "en": {
+        "nav_home": "Home",
+        "nav_cv": "CV",
+        "nav_projects": "Projects",
+        "nav_play": "Interactive Play",
+        "nav_blog": "Blog",
+        "nav_contact": "Contact",
+        "ft_profile": "mariusmarAI on LinkedIn ↗",
+        "ft_news": "Humans of Linked In (HoLI) ↗",
+        "ft_net": "HoLI Networking ↗",
+        "ft_jobs": "HoLI Jobs ↗",
+        "ft_cand": "HoLI Candidates ↗",
+        "ft_share": "Share page:",
+        "ft_copy": "© mariusmarAI. Global Operations, Commercial Leadership & AI-Driven Transformation.",
+        "ft_terms": "Terms and Conditions",
+        "ft_privacy": "Privacy Policy",
+        "pr_badge": "Applied Architecture & Community",
+        "pr_title": "Projects, Automation Philosophy & Growth Ecosystem",
+        "pr_sub": "Explore why intelligent automation requires balancing AI with deterministic Excel/VBA engineering, alongside the Humans of Linked In (HoLI), Mentoring, and Coaching pillars.",
+        "tab_auto": "01. Automation",
+        "tab_holi": "02. Humans of Linked In",
+        "tab_ment": "03. Mentoring",
+        "tab_coach": "04. Coaching",
+        "au_k1": "Strategic Necessity",
+        "au_h1": "Why Automation & Operational Efficiency Matter Now",
+        "au_p1": "In high-scale organizations, manual reporting, fragmented handoffs, and repetitive administrative loops quietly drain operating margins and leadership focus. True operational efficiency is never about adopting technology for novelty—it is about removing recurring friction so teams invest their judgment in customers, strategy, and sustainable P&L growth.",
+        "au_k2": "AI Economics & Strategic Fit",
+        "au_h2": "Automation with AI: Where It Delivers Value — and What It Actually Costs",
+        "au_p2": "Artificial intelligence creates measurable business value when applied selectively to high-friction cognitive work—such as synthesizing complex operational data, structuring executive narratives, and accelerating decision preparation. However, capability alone does not equal return on investment. Before scaling any AI initiative, leadership must weigh speed gains against full lifecycle economics: infrastructure, licensing, governance, and ongoing maintenance.",
+        "au_c1_h": "In-House AI Infrastructure Costs",
+        "au_c1_p": "Running private or self-hosted models requires major capital expenditure: enterprise GPU clusters, high-density servers, specialized cooling, continuous power consumption, and dedicated MLOps engineering.",
+        "au_c2_h": "External API & License Economics",
+        "au_c2_p": "Cloud AI platforms carry recurring per-seat licenses, token/credit consumption fees, rate limits, and strict data-privacy governance. Every AI deployment must pass a disciplined ROI threshold.",
+        "au_k3": "Deterministic Control & Data Integrity",
+        "au_h3": "The Role of Deterministic Engineering: Where Probabilistic AI Reaches Its Limits",
+        "au_p3": "Generative AI is inherently probabilistic—making it powerful for synthesis, yet structurally unsuitable for workloads that demand 100% mathematical certainty, strict compliance, and zero-error execution. Enterprise-grade automation still relies on deterministic engineering (Excel, Power Query, VBA, and structured rules) across three critical boundaries:",
+        "au_excel_list": "<li><strong>Executive-Grade Formatting & Brand Compliance:</strong> Board decks, contractual templates, and recurring client deliverables require exact layout fidelity that probabilistic models cannot guarantee without manual intervention.</li>\n          <li><strong>High-Volume Data Processing & Zero-Error Calculation:</strong> Large-scale operational and financial datasets demand repeatable logic, instant execution, and zero hallucination risk—delivered at near-zero marginal cost.</li>\n          <li><strong>Financial Auditability & Governance:</strong> P&L models, forecasting engines, and KPI scorecards must be fully transparent and traceable formula-by-formula, rather than generated through black-box probability.</li>",
+        "au_k4": "Target Operating Model",
+        "au_h4": "Hybrid Human-in-the-Loop Architecture: Deterministic Core, Cognitive Layer",
+        "au_p4": "Sustainable operational excellence does not come from choosing between traditional automation and AI—it comes from orchestrating both under clear human accountability. In a high-ROI architecture, deterministic engines handle data ingestion, validation, and rule-based execution with 100% mathematical precision, while AI operates as a cognitive layer to synthesize anomalies, frame executive insights, and accelerate decision-making. The result is enterprise speed and lower operating costs without sacrificing control or auditability.",
+        "ho_k1": "Career Architecture & Peer Trust",
+        "ho_h1": "Why Mentorship, Coaching & Peer Ecosystems Accelerate Careers",
+        "ho_p1": "Even high-performing professionals encounter blind spots when scaling into larger mandates or navigating a career shift. Working with a coach or mentor—and engaging inside a trusted peer network—sharpens positioning, prevents costly missteps, and unlocks warm opportunities that cold applications never reach. Explore the ecosystem curated by <a href='https://www.linkedin.com/in/marius-marai' target='_blank' rel='noopener noreferrer' style='color: var(--accent); font-weight: 600;'>Marius Marai</a>:",
+        "ho_c1_tag": "Career Growth & Career Shift",
+        "ho_c1_p": "Practical essays, real-world transition stories, and frameworks for expanding leadership scope or pivoting across industries without starting over.",
+        "ho_c1_btn": "Read HoLI Newsletter ↗",
+        "ho_c2_tag": "Networking",
+        "ho_c2_p": "Moving beyond transactional connection requests toward high-trust peer dialogue, warm introductions, and cross-border collaboration.",
+        "ho_c2_btn": "Join HoLI Networking ↗",
+        "ho_c3_tag": "Job Finding Support",
+        "ho_c3_p": "Surfacing unadvertised roles, hiring signals, and market intelligence across global teams so professionals spot inflection points early.",
+        "ho_c3_btn": "Join HoLI Jobs ↗",
+        "ho_c4_tag": "Candidates Support",
+        "ho_c4_p": "A dedicated visibility hub for professionals in active transition to sharpen their positioning and connect directly with hiring leaders.",
+        "ho_c4_btn": "Join HoLI Candidates ↗",
+        "me_k1": "Applied Leadership Experience",
+        "me_h1": "Strategic & Operational Mentoring",
+        "me_p1": "Grounded in 20+ years of international sales and 14+ years leading multi-country operations across Amazon, Veeam, Schneider Electric, and Oracle, mentoring provides practical, pattern-tested guidance for professionals stepping into broader leadership mandates.",
+        "me_list": "<li><strong>Scaling Teams Across Borders:</strong> Structuring operating rhythms, communication governance, and multicultural alignment.</li>\n          <li><strong>Commercial & P&L Ownership:</strong> Translating pipeline metrics, vendor negotiations, and cost optimization into bottom-line results.</li>\n          <li><strong>Operational Turnarounds:</strong> Diagnosing root causes quickly and lifting underperforming operations within the first 60–90 days.</li>",
+        "me_cta": "Connect with mariusmarAI on LinkedIn ↗",
+        "co_k1": "Clarity & Accountability",
+        "co_h1": "Career & Performance Coaching",
+        "co_p1": "Whether you are an individual contributor planning your next step or a seasoned manager navigating an organizational transition, structured coaching helps separate temporary noise from long-term alignment and turns intent into disciplined execution.",
+        "co_list": "<li><strong>Career Direction & Transition Strategy:</strong> Auditing energy, transferable strengths, and target market inflection points.</li>\n          <li><strong>Value Positioning:</strong> Translating internal titles and daily tasks into measurable business impact.</li>\n          <li><strong>Decision Confidence:</strong> Building structured checkpoints and safety nets before making high-stakes career moves.</li>",
+        "co_cta": "Try the Interactive Play Checklists →"
+      },
+      "es": {
+        "nav_home": "Inicio",
+        "nav_cv": "CV",
+        "nav_projects": "Proyectos",
+        "nav_play": "Interactive Play",
+        "nav_blog": "Blog",
+        "nav_contact": "Contacto",
+        "ft_profile": "mariusmarAI en LinkedIn ↗",
+        "ft_news": "Humans of Linked In (HoLI) ↗",
+        "ft_net": "HoLI Networking ↗",
+        "ft_jobs": "HoLI Jobs ↗",
+        "ft_cand": "HoLI Candidates ↗",
+        "ft_share": "Compartir página:",
+        "ft_copy": "© mariusmarAI. Operaciones Globales, Liderazgo Comercial y Transformación impulsada por IA.",
+        "ft_terms": "Términos y Condiciones",
+        "ft_privacy": "Política de Privacidad",
+        "pr_badge": "Arquitectura Aplicada y Comunidad",
+        "pr_title": "Proyectos, Filosofía de Automatización y Ecosistema de Crecimiento",
+        "pr_sub": "Descubre por qué la automatización inteligente exige equilibrar la IA con ingeniería determinista en Excel/VBA, junto con los pilares Humans of Linked In (HoLI), Mentoring y Coaching.",
+        "tab_auto": "01. Automatización",
+        "tab_holi": "02. Humans of Linked In",
+        "tab_ment": "03. Mentoring",
+        "tab_coach": "04. Coaching",
+        "au_k1": "Necesidad Estratégica",
+        "au_h1": "Por Qué la Automatización y la Eficiencia Importan Hoy",
+        "au_p1": "En organizaciones de gran escala, los reportes manuales y los flujos fragmentados erosionan los márgenes operativos y el foco directivo. La verdadera eficiencia no consiste en adoptar tecnología por moda, sino en eliminar fricciones recurrentes para centrar el talento en los clientes y el crecimiento del P&L.",
+        "au_k2": "Economía de la IA y Encaje Estratégico",
+        "au_h2": "Automatización con IA: Dónde Aporta Valor — y Cuánto Cuesta Realmente",
+        "au_p2": "La inteligencia artificial genera valor de negocio medible cuando se aplica de forma selectiva a tareas cognitivas de alta fricción, como sintetizar datos operativos complejos, estructurar narrativas ejecutivas y acelerar la preparación de decisiones. Sin embargo, la capacidad técnica por sí sola no equivale a retorno de la inversión. Antes de escalar cualquier iniciativa de IA, la dirección debe ponderar las ganancias de velocidad frente a la economía completa de su ciclo de vida: infraestructura, licencias, gobernanza y mantenimiento continuo.",
+        "au_c1_h": "Costes de Infraestructura IA In-House",
+        "au_c1_p": "Ejecutar modelos propios exige fuerte inversión en clústeres de GPU, servidores de alta densidad, refrigeración especializada, consumo eléctrico continuo e ingeniería MLOps.",
+        "au_c2_h": "Economía de APIs y Licencias Externas",
+        "au_c2_p": "Las plataformas cloud implican licencias recurrentes por usuario, consumo de tokens/créditos, límites de uso y gobernanza de privacidad. Toda implementación debe superar un umbral estricto de ROI.",
+        "au_k3": "Control Determinista e Integridad de Datos",
+        "au_h3": "El Rol de la Ingeniería Determinista: Dónde la IA Probabilística Alcanza sus Límites",
+        "au_p3": "La IA generativa es intrínsecamente probabilística: resulta potente para la síntesis, pero estructuralmente inadecuada para cargas de trabajo que exigen certeza matemática del 100%, cumplimiento estricto y ejecución sin errores. La automatización de nivel empresarial sigue apoyándose en la ingeniería determinista (Excel, Power Query, VBA y reglas estructuradas) en tres fronteras críticas:",
+        "au_excel_list": "<li><strong>Formato Ejecutivo y Cumplimiento de Marca:</strong> Las presentaciones para el comité, plantillas contractuales y entregables recurrentes exigen una fidelidad exacta de diseño que los modelos probabilísticos no pueden garantizar sin intervención manual.</li>\n          <li><strong>Procesamiento Masivo de Datos y Cálculo sin Errores:</strong> Los conjuntos de datos operativos y financieros a gran escala requieren lógica repetible, ejecución instantánea y riesgo cero de alucinación, con un coste marginal prácticamente nulo.</li>\n          <li><strong>Auditabilidad Financiera y Gobernanza:</strong> Los modelos de P&L, motores de proyección y cuadros de mando KPI deben ser totalmente transparentes y trazables fórmula por fórmula, en lugar de generarse mediante probabilidad de caja negra.</li>",
+        "au_k4": "Modelo Operativo Objetivo",
+        "au_h4": "Arquitectura Híbrida Human-in-the-Loop: Núcleo Determinista, Capa Cognitiva",
+        "au_p4": "La excelencia operativa sostenible no surge de elegir entre la automatización tradicional y la IA, sino de orquestar ambas bajo una clara responsabilidad humana. En una arquitectura de alto ROI, los motores deterministas gestionan la ingesta, validación y ejecución basada en reglas con un 100% de precisión matemática, mientras la IA opera como una capa cognitiva para sintetizar anomalías, enmarcar conclusiones ejecutivas y acelerar la toma de decisiones. El resultado es velocidad empresarial y menores costes operativos sin sacrificar el control ni la auditabilidad.",
+        "ho_k1": "Arquitectura de Carrera y Confianza",
+        "ho_h1": "Por Qué el Mentoring, el Coaching y las Redes Impulsan tu Carrera",
+        "ho_p1": "Incluso los profesionales más sólidos tienen puntos ciegos al escalar responsabilidades o cambiar de rumbo. Contar con un mentor, un coach y una red de confianza acelera la claridad y abre oportunidades reales. Explora el ecosistema impulsado por <a href='https://www.linkedin.com/in/marius-marai' target='_blank' rel='noopener noreferrer' style='color: var(--accent); font-weight: 600;'>Marius Marai</a>:",
+        "ho_c1_tag": "Crecimiento y Cambio de Carrera",
+        "ho_c1_p": "Ensayos prácticos, historias reales de transición y marcos para ampliar alcance de liderazgo o cambiar de sector sin empezar de cero.",
+        "ho_c1_btn": "Leer Newsletter HoLI ↗",
+        "ho_c2_tag": "Networking",
+        "ho_c2_p": "Superar las solicitudes frías para construir diálogo genuino entre pares, presentaciones de confianza y colaboración internacional.",
+        "ho_c2_btn": "Unirse a HoLI Networking ↗",
+        "ho_c3_tag": "Apoyo en Búsqueda de Empleo",
+        "ho_c3_p": "Visibilidad sobre vacantes no publicadas, señales de contratación e inteligencia de mercado en equipos globales.",
+        "ho_c3_btn": "Unirse a HoLI Jobs ↗",
+        "ho_c4_tag": "Apoyo a Candidatos",
+        "ho_c4_p": "Un espacio de visibilidad para profesionales en transición activa donde afinar su posicionamiento y conectar con líderes.",
+        "ho_c4_btn": "Unirse a HoLI Candidates ↗",
+        "me_k1": "Experiencia Aplicada de Liderazgo",
+        "me_h1": "Mentoring Estratégico y Operativo",
+        "me_p1": "Basado en más de 20 años en ventas internacionales y 14+ liderando operaciones multipaís en Amazon, Veeam, Schneider Electric y Oracle, ofrece guía práctica para asumir mayores responsabilidades.",
+        "me_list": "<li><strong>Escalado Internacional de Equipos:</strong> Diseño de ritmos operativos, gobernanza de comunicación y alineación multicultural.</li>\n          <li><strong>Gestión Comercial y P&L:</strong> Traducción de métricas de pipeline y negociación con proveedores en impacto directo en resultados.</li>\n          <li><strong>Transformación Operativa:</strong> Diagnóstico rápido de causas raíz y recuperación de rendimiento en los primeros 60–90 días.</li>",
+        "me_cta": "Conectar con mariusmarAI en LinkedIn ↗",
+        "co_k1": "Claridad y Compromiso",
+        "co_h1": "Coaching de Carrera y Desempeño",
+        "co_p1": "Tanto si eres individual contributor preparando tu siguiente paso como si lideras equipos en transición, el coaching estructurado ayuda a separar el ruido temporal de tu alineación profesional.",
+        "co_list": "<li><strong>Dirección y Estrategia de Transición:</strong> Auditoría de energía, fortalezas transferibles y puntos de inflexión del mercado.</li>\n          <li><strong>Posicionamiento de Valor:</strong> Traducir títulos internos y tareas diarias en impacto medible de negocio.</li>\n          <li><strong>Confianza en la Decisión:</strong> Crear puntos de control y redes de seguridad antes de dar pasos clave.</li>",
+        "co_cta": "Probar Checklists en Interactive Play →"
+      },
+      "fr": {
+        "nav_home": "Accueil",
+        "nav_cv": "CV",
+        "nav_projects": "Projets",
+        "nav_play": "Interactive Play",
+        "nav_blog": "Blog",
+        "nav_contact": "Contact",
+        "ft_profile": "mariusmarAI sur LinkedIn ↗",
+        "ft_news": "Humans of Linked In (HoLI) ↗",
+        "ft_net": "HoLI Networking ↗",
+        "ft_jobs": "HoLI Jobs ↗",
+        "ft_cand": "HoLI Candidates ↗",
+        "ft_share": "Partager la page :",
+        "ft_copy": "© mariusmarAI. Opérations Globales, Leadership Commercial & Transformation par l'IA.",
+        "ft_terms": "Conditions Générales",
+        "ft_privacy": "Politique de Confidentialité",
+        "pr_badge": "Architecture Appliquée & Communauté",
+        "pr_title": "Projets, Philosophie d'Automatisation & Écosystème de Croissance",
+        "pr_sub": "Découvrez pourquoi l'automatisation intelligente exige d'équilibrer l'IA avec l'ingénierie déterministe Excel/VBA, aux côtés des piliers Humans of Linked In (HoLI), Mentoring et Coaching.",
+        "tab_auto": "01. Automatisation",
+        "tab_holi": "02. Humans of Linked In",
+        "tab_ment": "03. Mentoring",
+        "tab_coach": "04. Coaching",
+        "au_k1": "Nécessité Stratégique",
+        "au_h1": "Pourquoi l'Automatisation et l'Efficience Sont Vitales Aujourd'hui",
+        "au_p1": "Dans les organisations à grande échelle, le reporting manuel et les processus fragmentés érodent silencieusement les marges et la bande passante managériale. La vraie efficience consiste à éliminer les frictions répétitives pour concentrer l'intelligence humaine sur les clients et le P&L.",
+        "au_k2": "Économie de l'IA & Pertinence Stratégique",
+        "au_h2": "Automatisation par l'IA : Où Elle Crée de la Valeur — et Ce Qu'elle Coûte Réellement",
+        "au_p2": "L'intelligence artificielle génère une valeur métier mesurable lorsqu'elle est appliquée de manière sélective aux tâches cognitives à forte friction — telles que la synthèse de données opérationnelles complexes, la structuration de notes exécutives et l'accélération de la préparation des décisions. Toutefois, la capacité technologique seule ne garantit pas le retour sur investissement. Avant de déployer toute initiative IA à grande échelle, la direction doit évaluer les gains de rapidité au regard de l'économie complète du cycle de vie : infrastructure, licences, gouvernance et maintenance continue.",
+        "au_c1_h": "Coûts d'Infrastructure IA Interne (In-House)",
+        "au_c1_p": "Héberger ses propres modèles exige des investissements lourds : clusters GPU, serveurs haute densité, refroidissement, consommation électrique continue et ingénierie MLOps.",
+        "au_c2_h": "Économie des API & Licences Externes",
+        "au_c2_p": "Les solutions cloud impliquent des licences récurrentes, des coûts de tokens/crédits et une gouvernance stricte des données. Chaque déploiement doit prouver son ROI.",
+        "au_k3": "Contrôle Déterministe & Intégrité des Données",
+        "au_h3": "Le Rôle de l'Ingénierie Déterministe : Là où l'IA Probabiliste Atteint ses Limites",
+        "au_p3": "L'IA générative est par nature probabiliste — ce qui la rend puissante pour la synthèse, mais structurellement inadaptée aux charges de travail exigeant une certitude mathématique de 100 %, une conformité stricte et une exécution sans erreur. L'automatisation de niveau entreprise repose toujours sur l'ingénierie déterministe (Excel, Power Query, VBA et règles structurées) sur trois frontières critiques :",
+        "au_excel_list": "<li><strong>Mise en Page Exécutive & Conformité de Marque :</strong> Les présentations de direction, modèles contractuels et livrables clients récurrents exigent une fidélité de mise en page exacte que les modèles probabilistes ne peuvent garantir sans intervention manuelle.</li>\n          <li><strong>Traitement de Données Massives & Calcul sans Erreur :</strong> Les jeux de données opérationnels et financiers à grande échelle requièrent une logique reproductible, une exécution instantanée et zéro risque d'hallucination — délivrés à un coût marginal quasi nul.</li>\n          <li><strong>Auditabilité Financière & Gouvernance :</strong> Les modèles de P&L, moteurs de prévision et tableaux de bord KPI doivent être entièrement transparents et traçables formule par formule, plutôt que générés par une probabilité boîte noire.</li>",
+        "au_k4": "Modèle Opérationnel Cible",
+        "au_h4": "Architecture Hybride Human-in-the-Loop : Noyau Déterministe, Couche Cognitive",
+        "au_p4": "L'excellence opérationnelle durable ne vient pas d'un choix exclusif entre l'automatisation traditionnelle et l'IA — elle réside dans l'orchestration des deux sous une responsabilité humaine claire. Dans une architecture à haut ROI, les moteurs déterministes assurent l'ingestion, la validation et l'exécution basée sur des règles avec une précision mathématique de 100 %, tandis que l'IA agit comme une couche cognitive pour synthétiser les anomalies, structurer les analyses exécutives et accélérer la prise de décision. Il en résulte une vitesse d'exécution accrue et des coûts opérationnels réduits sans sacrifier le contrôle ni l'auditabilité.",
+        "ho_k1": "Architecture de Carrière & Confiance",
+        "ho_h1": "Pourquoi le Mentoring, le Coaching & les Pairs Accélèrent Votre Carrière",
+        "ho_p1": "Même les profils les plus performants ont des angles morts lors d'un changement d'envergure ou de secteur. Être accompagné par un mentor ou un coach et s'appuyer sur un réseau de confiance accélère la clarté et ouvre des opportunités cachées. Découvrez l'écosystème animé par <a href='https://www.linkedin.com/in/marius-marai' target='_blank' rel='noopener noreferrer' style='color: var(--accent); font-weight: 600;'>Marius Marai</a> :",
+        "ho_c1_tag": "Évolution & Reconversion",
+        "ho_c1_p": "Articles pratiques, récits de transition et méthodes pour élargir son périmètre ou changer d'industrie sans repartir de zéro.",
+        "ho_c1_btn": "Lire la Newsletter HoLI ↗",
+        "ho_c2_tag": "Networking",
+        "ho_c2_p": "Dépasser les demandes de connexion froides pour bâtir un dialogue authentique entre pairs et des recommandations qualifiées.",
+        "ho_c2_btn": "Rejoindre HoLI Networking ↗",
+        "ho_c3_tag": "Soutien à la Recherche d'Emploi",
+        "ho_c3_p": "Partage d'opportunités non publiées, signaux de recrutement et intelligence marché au sein d'équipes internationales.",
+        "ho_c3_btn": "Rejoindre HoLI Jobs ↗",
+        "ho_c4_tag": "Soutien aux Candidats",
+        "ho_c4_p": "Un espace de visibilité dédié aux professionnels en transition pour affiner leur positionnement et échanger avec des décideurs.",
+        "ho_c4_btn": "Rejoindre HoLI Candidates ↗",
+        "me_k1": "Expérience Terrain du Leadership",
+        "me_h1": "Mentoring Stratégique & Opérationnel",
+        "me_p1": "Appuyé sur plus de 20 ans dans la vente internationale et 14+ ans à la tête d'opérations multi-pays chez Amazon, Veeam, Schneider Electric et Oracle, ce mentoring offre un éclairage concret pour réussir vos prises de poste.",
+        "me_list": "<li><strong>Déploiement d'Équipes Internationales :</strong> Structuration des rituels opérationnels, gouvernance et cohésion multiculturelle.</li>\n          <li><strong>Pilotage Commercial & P&L :</strong> Conversion de la gouvernance pipeline et des négociations fournisseurs en marge nette.</li>\n          <li><strong>Redressement Opérationnel :</strong> Diagnostic rapide des causes racines et relance de la performance en 60 à 90 jours.</li>",
+        "me_cta": "Se connecter avec mariusmarAI sur LinkedIn ↗",
+        "co_k1": "Clarté & Passage à l'Action",
+        "co_h1": "Coaching de Carrière & Performance",
+        "co_p1": "Que vous soyez contributeur individuel préparant votre prochaine étape ou manager en transition, un coaching structuré permet de distinguer l'urgence passagère de l'alignement durable.",
+        "co_list": "<li><strong>Cap Professionnel & Stratégie de Pivot :</strong> Audit d'énergie, compétences transférables et signaux de marché.</li>\n          <li><strong>Positionnement de Valeur :</strong> Traduire les intitulés internes en impact économique mesurable.</li>\n          <li><strong>Sécurité Décisionnelle :</strong> Mettre en place des garde-fous avant toute décision structurante.</li>",
+        "co_cta": "Tester les Checklists Interactive Play →"
+      },
+      "it": {
+        "nav_home": "Home",
+        "nav_cv": "CV",
+        "nav_projects": "Progetti",
+        "nav_play": "Interactive Play",
+        "nav_blog": "Blog",
+        "nav_contact": "Contatti",
+        "ft_profile": "mariusmarAI su LinkedIn ↗",
+        "ft_news": "Humans of Linked In (HoLI) ↗",
+        "ft_net": "HoLI Networking ↗",
+        "ft_jobs": "HoLI Jobs ↗",
+        "ft_cand": "HoLI Candidates ↗",
+        "ft_share": "Condividi pagina:",
+        "ft_copy": "© mariusmarAI. Operazioni Globali, Leadership Commerciale e Trasformazione guidata dall'IA.",
+        "ft_terms": "Termini e Condizioni",
+        "ft_privacy": "Informativa sulla Privacy",
+        "pr_badge": "Architettura Applicata e Community",
+        "pr_title": "Progetti, Filosofia di Automazione ed Ecosistema di Crescita",
+        "pr_sub": "Scopri perché l'automazione intelligente richiede di bilanciare l'IA con l'ingegneria deterministica Excel/VBA, insieme ai pilastri Humans of Linked In (HoLI), Mentoring e Coaching.",
+        "tab_auto": "01. Automazione",
+        "tab_holi": "02. Humans of Linked In",
+        "tab_ment": "03. Mentoring",
+        "tab_coach": "04. Coaching",
+        "au_k1": "Necessità Strategica",
+        "au_h1": "Perché Automazione ed Efficienza Operativa Contano Ora",
+        "au_p1": "Nelle organizzazioni complesse, la reportistica manuale e i passaggi frammentati erodono silenziosamente i margini operativi e l'attenzione dei leader. La vera efficienza elimina gli attriti ripetitivi per concentrare le persone su clienti, strategia e crescita del P&L.",
+        "au_k2": "Economia dell'IA e Coerenza Strategica",
+        "au_h2": "Automazione con IA: Dove Genera Valore — e Quanto Costa Realmente",
+        "au_p2": "L'intelligenza artificiale crea valore aziendale misurabile quando viene applicata selettivamente ad attività cognitive ad alto attrito — come sintetizzare dati operativi complessi, strutturare analisi esecutive e accelerare la preparazione delle decisioni. Tuttavia, la sola capacità tecnologica non equivale al ritorno sull'investimento. Prima di scalare qualsiasi iniziativa IA, la leadership deve bilanciare i guadagni di velocità con l'economia dell'intero ciclo di vita: infrastruttura, licenze, governance e manutenzione continua.",
+        "au_c1_h": "Costi di Infrastruttura IA In-House",
+        "au_c1_p": "Gestire modelli proprietari richiede investimenti ingenti in cluster GPU, server ad alta densità, raffreddamento, energia continua e competenze MLOps dedicate.",
+        "au_c2_h": "Economia di API e Licenze Esterne",
+        "au_c2_p": "Le piattaforme cloud comportano licenze ricorrenti, costi per token/crediti e governance rigida sulla privacy dei dati. Ogni adozione IA deve superare un rigoroso test di ROI.",
+        "au_k3": "Controllo Deterministico e Integrità dei Dati",
+        "au_h3": "Il Ruolo dell'Ingegneria Deterministica: Dove l'IA Probabilistica Raggiunge i Suoi Limiti",
+        "au_p3": "L'IA generativa è intrinsecamente probabilistica — potente per la sintesi, ma strutturalmente inadatta a carichi di lavoro che richiedono certezza matematica al 100%, conformità rigorosa ed esecuzione priva di errori. L'automazione di livello enterprise continua a basarsi sull'ingegneria deterministica (Excel, Power Query, VBA e regole strutturate) su tre frontiere critiche:",
+        "au_excel_list": "<li><strong>Formattazione Esecutiva e Conformità di Brand:</strong> Presentazioni per il board, modelli contrattuali e deliverable ricorrenti per i clienti richiedono una fedeltà di layout esatta che i modelli probabilistici non possono garantire senza intervento manuale.</li>\n          <li><strong>Elaborazione Dati su Larga Scala e Calcolo senza Errori:</strong> Dataset operativi e finanziari di grandi dimensioni richiedono logica ripetibile, esecuzione istantanea e zero rischio di allucinazione — erogati a un costo marginale quasi nullo.</li>\n          <li><strong>Auditabilità Finanziaria e Governance:</strong> Modelli di P&L, motori di forecasting e scorecard KPI devono essere completamente trasparenti e tracciabili formula per formula, anziché generati tramite probabilità black-box.</li>",
+        "au_k4": "Modello Operativo Target",
+        "au_h4": "Architettura Ibrida Human-in-the-Loop: Nucleo Deterministico, Livello Cognitivo",
+        "au_p4": "L'eccellenza operativa sostenibile non nasce dalla scelta tra automazione tradizionale e IA, ma dall'orchestrazione di entrambe sotto una chiara responsabilità umana. In un'architettura ad alto ROI, i motori deterministici gestiscono l'acquisizione, la validazione e l'esecuzione basata su regole con precisione matematica al 100%, mentre l'IA opera come livello cognitivo per sintetizzare anomalie, inquadrare insight esecutivi e accelerare il processo decisionale. Il risultato è rapidità aziendale e minori costi operativi senza sacrificare controllo né auditabilità.",
+        "ho_k1": "Architettura di Carriera e Fiducia",
+        "ho_h1": "Perché Mentoring, Coaching e Reti tra Pari Accelerano la Carriera",
+        "ho_p1": "Anche i professionisti più esperti hanno punti ciechi quando scalano responsabilità o affrontano un cambio di direzione. Lavorare con un mentor o un coach e partecipare a una rete di fiducia accelera la chiarezza e apre opportunità reali. Esplora l'ecosistema curato da <a href='https://www.linkedin.com/in/marius-marai' target='_blank' rel='noopener noreferrer' style='color: var(--accent); font-weight: 600;'>Marius Marai</a>:",
+        "ho_c1_tag": "Crescita e Cambio Carriera",
+        "ho_c1_p": "Approfondimenti pratici, storie reali di transizione e framework per ampliare il perimetro di leadership o cambiare settore senza ripartire da zero.",
+        "ho_c1_btn": "Leggi la Newsletter HoLI ↗",
+        "ho_c2_tag": "Networking",
+        "ho_c2_p": "Andare oltre le richieste di contatto fredde per costruire dialogo autentico tra pari, referenze e collaborazione internazionale.",
+        "ho_c2_btn": "Unisciti a HoLI Networking ↗",
+        "ho_c3_tag": "Supporto Ricerca Lavoro",
+        "ho_c3_p": "Segnalazione di ruoli non pubblicati, segnali di assunzione e market intelligence nei team globali.",
+        "ho_c3_btn": "Unisciti a HoLI Jobs ↗",
+        "ho_c4_tag": "Supporto ai Candidati",
+        "ho_c4_p": "Uno spazio di visibilità per professionisti in transizione attiva per affinare il posizionamento e connettersi con i decisori.",
+        "ho_c4_btn": "Unisciti a HoLI Candidates ↗",
+        "me_k1": "Esperienza Applicata di Leadership",
+        "me_h1": "Mentoring Strategico e Operativo",
+        "me_p1": "Basato su oltre 20 anni nelle vendite internazionali e 14+ nella guida di operazioni multi-paese in Amazon, Veeam, Schneider Electric e Oracle, offre supporto pratico per chi assume mandati più ampi.",
+        "me_list": "<li><strong>Scalabilità dei Team Internazionali:</strong> Strutturazione di ritmi operativi, governance della comunicazione e allineamento multiculturale.</li>\n          <li><strong>Gestione Commerciale e P&L:</strong> Traduzione della governance pipeline e delle negoziazioni fornitori in risultati finanziari.</li>\n          <li><strong>Rilanci Operativi:</strong> Diagnosi rapida delle cause profonde e recupero delle performance nei primi 60–90 giorni.</li>",
+        "me_cta": "Connettiti con mariusmarAI su LinkedIn ↗",
+        "co_k1": "Chiarezza e Responsabilità",
+        "co_h1": "Coaching di Carriera e Performance",
+        "co_p1": "Che tu sia un individual contributor che pianifica il prossimo passo o un manager in transizione, un coaching strutturato aiuta a distinguere il rumore temporaneo dall'allineamento duraturo.",
+        "co_list": "<li><strong>Direzione e Strategia di Transizione:</strong> Analisi dell'energia, competenze trasferibili e punti di svolta del mercato.</li>\n          <li><strong>Posizionamento del Valore:</strong> Tradurre titoli interni e attività quotidiane in impatto misurabile sul business.</li>\n          <li><strong>Sicurezza Decisionale:</strong> Costruire punti di controllo e reti di sicurezza prima di scelte cruciali.</li>",
+        "co_cta": "Prova le Checklist in Interactive Play →"
+      },
+      "pt": {
+        "nav_home": "Início",
+        "nav_cv": "CV",
+        "nav_projects": "Projetos",
+        "nav_play": "Interactive Play",
+        "nav_blog": "Blog",
+        "nav_contact": "Contacto",
+        "ft_profile": "mariusmarAI no LinkedIn ↗",
+        "ft_news": "Humans of Linked In (HoLI) ↗",
+        "ft_net": "HoLI Networking ↗",
+        "ft_jobs": "HoLI Jobs ↗",
+        "ft_cand": "HoLI Candidates ↗",
+        "ft_share": "Partilhar página:",
+        "ft_copy": "© mariusmarAI. Operações Globais, Liderança Comercial e Transformação impulsionada por IA.",
+        "ft_terms": "Termos e Condições",
+        "ft_privacy": "Política de Privacidade",
+        "pr_badge": "Arquitetura Aplicada e Comunidade",
+        "pr_title": "Projetos, Filosofia de Automação e Ecossistema de Crescimento",
+        "pr_sub": "Descubra por que razão a automação inteligente exige equilibrar a IA com engenharia determinística em Excel/VBA, juntamente com os pilares Humans of Linked In (HoLI), Mentoring e Coaching.",
+        "tab_auto": "01. Automação",
+        "tab_holi": "02. Humans of Linked In",
+        "tab_ment": "03. Mentoring",
+        "tab_coach": "04. Coaching",
+        "au_k1": "Necessidade Estratégica",
+        "au_h1": "Por Que a Automação e a Eficiência Operacional Importam Agora",
+        "au_p1": "Em organizações de grande escala, relatórios manuais e fluxos fragmentados consomem margens operacionais e foco de liderança. A verdadeira eficiência elimina atritos repetitivos para que as equipas se concentrem nos clientes, na estratégia e no crescimento do P&L.",
+        "au_k2": "Economia da IA e Enquadramento Estratégico",
+        "au_h2": "Automação com IA: Onde Gera Valor — e Quanto Custa Realmente",
+        "au_p2": "A inteligência artificial cria valor de negócio mensurável quando aplicada seletivamente a trabalho cognitivo de elevada fricção — como sintetizar dados operacionais complexos, estruturar narrativas executivas e acelerar a preparação de decisões. Contudo, a capacidade técnica por si só não equivale a retorno sobre o investimento. Antes de escalar qualquer iniciativa de IA, a liderança deve ponderar os ganhos de velocidade face à economia completa do ciclo de vida: infraestrutura, licenciamento, governação e manutenção contínua.",
+        "au_c1_h": "Custos de Infraestrutura de IA In-House",
+        "au_c1_p": "Operar modelos próprios exige elevado investimento em clusters de GPU, servidores de alta densidade, refrigeração, energia contínua e engenharia MLOps dedicada.",
+        "au_c2_h": "Economia de APIs e Licenças Externas",
+        "au_c2_p": "Plataformas cloud acarretam licenças recorrentes por utilizador, custos de tokens/créditos e governação rigorosa de dados. Cada implementação deve superar um limiar claro de ROI.",
+        "au_k3": "Controlo Determinístico e Integridade de Dados",
+        "au_h3": "O Papel da Engenharia Determinística: Onde a IA Probabilística Atinge os Seus Limites",
+        "au_p3": "A IA generativa é intrinsecamente probabilística — tornando-a poderosa para síntese, mas estruturalmente inadequada para cargas de trabalho que exigem 100% de certeza matemática, conformidade rigorosa e execução sem erros. A automação de nível empresarial continua a depender da engenharia determinística (Excel, Power Query, VBA e regras estruturadas) em três fronteiras críticas:",
+        "au_excel_list": "<li><strong>Formatação Executiva e Conformidade de Marca:</strong> Apresentações para a administração, modelos contratuais e entregáveis recorrentes exigem uma fidelidade exata de layout que os modelos probabilísticos não conseguem garantir sem intervenção manual.</li>\n          <li><strong>Processamento de Dados em Grande Escala e Cálculo sem Erros:</strong> Conjuntos de dados operacionais e financeiros de grande dimensão exigem lógica repetível, execução instantânea e risco zero de alucinação — entregues a um custo marginal quase nulo.</li>\n          <li><strong>Auditabilidade Financeira e Governação:</strong> Modelos de P&L, motores de previsão e painéis de KPI devem ser totalmente transparentes e rastreáveis fórmula a fórmula, em vez de gerados através de probabilidade de caixa negra.</li>",
+        "au_k4": "Modelo Operacional Alvo",
+        "au_h4": "Arquitetura Híbrida Human-in-the-Loop: Núcleo Determinístico, Camada Cognitiva",
+        "au_p4": "A excelência operacional sustentável não resulta da escolha entre automação tradicional e IA — resulta da orquestração de ambas sob clara responsabilidade humana. Numa arquitetura de elevado ROI, os motores determinísticos asseguram a ingestão, validação e execução baseada em regras com 100% de precisão matemática, enquanto a IA atua como camada cognitiva para sintetizar anomalias, enquadrar análises executivas e acelerar a tomada de decisão. O resultado é velocidade empresarial e menores custos operacionais sem sacrificar o controlo nem a auditabilidade.",
+        "ho_k1": "Arquitetura de Carreira e Confiança",
+        "ho_h1": "Por Que Mentoring, Coaching e Redes entre Pares Aceleram Carreiras",
+        "ho_p1": "Mesmo os profissionais mais experientes têm pontos cegos ao escalar responsabilidades ou mudar de direção. Contar com um mentor, um coach e uma rede de confiança acelera a clareza e abre oportunidades reais. Explore o ecossistema dinamizado por <a href='https://www.linkedin.com/in/marius-marai' target='_blank' rel='noopener noreferrer' style='color: var(--accent); font-weight: 600;'>Marius Marai</a>:",
+        "ho_c1_tag": "Crescimento e Mudança de Carreira",
+        "ho_c1_p": "Ensaios práticos, histórias reais de transição e estruturas para expandir o âmbito de liderança ou mudar de setor sem recomeçar do zero.",
+        "ho_c1_btn": "Ler Newsletter HoLI ↗",
+        "ho_c2_tag": "Networking",
+        "ho_c2_p": "Ir além de pedidos de ligação frios para construir diálogo autêntico entre pares, referências e colaboração internacional.",
+        "ho_c2_btn": "Entrar no HoLI Networking ↗",
+        "ho_c3_tag": "Apoio na Procura de Emprego",
+        "ho_c3_p": "Partilha de funções não publicadas, sinais de contratação e inteligência de mercado em equipas globais.",
+        "ho_c3_btn": "Entrar no HoLI Jobs ↗",
+        "ho_c4_tag": "Apoio a Candidatos",
+        "ho_c4_p": "Um espaço de visibilidade para profissionais em transição ativa afinarem o posicionamento e ligarem-se a líderes.",
+        "ho_c4_btn": "Entrar no HoLI Candidates ↗",
+        "me_k1": "Experiência Aplicada de Liderança",
+        "me_h1": "Mentoring Estratégico e Operacional",
+        "me_p1": "Baseado em mais de 20 anos em vendas internacionais e 14+ a liderar operações multipaís na Amazon, Veeam, Schneider Electric e Oracle, oferece orientação prática para quem assume mandatos mais amplos.",
+        "me_list": "<li><strong>Escalar Equipas além-Fronteiras:</strong> Estruturação de ritmos operacionais, governação de comunicação e alinhamento multicultural.</li>\n          <li><strong>Gestão Comercial e P&L:</strong> Tradução de governação de pipeline e negociações com fornecedores em resultados financeiros.</li>\n          <li><strong>Recuperações Operacionais:</strong> Diagnóstico rápido de causas raiz e recuperação de desempenho nos primeiros 60–90 dias.</li>",
+        "me_cta": "Conectar com mariusmarAI no LinkedIn ↗",
+        "co_k1": "Clareza e Responsabilidade",
+        "co_h1": "Coaching de Carreira e Desempenho",
+        "co_p1": "Quer seja um individual contributor a planear o próximo passo ou um gestor experiente em transição, o coaching estruturado ajuda a separar o ruído temporário do alinhamento duradouro.",
+        "co_list": "<li><strong>Direção e Estratégia de Transição:</strong> Auditoria de energia, competências transferíveis e pontos de inflexão do mercado.</li>\n          <li><strong>Posicionamento de Valor:</strong> Traduzir cargos internos e tarefas diárias em impacto mensurável no negócio.</li>\n          <li><strong>Confiança na Decisão:</strong> Construir pontos de controlo e redes de segurança antes de decisões importantes.</li>",
+        "co_cta": "Experimentar Checklists em Interactive Play →"
+      },
+      "ro": {
+        "nav_home": "Acasă",
+        "nav_cv": "CV",
+        "nav_projects": "Proiecte",
+        "nav_play": "Interactive Play",
+        "nav_blog": "Blog",
+        "nav_contact": "Contact",
+        "ft_profile": "mariusmarAI pe LinkedIn ↗",
+        "ft_news": "Humans of Linked In (HoLI) ↗",
+        "ft_net": "HoLI Networking ↗",
+        "ft_jobs": "HoLI Jobs ↗",
+        "ft_cand": "HoLI Candidates ↗",
+        "ft_share": "Distribuie pagina:",
+        "ft_copy": "© mariusmarAI. Operațiuni Globale, Leadership Comercial și Transformare prin AI.",
+        "ft_terms": "Termeni și Condiții",
+        "ft_privacy": "Politica de Confidențialitate",
+        "pr_badge": "Arhitectură Aplicată și Comunitate",
+        "pr_title": "Proiecte, Filosofia Automatizării și Ecosistemul de Creștere",
+        "pr_sub": "Descoperă de ce automatizarea inteligentă cere echilibrul dintre AI și ingineria deterministă în Excel/VBA, alături de pilonii Humans of Linked In (HoLI), Mentoring și Coaching.",
+        "tab_auto": "01. Automatizare",
+        "tab_holi": "02. Humans of Linked In",
+        "tab_ment": "03. Mentoring",
+        "tab_coach": "04. Coaching",
+        "au_k1": "Necesitate Strategică",
+        "au_h1": "De Ce Contează Acum Automatizarea și Eficiența Operațională",
+        "au_p1": "În organizațiile de anvergură, raportarea manuală și fluxurile fragmentate erodează tăcut marjele operaționale și timpul de leadership. Adevărata eficiență nu înseamnă adoptarea tehnologiei de dragul noutății, ci eliminarea fricțiunilor repetitive astfel încât echipele să își investească energia în clienți, strategie și creșterea P&L.",
+        "au_k2": "Economia AI și Potrivirea Strategică",
+        "au_h2": "Automatizarea cu AI: Unde Aduce Valoare — și Cât Costă în Realitate",
+        "au_p2": "Inteligența artificială generează valoare măsurabilă de business atunci când este aplicată selectiv în activități cognitive cu fricțiune ridicată — precum sintetizarea datelor operaționale complexe, structurarea analizelor executive și accelerarea pregătirii deciziilor. Totuși, capabilitatea tehnologică în sine nu echivalează cu rentabilitatea investiției (ROI). Înainte de a scala orice inițiativă AI, leadershipul trebuie să cântărească câștigurile de viteză în raport cu economia completă a ciclului de viață: infrastructură, licențiere, guvernanță și mentenanță continuă.",
+        "au_c1_h": "Costurile AI In-House (Infrastructură Proprie)",
+        "au_c1_p": "Rularea modelelor proprii presupune investiții majore: clustere de GPU-uri, servere de înaltă densitate, sisteme de răcire, consum continuu de energie și inginerie MLOps dedicată.",
+        "au_c2_h": "Costurile AI Externe (Licențe & Credite)",
+        "au_c2_p": "Platformele cloud implică licențe recurente per utilizator, costuri pe tokeni/credite, limite de utilizare și guvernanță strictă a confidențialității datelor. Fiecare implementare trebuie să treacă un test clar de ROI.",
+        "au_k3": "Control Determinist și Integritatea Datelor",
+        "au_h3": "Rolul Ingineriei Deterministe: Unde AI-ul Probabilistic Își Atinge Limitele",
+        "au_p3": "AI-ul generativ este prin natura sa probabilistic — ceea ce îl face valoros pentru sinteză, dar nepotrivit structural pentru fluxuri care cer certitudine matematică de 100%, conformitate strictă și execuție fără erori. Automatizarea la nivel enterprise se bazează în continuare pe ingineria deterministă (Excel, Power Query, VBA și reguli structurate) pe trei granițe critice:",
+        "au_excel_list": "<li><strong>Formatare Executivă și Conformitate de Brand:</strong> Prezentările de board, șabloanele contractuale și livrabilele recurente către clienți necesită o fidelitate exactă a formatului pe care modelele probabilistice nu o pot garanta fără intervenție manuală.</li>\n          <li><strong>Procesarea Volumelor Mari de Date și Calcul Fără Erori:</strong> Seturile de date operaționale și financiare de mare anvergură cer logică repetabilă, execuție instantanee și risc zero de halucinație — livrate la un cost marginal aproape zero.</li>\n          <li><strong>Auditabilitate Financiară și Guvernanță:</strong> Modelele de P&L, motoarele de prognoză și scorecard-urile KPI trebuie să fie complet transparente și trasabile formulă cu formulă, nu generate prin probabilitate de tip „cutie neagră”.</li>",
+        "au_k4": "Model Operațional Țintă",
+        "au_h4": "Arhitectură Hibridă Human-in-the-Loop: Nucleu Determinist, Strat Cognitiv",
+        "au_p4": "Excelența operațională sustenabilă nu vine din alegerea între automatizarea tradițională și AI — ci din orchestrarea ambelor sub o responsabilitate umană clară. Într-o arhitectură cu ROI ridicat, motoarele deterministe gestionează preluarea datelor, validarea și execuția bazată pe reguli cu precizie matematică de 100%, în timp ce AI-ul operează ca un strat cognitiv pentru a sintetiza anomaliile, a structura concluziile executive și a accelera luarea deciziilor. Rezultatul este viteză la nivel enterprise și costuri operaționale mai mici, fără a sacrifica controlul sau auditabilitatea.",
+        "ho_k1": "Arhitectură de Carieră și Încredere",
+        "ho_h1": "De Ce Un Coach, Un Mentor și O Comunitate Accelerează Cariera",
+        "ho_p1": "Chiar și cei mai buni profesioniști au unghiuri moarte atunci când trec la un rol mai mare sau schimbă direcția în carieră. Un coach sau un mentor — alături de o rețea de încredere — aduce claritate, previne greșelile costisitoare și deschide uși la care aplicările reci nu ajung. Descoperă ecosistemul construit de <a href='https://www.linkedin.com/in/marius-marai' target='_blank' rel='noopener noreferrer' style='color: var(--accent); font-weight: 600;'>Marius Marai</a>:",
+        "ho_c1_tag": "Career Growth & Career Shift",
+        "ho_c1_p": "Articole practice, povești reale de tranziție și cadre de lucru pentru extinderea anvergurii de leadership sau schimbarea industriei fără a o lua de la zero.",
+        "ho_c1_btn": "Citește Newsletter-ul HoLI ↗",
+        "ho_c2_tag": "Networking",
+        "ho_c2_p": "Dincolo de cererile reci de conectare: dialog autentic între profesioniști, recomandări calde și colaborare internațională.",
+        "ho_c2_btn": "Intră în HoLI Networking ↗",
+        "ho_c3_tag": "Job Finding Support",
+        "ho_c3_p": "Roluri nepublicate, semnale de recrutare și informații reale din piață pentru a identifica din timp oportunitățile relevante.",
+        "ho_c3_btn": "Intră în HoLI Jobs ↗",
+        "ho_c4_tag": "Candidates Support",
+        "ho_c4_p": "Un spațiu de vizibilitate pentru profesioniștii aflați în tranziție activă, pentru a-și rafina poziționarea și a ajunge direct la decidenți.",
+        "ho_c4_btn": "Intră în HoLI Candidates ↗",
+        "me_k1": "Experiență Aplicată de Leadership",
+        "me_h1": "Mentoring Strategic și Operațional",
+        "me_p1": "Bazat pe peste 20 de ani în vânzări internaționale și 14+ ani în conducerea operațiunilor multi-țară la Amazon, Veeam, Schneider Electric și Oracle, mentoringul oferă ghidaj practic pentru profesioniștii care preiau mandate extinse.",
+        "me_list": "<li><strong>Scalarea Echipelor Internaționale:</strong> Structurarea ritmurilor operaționale, guvernanța comunicării și alinierea multiculturală.</li>\n          <li><strong>Ownership Comercial și P&L:</strong> Transformarea guvernanței de pipeline și a negocierilor cu furnizorii în rezultate financiare concrete.</li>\n          <li><strong>Redresări Operaționale:</strong> Diagnosticarea rapidă a cauzelor rădăcină și creșterea performanței în primele 60–90 de zile.</li>",
+        "me_cta": "Conectează-te cu mariusmarAI pe LinkedIn ↗",
+        "co_k1": "Claritate și Asumare",
+        "co_h1": "Coaching de Carieră și Performanță",
+        "co_p1": "Fie că ești individual contributor care își pregătește următorul pas, fie că ești un lider cu experiență într-o etapă de tranziție, coachingul structurat separă zgomotul de moment de alinierea pe termen lung.",
+        "co_list": "<li><strong>Direcție și Strategie de Tranziție:</strong> Auditul energiei, al competențelor transferabile și al punctelor de inflexiune din piață.</li>\n          <li><strong>Poziționarea Valorii:</strong> Traducerea titlurilor interne și a activității zilnice în impact măsurabil de business.</li>\n          <li><strong>Încredere în Decizii:</strong> Construirea unor puncte de verificare și plase de siguranță înainte de schimbări majore.</li>",
+        "co_cta": "Testează Checklist-urile în Interactive Play →"
+      }
+    };
+
+    let currentLang = 'en';
+    try { currentLang = localStorage.getItem('mariusmarai_lang') || 'en'; } catch (e) {}
+    if (!translations[currentLang]) currentLang = 'en';
+
+    const hamburgerBtn = document.getElementById('hamburger-btn');
+    const navDrawer = document.getElementById('nav-drawer');
+    hamburgerBtn.addEventListener('click', () => {
+      const isOpen = navDrawer.classList.toggle('open');
+      hamburgerBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      hamburgerBtn.textContent = isOpen ? '✕' : '☰';
+    });
+
+    function applyLanguage(lang) {
+      currentLang = lang;
+      try { localStorage.setItem('mariusmarai_lang', lang); } catch (e) {}
+      document.documentElement.lang = lang;
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.lang === lang);
+      });
+      const dict = translations[lang];
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.dataset.i18n;
+        if (dict[key] !== undefined) {
+          el.textContent = dict[key];
+        }
+      });
+      document.querySelectorAll('[data-i18n-html]').forEach(el => {
+        const key = el.dataset.i18nHtml;
+        if (dict[key] !== undefined) {
+          el.innerHTML = dict[key];
+        }
+      });
+      const menuBlogLink = document.getElementById('menu-blog-link');
+      if (menuBlogLink) {
+        menuBlogLink.href = `blog/${lang}/`;
+      }
+      if (typeof onLanguageApplied === 'function') {
+        onLanguageApplied(lang, dict);
+      }
+    }
+
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.addEventListener('click', () => applyLanguage(btn.dataset.lang));
+    });
+
+    function activateProjectTab(tabId) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === tabId));
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.toggle('active', p.id === 'panel-' + tabId));
+    }
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        activateProjectTab(btn.dataset.tab);
+        history.replaceState(null, '', '#' + btn.dataset.tab);
+      });
+    });
+    const initialHash = window.location.hash.replace('#', '');
+    if (['automation', 'humans-of-linkedin', 'mentoring', 'coaching'].includes(initialHash)) {
+      activateProjectTab(initialHash);
+    }
+
+    (function () {
+      const pageUrl = window.location.href;
+      const encodedUrl = encodeURIComponent(pageUrl);
+      const encodedTitle = encodeURIComponent(document.title);
+
+      const li = document.getElementById('share-linkedin');
+      const wa = document.getElementById('share-whatsapp');
+      const em = document.getElementById('share-email');
+      const cp = document.getElementById('share-copy');
+
+      if (li) li.href = `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`;
+      if (wa) wa.href = `https://api.whatsapp.com/send?text=${encodedTitle}%20-%20${encodedUrl}`;
+      if (em) em.href = `mailto:?subject=${encodedTitle}&body=${encodedTitle}%0A${encodedUrl}`;
+
+      if (cp) {
+        cp.addEventListener('click', function () {
+          navigator.clipboard.writeText(pageUrl).then(function () {
+            const copyIcon = document.getElementById('icon-copy');
+            const checkIcon = document.getElementById('icon-check');
+            if (!copyIcon || !checkIcon) return;
+            copyIcon.style.display = 'none';
+            checkIcon.style.display = 'block';
+            setTimeout(function () {
+              checkIcon.style.display = 'none';
+              copyIcon.style.display = 'block';
+            }, 2000);
+          });
+        });
+      }
+    })();
+
+    applyLanguage(currentLang);
+  </script>
+  <script src="cookie-consent.js"></script>
+</body>
+</html>

@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.png">
+  <title>Contact | mariusmarAI</title>
+  <link rel="icon" type="image/jpeg" href="mariusmarAI_Logo.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-primary: #0B1220;
+      --bg-secondary: #111A2E;
+      --bg-card: #162238;
+      --bg-card-hover: #1C2B47;
+      --text-primary: #F8FAFC;
+      --text-secondary: #CBD5E1;
+      --text-muted: #94A3B8;
+      --accent: #F59E0B;
+      --accent-hover: #D97706;
+      --accent-soft: rgba(245, 158, 11, 0.14);
+      --cyan: #38BDF8;
+      --cyan-soft: rgba(56, 189, 248, 0.12);
+      --danger-soft: rgba(239, 68, 68, 0.12);
+      --danger-border: rgba(239, 68, 68, 0.42);
+      --success: #10B981;
+      --border: rgba(148, 163, 184, 0.16);
+      --border-strong: rgba(245, 158, 11, 0.42);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    html, body { max-width: 100%; overflow-x: clip; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Unified Sticky Header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 9999;
+      background: rgba(11, 18, 32, 0.96);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      width: 100%;
+    }
+    .header-inner {
+      max-width: 1060px;
+      margin: 0 auto;
+      padding: 0.65rem 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+    }
+    .header-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      gap: 0.75rem;
+    }
+    .brand-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      text-decoration: none;
+      color: var(--text-primary);
+      min-width: 0;
+    }
+    .brand-logo {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1.5px solid var(--border-strong);
+      flex-shrink: 0;
+      display: block;
+    }
+    .brand-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+    }
+    .brand-title span { color: var(--accent); }
+    .hamburger-btn {
+      margin-left: auto;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: var(--bg-secondary);
+      color: var(--text-primary);
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      font-size: 1.25rem;
+      line-height: 1;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+    }
+    .hamburger-btn:hover,
+    .hamburger-btn[aria-expanded="true"] {
+      border-color: var(--border-strong);
+      background: var(--bg-card);
+      color: var(--accent);
+    }
+    .lang-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+    }
+    .lang-switcher {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.22rem;
+      background: var(--bg-secondary);
+      padding: 0.22rem;
+      border-radius: 9px;
+      border: 1px solid var(--border);
+    }
+    .lang-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.74rem;
+      font-weight: 600;
+      padding: 0.28rem 0.54rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .lang-btn:hover { color: var(--text-primary); background: rgba(255, 255, 255, 0.06); }
+    .lang-btn.active { background: var(--accent); color: #0B1220; }
+
+    .nav-drawer {
+      display: none;
+      flex-direction: column;
+      gap: 0.35rem;
+      width: 100%;
+      padding-top: 0.55rem;
+      border-top: 1px solid var(--border);
+    }
+    .nav-drawer.open { display: flex; }
+    .nav-link {
+      text-decoration: none;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 0.58rem 0.85rem;
+      border-radius: 9px;
+      border: 1px solid transparent;
+      transition: all 0.2s ease;
+      display: block;
+    }
+    .nav-link:hover { color: var(--text-primary); background: var(--bg-card); border-color: var(--border); }
+    .nav-link.active {
+      color: var(--accent);
+      background: var(--accent-soft);
+      border-color: var(--border-strong);
+      font-weight: 600;
+    }
+
+    @media (max-width: 400px) {
+      .header-inner { padding: 0.55rem 0.85rem; gap: 0.45rem; }
+      .brand-logo { width: 34px; height: 34px; }
+      .brand-title { font-size: 1.02rem; }
+      .hamburger-btn { width: 36px; height: 36px; font-size: 1.1rem; }
+      .lang-btn { font-size: 0.7rem; padding: 0.24rem 0.44rem; }
+    }
+
+    /* Main Container */
+    .container { max-width: 1020px; margin: 0 auto; padding: 2.75rem 1.25rem 4.5rem; }
+    .hero { max-width: 840px; margin-bottom: 3.25rem; }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      background: var(--accent-soft);
+      color: var(--accent);
+      border: 1px solid var(--border-strong);
+      padding: 0.34rem 0.85rem;
+      border-radius: 999px;
+      font-size: 0.76rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 1.15rem;
+    }
+    h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(1.95rem, 4.3vw, 2.95rem);
+      line-height: 1.16;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 1.15rem;
+    }
+    .hero-sub { font-size: 1.05rem; color: var(--text-secondary); margin-bottom: 1.75rem; max-width: 780px; }
+
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(275px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 3rem;
+    }
+    .card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    }
+    .card-tag {
+      display: inline-block;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0.24rem 0.62rem;
+      border-radius: 6px;
+      margin-bottom: 0.8rem;
+      align-self: flex-start;
+    }
+    .card h3 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.18rem;
+      color: var(--text-primary);
+      margin-bottom: 0.6rem;
+      line-height: 1.3;
+    }
+    .card p { font-size: 0.92rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 1rem; }
+
+    /* Footer */
+    .site-footer {
+      border-top: 1px solid var(--border);
+      background: var(--bg-secondary);
+      padding: 2.35rem 1.25rem;
+      text-align: center;
+    }
+    .footer-inner { max-width: 960px; margin: 0 auto; }
+    .footer-brand {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      margin-bottom: 1rem;
+      text-decoration: none;
+      color: var(--text-primary);
+    }
+    .footer-logo {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1px solid var(--border-strong);
+      display: block;
+    }
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.15rem;
+      margin-bottom: 1.15rem;
+    }
+    .footer-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+    .footer-links a:hover { color: var(--accent); }
+    .footer-share {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 1.25rem;
+    }
+    .footer-share-label {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      margin-right: 2px;
+    }
+    .share-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      padding: 0;
+      color: var(--text-secondary);
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease, transform 0.15s ease;
+    }
+    .share-btn:hover {
+      border-color: var(--border-strong);
+      color: var(--accent);
+      background: var(--bg-card-hover);
+      transform: translateY(-1px);
+    }
+    .share-btn svg {
+      width: 18px;
+      height: 18px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.75;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .footer-copy { font-size: 0.8rem; color: var(--text-muted); }
+    .footer-legal-line { margin-top: 0.45rem; }
+    .footer-legal-line a { color: inherit; text-decoration: none; transition: color 0.2s ease; }
+    .footer-legal-line a:hover { color: var(--accent); text-decoration: underline; }
+
+    .dual-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      margin-top: auto;
+    }
+    .eco-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding: 0.68rem 1rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-decoration: none;
+      background: var(--bg-card);
+      color: var(--text-primary);
+      border: 1px solid var(--border-strong);
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+    .eco-btn:hover { background: var(--accent); color: #0B1220; }
+    .eco-btn.primary-fill { background: var(--accent); color: #0B1220; }
+    .eco-btn.primary-fill:hover { background: var(--accent-hover); }
+  </style>
+  <script data-goatcounter="https://mariusmarai.goatcounter.com/count"
+          async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="header-top">
+        <a href="index.html" class="brand-link">
+          <img src="mariusmarAI_Logo.jpg" alt="mariusmarAI Logo" class="brand-logo" />
+          <span class="brand-title">mariusmar<span>AI</span></span>
+        </a>
+        <button type="button" class="hamburger-btn" id="hamburger-btn" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-drawer">☰</button>
+      </div>
+      <div class="lang-row">
+        <div class="lang-switcher" aria-label="Language selector">
+          <button type="button" class="lang-btn active" data-lang="en">EN</button>
+          <button type="button" class="lang-btn" data-lang="es">ES</button>
+          <button type="button" class="lang-btn" data-lang="fr">FR</button>
+          <button type="button" class="lang-btn" data-lang="it">IT</button>
+          <button type="button" class="lang-btn" data-lang="pt">PT</button>
+          <button type="button" class="lang-btn" data-lang="ro">RO</button>
+        </div>
+      </div>
+      <nav class="nav-drawer" id="nav-drawer" aria-label="Main navigation">
+        <a href="index.html" class="nav-link" data-i18n="nav_home">Home</a>
+        <a href="cv.html" class="nav-link" data-i18n="nav_cv">CV</a>
+        <a href="projects.html" class="nav-link" data-i18n="nav_projects">Projects</a>
+        <a href="interactive-play.html" class="nav-link" data-i18n="nav_play">Interactive Play</a>
+        <a href="blog/en/" class="nav-link" id="menu-blog-link" data-i18n="nav_blog">Blog</a>
+        <a href="contact.html" class="nav-link active" data-i18n="nav_contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero" style="margin-bottom: 2.5rem;">
+      <div class="eyebrow" data-i18n="ct_badge">LinkedIn Ecosystem & Direct Dialogue</div>
+      <h1 data-i18n="ct_title">Start a Conversation</h1>
+      <p class="hero-sub" style="margin-bottom: 0;" data-i18n="ct_sub">
+        From individual contributors navigating their next step to organizations seeking seasoned leadership in Global Operations, Commercial Strategy, or AI-driven transformation—connect directly through LinkedIn below.
+      </p>
+    </section>
+
+    <section class="cards-grid" style="margin-bottom: 2.5rem;">
+      <div class="card" style="border-color: var(--border-strong);">
+        <div>
+          <span class="card-tag" data-i18n="ct1_tag">Direct Executive Profile</span>
+          <h3 data-i18n="ct1_title">mariusmarAI — Marius Marai</h3>
+          <p data-i18n="ct1_desc">Connect directly with Marius Marai on LinkedIn for leadership mandates, commercial & operational advisory, mentoring, or strategic partnerships.</p>
+        </div>
+        <a href="https://www.linkedin.com/in/marius-marai" target="_blank" rel="noopener noreferrer" class="eco-btn primary-fill" data-i18n="ct1_btn">Connect on LinkedIn ↗</a>
+      </div>
+
+      <div class="card">
+        <div>
+          <span class="card-tag" data-i18n="ct2_tag">HoLI Network & Insights</span>
+          <h3 data-i18n="ct2_title">Humans of Linked In (HoLI)</h3>
+          <p data-i18n="ct2_desc">Follow the HoLI Newsletter for practical career architecture and join HoLI Networking to exchange warm introductions across borders.</p>
+        </div>
+        <div class="dual-actions">
+          <a href="https://www.linkedin.com/newsletters/humans-of-linked-in-holi-7161329778250162176/" target="_blank" rel="noopener noreferrer" class="eco-btn" data-i18n="ct2_btn1">Read HoLI Newsletter ↗</a>
+          <a href="https://www.linkedin.com/groups/40607397/" target="_blank" rel="noopener noreferrer" class="eco-btn" data-i18n="ct2_btn2">Join HoLI Networking ↗</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div>
+          <span class="card-tag" data-i18n="ct3_tag">Opportunities & Talent</span>
+          <h3 data-i18n="ct3_title">HoLI Jobs & HoLI Candidates</h3>
+          <p data-i18n="ct3_desc">Explore unadvertised opportunities in HoLI Jobs or gain visibility as an active candidate in the HoLI Candidates peer community.</p>
+        </div>
+        <div class="dual-actions">
+          <a href="https://www.linkedin.com/groups/14608931/" target="_blank" rel="noopener noreferrer" class="eco-btn" data-i18n="ct3_btn1">Join HoLI Jobs ↗</a>
+          <a href="https://www.linkedin.com/groups/16185013/" target="_blank" rel="noopener noreferrer" class="eco-btn" data-i18n="ct3_btn2">Join HoLI Candidates ↗</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <a href="index.html" class="footer-brand">
+        <img src="mariusmarAI_Logo.jpg" alt="mariusmarAI" class="footer-logo" />
+        <span style="font-family: 'Playfair Display', Georgia, serif; font-weight: 700; font-size: 1rem;">mariusmar<span style="color: var(--accent);">AI</span></span>
+      </a>
+      <div class="footer-links">
+        <a href="https://www.linkedin.com/in/marius-marai" target="_blank" rel="noopener noreferrer" data-i18n="ft_profile">mariusmarAI on LinkedIn ↗</a>
+        <a href="https://www.linkedin.com/newsletters/humans-of-linked-in-holi-7161329778250162176/" target="_blank" rel="noopener noreferrer" data-i18n="ft_news">Humans of Linked In (HoLI) ↗</a>
+        <a href="https://www.linkedin.com/groups/40607397/" target="_blank" rel="noopener noreferrer" data-i18n="ft_net">HoLI Networking ↗</a>
+        <a href="https://www.linkedin.com/groups/14608931/" target="_blank" rel="noopener noreferrer" data-i18n="ft_jobs">HoLI Jobs ↗</a>
+        <a href="https://www.linkedin.com/groups/16185013/" target="_blank" rel="noopener noreferrer" data-i18n="ft_cand">HoLI Candidates ↗</a>
+      </div>
+      <div class="footer-share" aria-label="Share this page">
+        <span class="footer-share-label" data-i18n="ft_share">Share page:</span>
+        <a class="share-btn" id="share-linkedin" target="_blank" rel="noopener noreferrer" title="LinkedIn" aria-label="Share on LinkedIn">
+          <svg viewBox="0 0 24 24">
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+            <rect x="2" y="9" width="4" height="12"/>
+            <circle cx="4" cy="4" r="2"/>
+          </svg>
+        </a>
+        <a class="share-btn" id="share-whatsapp" target="_blank" rel="noopener noreferrer" title="WhatsApp" aria-label="Share on WhatsApp">
+          <svg viewBox="0 0 24 24">
+            <path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21"/>
+            <path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1"/>
+          </svg>
+        </a>
+        <a class="share-btn" id="share-email" title="Email" aria-label="Share via Email">
+          <svg viewBox="0 0 24 24">
+            <rect x="2" y="4" width="20" height="16" rx="2"/>
+            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+          </svg>
+        </a>
+        <button type="button" class="share-btn" id="share-copy" title="Copy link" aria-label="Copy page link">
+          <svg id="icon-copy" viewBox="0 0 24 24">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+          <svg id="icon-check" viewBox="0 0 24 24" style="display: none; color: var(--accent);">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        </button>
+      </div>
+      <p class="footer-copy" data-i18n="ft_copy">© mariusmarAI. Global Operations, Commercial Leadership & AI-Driven Transformation.</p>
+      <p class="footer-copy footer-legal-line">
+        <a href="terms.html" data-i18n="ft_terms">Terms and Conditions</a>
+        <span> · </span>
+        <a href="privacy.html" data-i18n="ft_privacy">Privacy Policy</a>
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    const translations = {
+      "en": {
+        "nav_home": "Home", "nav_cv": "CV", "nav_projects": "Projects", "nav_play": "Interactive Play", "nav_blog": "Blog", "nav_contact": "Contact",
+        "ft_profile": "mariusmarAI on LinkedIn ↗", "ft_news": "Humans of Linked In (HoLI) ↗", "ft_net": "HoLI Networking ↗", "ft_jobs": "HoLI Jobs ↗", "ft_cand": "HoLI Candidates ↗",
+        "ft_share": "Share page:", "ft_copy": "© mariusmarAI. Global Operations, Commercial Leadership & AI-Driven Transformation.",
+        "ft_terms": "Terms and Conditions", "ft_privacy": "Privacy Policy",
+        "ct_badge": "LinkedIn Ecosystem & Direct Dialogue",
+        "ct_title": "Start a Conversation",
+        "ct_sub": "From individual contributors navigating their next step to organizations seeking seasoned leadership in Global Operations, Commercial Strategy, or AI-driven transformation—connect directly through LinkedIn below.",
+        "ct1_tag": "Direct Profile", "ct1_title": "mariusmarAI — Marius Marai",
+        "ct1_desc": "Connect directly with Marius Marai on LinkedIn for leadership roles, commercial & operational advisory, mentoring, or strategic partnerships.",
+        "ct1_btn": "Connect on LinkedIn ↗",
+        "ct2_tag": "HoLI Network & Insights", "ct2_title": "Humans of Linked In (HoLI)",
+        "ct2_desc": "Follow the HoLI Newsletter for practical career architecture and join HoLI Networking to exchange warm introductions across borders.",
+        "ct2_btn1": "Read HoLI Newsletter ↗", "ct2_btn2": "Join HoLI Networking ↗",
+        "ct3_tag": "Opportunities & Talent", "ct3_title": "HoLI Jobs & HoLI Candidates",
+        "ct3_desc": "Explore unadvertised opportunities in HoLI Jobs or gain visibility as an active candidate in the HoLI Candidates peer community.",
+        "ct3_btn1": "Join HoLI Jobs ↗", "ct3_btn2": "Join HoLI Candidates ↗"
+      },
+      "es": {
+        "nav_home": "Inicio", "nav_cv": "CV", "nav_projects": "Proyectos", "nav_play": "Interactive Play", "nav_blog": "Blog", "nav_contact": "Contacto",
+        "ft_profile": "mariusmarAI en LinkedIn ↗", "ft_news": "Humans of Linked In (HoLI) ↗", "ft_net": "HoLI Networking ↗", "ft_jobs": "HoLI Jobs ↗", "ft_cand": "HoLI Candidates ↗",
+        "ft_share": "Compartir página:", "ft_copy": "© mariusmarAI. Operaciones Globales, Liderazgo Comercial y Transformación impulsada por IA.",
+        "ft_terms": "Términos y Condiciones", "ft_privacy": "Política de Privacidad",
+        "ct_badge": "Ecosistema LinkedIn y Diálogo Directo",
+        "ct_title": "Inicia una Conversación",
+        "ct_sub": "Desde individual contributors que preparan su siguiente paso hasta organizaciones que buscan liderazgo experimentado en Operaciones Globales, Estrategia Comercial o transformación con IA: conecta directamente a través de LinkedIn.",
+        "ct1_tag": "Perfil Directo", "ct1_title": "mariusmarAI — Marius Marai",
+        "ct1_desc": "Conecta directamente con Marius Marai en LinkedIn para posiciones de liderazgo, asesoría comercial y operativa, mentoring o alianzas estratégicas.",
+        "ct1_btn": "Conectar en LinkedIn ↗",
+        "ct2_tag": "Red e Insights HoLI", "ct2_title": "Humans of Linked In (HoLI)",
+        "ct2_desc": "Sigue la Newsletter HoLI sobre arquitectura profesional y únete a HoLI Networking para intercambiar presentaciones de confianza.",
+        "ct2_btn1": "Leer Newsletter HoLI ↗", "ct2_btn2": "Unirse a HoLI Networking ↗",
+        "ct3_tag": "Oportunidades y Talento", "ct3_title": "HoLI Jobs y HoLI Candidates",
+        "ct3_desc": "Explora oportunidades no publicadas en HoLI Jobs o gana visibilidad como candidato activo en la comunidad HoLI Candidates.",
+        "ct3_btn1": "Unirse a HoLI Jobs ↗", "ct3_btn2": "Unirse a HoLI Candidates ↗"
+      },
+      "fr": {
+        "nav_home": "Accueil", "nav_cv": "CV", "nav_projects": "Projets", "nav_play": "Interactive Play", "nav_blog": "Blog", "nav_contact": "Contact",
+        "ft_profile": "mariusmarAI sur LinkedIn ↗", "ft_news": "Humans of Linked In (HoLI) ↗", "ft_net": "HoLI Networking ↗", "ft_jobs": "HoLI Jobs ↗", "ft_cand": "HoLI Candidates ↗",
+        "ft_share": "Partager la page :", "ft_copy": "© mariusmarAI. Opérations Globales, Leadership Commercial & Transformation par l'IA.",
+        "ft_terms": "Conditions Générales", "ft_privacy": "Politique de Confidentialité",
+        "ct_badge": "Écosystème LinkedIn & Dialogue Direct",
+        "ct_title": "Engager la Conversation",
+        "ct_sub": "Des contributeurs individuels préparant leur prochaine étape aux organisations recherchant un leadership expérimenté en Opérations Globales, Stratégie Commerciale ou transformation par l'IA — connectez-vous directement via LinkedIn ci-dessous.",
+        "ct1_tag": "Profil Direct", "ct1_title": "mariusmarAI — Marius Marai",
+        "ct1_desc": "Connectez-vous directement avec Marius Marai sur LinkedIn pour des postes de direction, du conseil opérationnel et commercial, du mentoring ou des partenariats.",
+        "ct1_btn": "Se connecter sur LinkedIn ↗",
+        "ct2_tag": "Réseau & Analyses HoLI", "ct2_title": "Humans of Linked In (HoLI)",
+        "ct2_desc": "Suivez la Newsletter HoLI sur l'architecture de carrière et rejoignez HoLI Networking pour échanger des mises en relation qualifiées.",
+        "ct2_btn1": "Lire la Newsletter HoLI ↗", "ct2_btn2": "Rejoindre HoLI Networking ↗",
+        "ct3_tag": "Opportunités & Talents", "ct3_title": "HoLI Jobs & HoLI Candidates",
+        "ct3_desc": "Découvrez des opportunités cachées dans HoLI Jobs ou gagnez en visibilité en tant que candidat actif dans HoLI Candidates.",
+        "ct3_btn1": "Rejoindre HoLI Jobs ↗", "ct3_btn2": "Rejoindre HoLI Candidates ↗"
+      },
+      "it": {
+        "nav_home": "Home", "nav_cv": "CV", "nav_projects": "Progetti", "nav_play": "Interactive Play", "nav_blog": "Blog", "nav_contact": "Contatti",
+        "ft_profile": "mariusmarAI su LinkedIn ↗", "ft_news": "Humans of Linked In (HoLI) ↗", "ft_net": "HoLI Networking ↗", "ft_jobs": "HoLI Jobs ↗", "ft_cand": "HoLI Candidates ↗",
+        "ft_share": "Condividi pagina:", "ft_copy": "© mariusmarAI. Operazioni Globali, Leadership Commerciale e Trasformazione guidata dall'IA.",
+        "ft_terms": "Termini e Condizioni", "ft_privacy": "Informativa sulla Privacy",
+        "ct_badge": "Ecosistema LinkedIn e Dialogo Diretto",
+        "ct_title": "Avvia una Conversazione",
+        "ct_sub": "Dagli individual contributor che pianificano il prossimo passo alle organizzazioni alla ricerca di leadership esperta in Operazioni Globali, Strategia Commerciale o trasformazione con IA — connettiti direttamente tramite LinkedIn.",
+        "ct1_tag": "Profilo Diretto", "ct1_title": "mariusmarAI — Marius Marai",
+        "ct1_desc": "Connettiti direttamente con Marius Marai su LinkedIn per ruoli di leadership, consulenza commerciale e operativa, mentoring o partnership strategiche.",
+        "ct1_btn": "Connettiti su LinkedIn ↗",
+        "ct2_tag": "Rete e Approfondimenti HoLI", "ct2_title": "Humans of Linked In (HoLI)",
+        "ct2_desc": "Segui la Newsletter HoLI sull'architettura di carriera e unisciti a HoLI Networking per scambiare presentazioni qualificate.",
+        "ct2_btn1": "Leggi la Newsletter HoLI ↗", "ct2_btn2": "Unisciti a HoLI Networking ↗",
+        "ct3_tag": "Opportunità e Talenti", "ct3_title": "HoLI Jobs e HoLI Candidates",
+        "ct3_desc": "Esplora opportunità non pubblicate in HoLI Jobs o ottieni visibilità come candidato attivo nella community HoLI Candidates.",
+        "ct3_btn1": "Unisciti a HoLI Jobs ↗", "ct3_btn2": "Unisciti a HoLI Candidates ↗"
+      },
+      "pt": {
+        "nav_home": "Início", "nav_cv": "CV", "nav_projects": "Projetos", "nav_play": "Interactive Play", "nav_blog": "Blog", "nav_contact": "Contacto",
+        "ft_profile": "mariusmarAI no LinkedIn ↗", "ft_news": "Humans of Linked In (HoLI) ↗", "ft_net": "HoLI Networking ↗", "ft_jobs": "HoLI Jobs ↗", "ft_cand": "HoLI Candidates ↗",
+        "ft_share": "Partilhar página:", "ft_copy": "© mariusmarAI. Operações Globais, Liderança Comercial e Transformação impulsionada por IA.",
+        "ft_terms": "Termos e Condições", "ft_privacy": "Política de Privacidade",
+        "ct_badge": "Ecossistema LinkedIn e Diálogo Direto",
+        "ct_title": "Iniciar uma Conversa",
+        "ct_sub": "Desde individual contributors a planear o próximo passo até organizações que procuram liderança experiente em Operações Globais, Estratégia Comercial ou transformação com IA — ligue-se diretamente através do LinkedIn.",
+        "ct1_tag": "Perfil Direto", "ct1_title": "mariusmarAI — Marius Marai",
+        "ct1_desc": "Ligue-se diretamente a Marius Marai no LinkedIn para funções de liderança, consultoria comercial e operacional, mentoring ou parcerias estratégicas.",
+        "ct1_btn": "Conectar no LinkedIn ↗",
+        "ct2_tag": "Rede e Análises HoLI", "ct2_title": "Humans of Linked In (HoLI)",
+        "ct2_desc": "Acompanhe a Newsletter HoLI sobre arquitetura de carreira e junte-se ao HoLI Networking para trocar apresentações de confiança.",
+        "ct2_btn1": "Ler Newsletter HoLI ↗", "ct2_btn2": "Entrar no HoLI Networking ↗",
+        "ct3_tag": "Oportunidades e Talento", "ct3_title": "HoLI Jobs e HoLI Candidates",
+        "ct3_desc": "Explore oportunidades não publicadas no HoLI Jobs ou ganhe visibilidade como candidato ativo na comunidade HoLI Candidates.",
+        "ct3_btn1": "Entrar no HoLI Jobs ↗", "ct3_btn2": "Entrar no HoLI Candidates ↗"
+      },
+      "ro": {
+        "nav_home": "Acasă", "nav_cv": "CV", "nav_projects": "Proiecte", "nav_play": "Interactive Play", "nav_blog": "Blog", "nav_contact": "Contact",
+        "ft_profile": "mariusmarAI pe LinkedIn ↗", "ft_news": "Humans of Linked In (HoLI) ↗", "ft_net": "HoLI Networking ↗", "ft_jobs": "HoLI Jobs ↗", "ft_cand": "HoLI Candidates ↗",
+        "ft_share": "Distribuie pagina:", "ft_copy": "© mariusmarAI. Operațiuni Globale, Leadership Comercial și Transformare prin AI.",
+        "ft_terms": "Termeni și Condiții", "ft_privacy": "Politica de Confidențialitate",
+        "ct_badge": "Ecosistemul LinkedIn și Dialog Direct",
+        "ct_title": "Pornește o Conversație",
+        "ct_sub": "De la individual contributors care își pregătesc următorul pas până la organizații care caută leadership cu experiență în Operațiuni Globale, Strategie Comercială sau transformare prin AI — conectează-te direct prin LinkedIn mai jos.",
+        "ct1_tag": "Profil Direct", "ct1_title": "mariusmarAI — Marius Marai",
+        "ct1_desc": "Conectează-te direct cu Marius Marai pe LinkedIn pentru roluri de leadership, consultanță comercială și operațională, mentoring sau parteneriate strategice.",
+        "ct1_btn": "Conectează-te pe LinkedIn ↗",
+        "ct2_tag": "Rețea & Articole HoLI", "ct2_title": "Humans of Linked In (HoLI)",
+        "ct2_desc": "Urmărește Newsletter-ul HoLI pentru arhitectură practică de carieră și intră în HoLI Networking pentru recomandări de încredere.",
+        "ct2_btn1": "Citește Newsletter-ul HoLI ↗", "ct2_btn2": "Intră în HoLI Networking ↗",
+        "ct3_tag": "Oportunități & Talente", "ct3_title": "HoLI Jobs & HoLI Candidates",
+        "ct3_desc": "Descoperă roluri nepublicate în HoLI Jobs sau câștigă vizibilitate ca profesionist în tranziție în comunitatea HoLI Candidates.",
+        "ct3_btn1": "Intră în HoLI Jobs ↗", "ct3_btn2": "Intră în HoLI Candidates ↗"
+      }
+    };
+
+    let currentLang = 'en';
+    try { currentLang = localStorage.getItem('mariusmarai_lang') || 'en'; } catch (e) {}
+    if (!translations[currentLang]) currentLang = 'en';
+
+    const hamburgerBtn = document.getElementById('hamburger-btn');
+    const navDrawer = document.getElementById('nav-drawer');
+    hamburgerBtn.addEventListener('click', () => {
+      const isOpen = navDrawer.classList.toggle('open');
+      hamburgerBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      hamburgerBtn.textContent = isOpen ? '✕' : '☰';
+    });
+
+    function applyLanguage(lang) {
+      currentLang = lang;
+      try { localStorage.setItem('mariusmarai_lang', lang); } catch (e) {}
+      document.documentElement.lang = lang;
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.lang === lang);
+      });
+      const dict = translations[lang];
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.dataset.i18n;
+        if (dict[key] !== undefined) {
+          el.textContent = dict[key];
+        }
+      });
+      document.querySelectorAll('[data-i18n-html]').forEach(el => {
+        const key = el.dataset.i18nHtml;
+        if (dict[key] !== undefined) {
+          el.innerHTML = dict[key];
+        }
+      });
+      const menuBlogLink = document.getElementById('menu-blog-link');
+      if (menuBlogLink) {
+        menuBlogLink.href = `blog/${lang}/`;
+      }
+      if (typeof onLanguageApplied === 'function') {
+        onLanguageApplied(lang, dict);
+      }
+    }
+
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.addEventListener('click', () => applyLanguage(btn.dataset.lang));
+    });
+
+    (function () {
+      const pageUrl = window.location.href;
+      const encodedUrl = encodeURIComponent(pageUrl);
+      const encodedTitle = encodeURIComponent(document.title);
+
+      const li = document.getElementById('share-linkedin');
+      const wa = document.getElementById('share-whatsapp');
+      const em = document.getElementById('share-email');
+      const cp = document.getElementById('share-copy');
+
+      if (li) li.href = `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`;
+      if (wa) wa.href = `https://api.whatsapp.com/send?text=${encodedTitle}%20-%20${encodedUrl}`;
+      if (em) em.href = `mailto:?subject=${encodedTitle}&body=${encodedTitle}%0A${encodedUrl}`;
+
+      if (cp) {
+        cp.addEventListener('click', function () {
+          navigator.clipboard.writeText(pageUrl).then(function () {
+            const copyIcon = document.getElementById('icon-copy');
+            const checkIcon = document.getElementById('icon-check');
+            if (!copyIcon || !checkIcon) return;
+            copyIcon.style.display = 'none';
+            checkIcon.style.display = 'block';
+            setTimeout(function () {
+              checkIcon.style.display = 'none';
+              copyIcon.style.display = 'block';
+            }, 2000);
+          });
+        });
+      }
+    })();
+
+    applyLanguage(currentLang);
+  </script>
+  <script src="cookie-consent.js"></script>
+</body>
+</html>

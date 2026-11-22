@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.png">
+  <title>mariusmarAI | Global Operations & Commercial Transformation</title>
+  <link rel="icon" type="image/jpeg" href="mariusmarAI_Logo.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-primary: #0B1220;
+      --bg-secondary: #111A2E;
+      --bg-card: #162238;
+      --bg-card-hover: #1C2B47;
+      --text-primary: #F8FAFC;
+      --text-secondary: #CBD5E1;
+      --text-muted: #94A3B8;
+      --accent: #F59E0B;
+      --accent-hover: #D97706;
+      --accent-soft: rgba(245, 158, 11, 0.14);
+      --cyan: #38BDF8;
+      --cyan-soft: rgba(56, 189, 248, 0.12);
+      --danger-soft: rgba(239, 68, 68, 0.12);
+      --danger-border: rgba(239, 68, 68, 0.42);
+      --success: #10B981;
+      --border: rgba(148, 163, 184, 0.16);
+      --border-strong: rgba(245, 158, 11, 0.42);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    html, body { max-width: 100%; overflow-x: clip; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Unified Sticky Header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 9999;
+      background: rgba(11, 18, 32, 0.96);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      width: 100%;
+    }
+    .header-inner {
+      max-width: 1060px;
+      margin: 0 auto;
+      padding: 0.65rem 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+    }
+    .header-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      gap: 0.75rem;
+    }
+    .brand-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      text-decoration: none;
+      color: var(--text-primary);
+      min-width: 0;
+    }
+    .brand-logo {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1.5px solid var(--border-strong);
+      flex-shrink: 0;
+      display: block;
+    }
+    .brand-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+    }
+    .brand-title span { color: var(--accent); }
+    .hamburger-btn {
+      margin-left: auto;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: var(--bg-secondary);
+      color: var(--text-primary);
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      font-size: 1.25rem;
+      line-height: 1;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+    }
+    .hamburger-btn:hover,
+    .hamburger-btn[aria-expanded="true"] {
+      border-color: var(--border-strong);
+      background: var(--bg-card);
+      color: var(--accent);
+    }
+    .lang-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+    }
+    .lang-switcher {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.22rem;
+      background: var(--bg-secondary);
+      padding: 0.22rem;
+      border-radius: 9px;
+      border: 1px solid var(--border);
+    }
+    .lang-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.74rem;
+      font-weight: 600;
+      padding: 0.28rem 0.54rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .lang-btn:hover { color: var(--text-primary); background: rgba(255, 255, 255, 0.06); }
+    .lang-btn.active { background: var(--accent); color: #0B1220; }
+
+    .nav-drawer {
+      display: none;
+      flex-direction: column;
+      gap: 0.35rem;
+      width: 100%;
+      padding-top: 0.55rem;
+      border-top: 1px solid var(--border);
+    }
+    .nav-drawer.open { display: flex; }
+    .nav-link {
+      text-decoration: none;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 0.58rem 0.85rem;
+      border-radius: 9px;
+      border: 1px solid transparent;
+      transition: all 0.2s ease;
+      display: block;
+    }
+    .nav-link:hover { color: var(--text-primary); background: var(--bg-card); border-color: var(--border); }
+    .nav-link.active {
+      color: var(--accent);
+      background: var(--accent-soft);
+      border-color: var(--border-strong);
+      font-weight: 600;
+    }
+
+    @media (max-width: 400px) {
+      .header-inner { padding: 0.55rem 0.85rem; gap: 0.45rem; }
+      .brand-logo { width: 34px; height: 34px; }
+      .brand-title { font-size: 1.02rem; }
+      .hamburger-btn { width: 36px; height: 36px; font-size: 1.1rem; }
+      .lang-btn { font-size: 0.7rem; padding: 0.24rem 0.44rem; }
+    }
+
+    /* Main Container */
+    .container { max-width: 1020px; margin: 0 auto; padding: 2.75rem 1.25rem 4.5rem; }
+    .hero { max-width: 840px; margin-bottom: 3.25rem; }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      background: var(--accent-soft);
+      color: var(--accent);
+      border: 1px solid var(--border-strong);
+      padding: 0.34rem 0.85rem;
+      border-radius: 999px;
+      font-size: 0.76rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 1.15rem;
+    }
+    h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(1.95rem, 4.3vw, 2.95rem);
+      line-height: 1.16;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 1.15rem;
+    }
+    .hero-sub { font-size: 1.05rem; color: var(--text-secondary); margin-bottom: 1.75rem; max-width: 780px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 0.85rem; }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      background: var(--accent);
+      color: #0B1220;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.92rem;
+      padding: 0.78rem 1.35rem;
+      border-radius: 9px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.15s ease;
+    }
+    .btn-primary:hover { background: var(--accent-hover); transform: translateY(-1px); }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      background: var(--bg-secondary);
+      color: var(--text-primary);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.92rem;
+      padding: 0.78rem 1.35rem;
+      border-radius: 9px;
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+    .btn-secondary:hover { background: var(--bg-card); border-color: var(--border-strong); }
+
+    .section-header { margin-bottom: 1.5rem; }
+    .section-kicker {
+      display: block;
+      font-size: 0.76rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--accent);
+      margin-bottom: 0.35rem;
+    }
+    h2 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      color: var(--text-primary);
+      line-height: 1.25;
+      margin-bottom: 0.45rem;
+    }
+    .section-desc { color: var(--text-muted); font-size: 0.96rem; max-width: 760px; }
+
+    /* Cards & Grids */
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
+      gap: 1.15rem;
+      margin-bottom: 3.25rem;
+    }
+    .metric-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-strong);
+      border-radius: 14px;
+      padding: 1.35rem;
+    }
+    .metric-val {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.85rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1.15;
+      margin-bottom: 0.35rem;
+    }
+    .metric-label { font-size: 0.92rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.3rem; }
+    .metric-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.55; }
+
+    .philosophy-box {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      padding: 1.65rem;
+      margin-bottom: 3.25rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.25rem;
+    }
+    .phil-item h3 { font-size: 1.02rem; color: var(--text-primary); margin-bottom: 0.4rem; }
+    .phil-item p { font-size: 0.91rem; color: var(--text-muted); line-height: 1.6; }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(275px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 3rem;
+    }
+    .card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    }
+    .card-link:hover { transform: translateY(-3px); border-color: var(--border-strong); background: var(--bg-card); }
+    .card-tag {
+      display: inline-block;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0.24rem 0.62rem;
+      border-radius: 6px;
+      margin-bottom: 0.8rem;
+      align-self: flex-start;
+    }
+    .card h3 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.18rem;
+      color: var(--text-primary);
+      margin-bottom: 0.6rem;
+      line-height: 1.3;
+    }
+    .card p { font-size: 0.92rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 1rem; }
+    .card-cta { font-size: 0.84rem; font-weight: 600; color: var(--accent); display: inline-flex; align-items: center; gap: 0.35rem; }
+
+    /* Sub-tabs */
+    .tab-bar {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(195px, 1fr));
+      gap: 0.7rem;
+      margin-bottom: 2rem;
+    }
+    .tab-btn {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      padding: 0.85rem 1rem;
+      border-radius: 10px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-align: left;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .tab-btn:hover { background: var(--bg-card); color: var(--text-primary); border-color: var(--border-strong); }
+    .tab-btn.active { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; animation: fadeIn 0.22s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+
+    .panel-box {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      padding: 1.75rem;
+      margin-bottom: 1.5rem;
+    }
+    .panel-box h3 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.28rem;
+      color: var(--text-primary);
+      margin-bottom: 0.65rem;
+    }
+    .panel-box p { font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 0.9rem; line-height: 1.68; }
+    .clean-list { list-style: none; display: flex; flex-direction: column; gap: 0.65rem; margin-top: 0.75rem; }
+    .clean-list li {
+      position: relative;
+      padding-left: 1.25rem;
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+    .clean-list li::before {
+      content: "▸";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 700;
+    }
+    .clean-list strong { color: var(--text-primary); }
+
+    /* Footer */
+    .site-footer {
+      border-top: 1px solid var(--border);
+      background: var(--bg-secondary);
+      padding: 2.35rem 1.25rem;
+      text-align: center;
+    }
+    .footer-inner { max-width: 960px; margin: 0 auto; }
+    .footer-brand {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      margin-bottom: 1rem;
+      text-decoration: none;
+      color: var(--text-primary);
+    }
+    .footer-logo {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1px solid var(--border-strong);
+      display: block;
+    }
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.15rem;
+      margin-bottom: 1.15rem;
+    }
+    .footer-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+    .footer-links a:hover { color: var(--accent); }
+    .footer-share {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 1.25rem;
+    }
+    .footer-share-label {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      margin-right: 2px;
+    }
+    .share-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      padding: 0;
+      color: var(--text-secondary);
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease, transform 0.15s ease;
+    }
+    .share-btn:hover {
+      border-color: var(--border-strong);
+      color: var(--accent);
+      background: var(--bg-card-hover);
+      transform: translateY(-1px);
+    }
+    .share-btn svg {
+      width: 18px;
+      height: 18px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.75;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .footer-copy { font-size: 0.8rem; color: var(--text-muted); }
+    .footer-legal-line { margin-top: 0.45rem; }
+    .footer-legal-line a { color: inherit; text-decoration: none; transition: color 0.2s ease; }
+    .footer-legal-line a:hover { color: var(--accent); text-decoration: underline; }
+  </style>
+  <script data-goatcounter="https://mariusmarai.goatcounter.com/count"
+          async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="header-top">
+        <a href="index.html" class="brand-link">
+          <img src="mariusmarAI_Logo.jpg" alt="mariusmarAI Logo" class="brand-logo" />
+          <span class="brand-title">mariusmar<span>AI</span></span>
+        </a>
+        <button type="button" class="hamburger-btn" id="hamburger-btn" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-drawer">☰</button>
+      </div>
+      <div class="lang-row">
+        <div class="lang-switcher" aria-label="Language selector">
+          <button type="button" class="lang-btn active" data-lang="en">EN</button>
+          <button type="button" class="lang-btn" data-lang="es">ES</button>
+          <button type="button" class="lang-btn" data-lang="fr">FR</button>
+          <button type="button" class="lang-btn" data-lang="it">IT</button>
+          <button type="button" class="lang-btn" data-lang="pt">PT</button>
+          <button type="button" class="lang-btn" data-lang="ro">RO</button>
+        </div>
+      </div>
+      <nav class="nav-drawer" id="nav-drawer" aria-label="Main navigation">
+        <a href="index.html" class="nav-link active" data-i18n="nav_home">Home</a>
+        <a href="cv.html" class="nav-link" data-i18n="nav_cv">CV</a>
+        <a href="projects.html" class="nav-link" data-i18n="nav_projects">Projects</a>
+        <a href="interactive-play.html" class="nav-link" data-i18n="nav_play">Interactive Play</a>
+        <a href="blog/en/" class="nav-link" id="menu-blog-link" data-i18n="nav_blog">Blog</a>
+        <a href="contact.html" class="nav-link" data-i18n="nav_contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="eyebrow" data-i18n="hero_badge">Global Operations & Commercial Transformation</div>
+      <h1 data-i18n="hero_title">Turning Operational Complexity Into Scalable Growth and Measurable P&L Impact.</h1>
+      <p class="hero-sub" data-i18n="hero_sub">
+        20+ years in sales, 14+ in management across Amazon, Veeam, Schneider Electric & Oracle. Led complex operations, built high-performing teams & delivered measurable results. Fluent in 5 languages (French, Italian, Portuguese, English, Romanian), bringing cultural awareness to every business approach.
+      </p>
+      <div class="hero-actions">
+        <a href="cv.html" class="btn-primary" data-i18n="hero_cta1">Explore mariusmarAI’s CV →</a>
+        <a href="projects.html" class="btn-secondary" data-i18n="hero_cta2">View Projects & Initiatives →</a>
+      </div>
+    </section>
+
+    <section class="metrics-grid" aria-label="Key Career Impact">
+      <div class="metric-card">
+        <div class="metric-val">$720M+</div>
+        <div class="metric-label" data-i18n="m1_label">Annual Quota Scope</div>
+        <div class="metric-desc" data-i18n="m1_desc">Sustained 100%+ attainment across high-velocity global revenue engines.</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-val">48,000+</div>
+        <div class="metric-label" data-i18n="m2_label">Global Workforce Scope</div>
+        <div class="metric-desc" data-i18n="m2_desc">Strategic operations leadership across 39 sites worldwide.</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-val">36</div>
+        <div class="metric-label" data-i18n="m3_label">Custom AI Agents Built</div>
+        <div class="metric-desc" data-i18n="m3_desc">Powering 6,000+ leaders to deliver 4x output in 75% less time.</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-val">60%</div>
+        <div class="metric-label" data-i18n="m4_label">YoY Cost Savings</div>
+        <div class="metric-desc" data-i18n="m4_desc">Delivered alongside a 75% drop in response latency and 483x reporting speed.</div>
+      </div>
+    </section>
+
+    <section class="philosophy-box" aria-label="Core Leadership Pillars">
+      <div class="phil-item">
+        <h3 data-i18n="p1_title">01. Strategy Translated Into Execution</h3>
+        <p data-i18n="p1_desc">Turning high-level corporate targets into clear operating rhythms, KPI governance, and predictable revenue.</p>
+      </div>
+      <div class="phil-item">
+        <h3 data-i18n="p2_title">02. Automation as a Force Multiplier</h3>
+        <p data-i18n="p2_desc">Eliminating manual operational bottlenecks through AI agents, intelligent Excel/VBA systems, and scalable workflows.</p>
+      </div>
+      <div class="phil-item">
+        <h3 data-i18n="p3_title">03. Global, Human-Centered Leadership</h3>
+        <p data-i18n="p3_desc">Leading diverse teams globally across English, French, Italian, Portuguese, Romanian, and Spanish.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-header">
+        <span class="section-kicker" data-i18n="nav_kicker">Navigate the Ecosystem</span>
+        <h2 data-i18n="nav_heading">Track Record, Applied Frameworks & Dialogue</h2>
+        <p class="section-desc" data-i18n="nav_desc">Explore the complete career history, practical automation insights, interactive playbooks, and LinkedIn communities.</p>
+      </div>
+      <div class="cards-grid">
+        <a href="cv.html" class="card card-link">
+          <div>
+            <span class="card-tag">01 / CV</span>
+            <h3 data-i18n="c1_title">mariusmarAI’s CV</h3>
+            <p data-i18n="c1_desc">Full career track record, MBA & Lean Six Sigma Black Belt credentials, and core competencies.</p>
+          </div>
+          <span class="card-cta" data-i18n="c1_cta">Open Full Profile →</span>
+        </a>
+        <a href="projects.html" class="card card-link">
+          <div>
+            <span class="card-tag">02 / PROJECTS</span>
+            <h3 data-i18n="c2_title">Projects & Ecosystem</h3>
+            <p data-i18n="c2_desc">Explore Automation (AI, Excel, Workflows), Humans of Linked In, Mentoring, and Coaching.</p>
+          </div>
+          <span class="card-cta" data-i18n="c2_cta">Explore Projects →</span>
+        </a>
+        <a href="interactive-play.html" class="card card-link">
+          <div>
+            <span class="card-tag">03 / INTERACTIVE</span>
+            <h3 data-i18n="c3_title">Interactive Play</h3>
+            <p data-i18n="c3_desc">Hands-on diagnostic checklists, progress trackers, and decision safety nets across all four pillars.</p>
+          </div>
+          <span class="card-cta" data-i18n="c3_cta">Launch Playbooks →</span>
+        </a>
+        <a href="contact.html" class="card card-link">
+          <div>
+            <span class="card-tag">04 / CONTACT</span>
+            <h3 data-i18n="c4_title">Direct Contact</h3>
+            <p data-i18n="c4_desc">Connect via LinkedIn, join the global networking group, or initiate a dialogue with mariusmarAI.</p>
+          </div>
+          <span class="card-cta" data-i18n="c4_cta">Connect on LinkedIn →</span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <a href="index.html" class="footer-brand">
+        <img src="mariusmarAI_Logo.jpg" alt="mariusmarAI" class="footer-logo" />
+        <span style="font-family: 'Playfair Display', Georgia, serif; font-weight: 700; font-size: 1rem;">mariusmar<span style="color: var(--accent);">AI</span></span>
+      </a>
+      <div class="footer-links">
+        <a href="https://www.linkedin.com/in/marius-marai" target="_blank" rel="noopener noreferrer" data-i18n="ft_profile">mariusmarAI on LinkedIn ↗</a>
+        <a href="https://www.linkedin.com/newsletters/humans-of-linked-in-holi-7161329778250162176/" target="_blank" rel="noopener noreferrer" data-i18n="ft_news">Humans of Linked In (HoLI) ↗</a>
+        <a href="https://www.linkedin.com/groups/40607397/" target="_blank" rel="noopener noreferrer" data-i18n="ft_net">HoLI Networking ↗</a>
+        <a href="https://www.linkedin.com/groups/14608931/" target="_blank" rel="noopener noreferrer" data-i18n="ft_jobs">HoLI Jobs ↗</a>
+        <a href="https://www.linkedin.com/groups/16185013/" target="_blank" rel="noopener noreferrer" data-i18n="ft_cand">HoLI Candidates ↗</a>
+      </div>
+      <div class="footer-share" aria-label="Share this page">
+        <span class="footer-share-label" data-i18n="ft_share">Share page:</span>
+        <a class="share-btn" id="share-linkedin" target="_blank" rel="noopener noreferrer" title="LinkedIn" aria-label="Share on LinkedIn">
+          <svg viewBox="0 0 24 24">
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+            <rect x="2" y="9" width="4" height="12"/>
+            <circle cx="4" cy="4" r="2"/>
+          </svg>
+        </a>
+        <a class="share-btn" id="share-whatsapp" target="_blank" rel="noopener noreferrer" title="WhatsApp" aria-label="Share on WhatsApp">
+          <svg viewBox="0 0 24 24">
+            <path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21"/>
+            <path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1"/>
+          </svg>
+        </a>
+        <a class="share-btn" id="share-email" title="Email" aria-label="Share via Email">
+          <svg viewBox="0 0 24 24">
+            <rect x="2" y="4" width="20" height="16" rx="2"/>
+            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+          </svg>
+        </a>
+        <button type="button" class="share-btn" id="share-copy" title="Copy link" aria-label="Copy page link">
+          <svg id="icon-copy" viewBox="0 0 24 24">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+          <svg id="icon-check" viewBox="0 0 24 24" style="display: none; color: var(--accent);">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        </button>
+      </div>
+      <p class="footer-copy" data-i18n="ft_copy">© mariusmarAI. Global Operations, Commercial Leadership & AI-Driven Transformation.</p>
+      <p class="footer-copy footer-legal-line">
+        <a href="terms.html" data-i18n="ft_terms">Terms and Conditions</a>
+        <span> · </span>
+        <a href="privacy.html" data-i18n="ft_privacy">Privacy Policy</a>
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    const translations = {
+      "en": {
+        "nav_home": "Home", "nav_cv": "CV", "nav_projects": "Projects", "nav_play": "Interactive Play", "nav_blog": "Blog", "nav_contact": "Contact",
+        "ft_profile": "mariusmarAI on LinkedIn ↗", "ft_news": "Humans of Linked In (HoLI) ↗", "ft_net": "HoLI Networking ↗", "ft_jobs": "HoLI Jobs ↗", "ft_cand": "HoLI Candidates ↗",
+        "ft_share": "Share page:", "ft_copy": "© mariusmarAI. Global Operations, Commercial Leadership & AI-Driven Transformation.",
+        "ft_terms": "Terms and Conditions", "ft_privacy": "Privacy Policy",
+        "hero_badge": "Global Operations & Commercial Transformation",
+        "hero_title": "Turning Operational Complexity Into Scalable Growth and Measurable P&L Impact.",
+        "hero_sub": "20+ years in sales, 14+ in management across Amazon, Veeam, Schneider Electric & Oracle. Led complex operations, built high-performing teams & delivered measurable results. Fluent in 5 languages (French, Italian, Portuguese, English, Romanian), bringing cultural awareness to every business approach.",
+        "hero_cta1": "Explore mariusmarAI’s CV →", "hero_cta2": "View Projects & Initiatives →",
+        "m1_label": "Annual Quota Scope", "m1_desc": "Sustained 100%+ attainment across high-velocity global revenue engines.",
+        "m2_label": "Global Workforce Scope", "m2_desc": "Strategic operations leadership across 39 sites worldwide.",
+        "m3_label": "Custom AI Agents Built", "m3_desc": "Powering 6,000+ leaders to deliver 4x output in 75% less time.",
+        "m4_label": "YoY Cost Savings", "m4_desc": "Delivered alongside a 75% drop in response latency and 483x reporting speed.",
+        "p1_title": "01. Strategy Translated Into Execution", "p1_desc": "Turning high-level corporate targets into clear operating rhythms, KPI governance, and predictable revenue.",
+        "p2_title": "02. Automation as a Force Multiplier", "p2_desc": "Eliminating manual operational bottlenecks through AI agents, intelligent Excel/VBA systems, and scalable workflows.",
+        "p3_title": "03. Global, Human-Centered Leadership", "p3_desc": "Leading diverse teams globally across English, French, Italian, Portuguese, Romanian, and Spanish.",
+        "nav_kicker": "Navigate the Ecosystem", "nav_heading": "Track Record, Applied Frameworks & Dialogue",
+        "nav_desc": "Explore the complete career history, practical automation insights, interactive playbooks, and LinkedIn communities.",
+        "c1_title": "mariusmarAI’s CV", "c1_desc": "Full career track record, MBA & Lean Six Sigma Black Belt credentials, and core competencies.", "c1_cta": "Open Full Profile →",
+        "c2_title": "Projects & Ecosystem", "c2_desc": "Explore Automation (AI, Excel, Workflows), Humans of Linked In, Mentoring, and Coaching.", "c2_cta": "Explore Projects →",
+        "c3_title": "Interactive Play", "c3_desc": "Hands-on diagnostic checklists, progress trackers, and decision safety nets across all four pillars.", "c3_cta": "Launch Playbooks →",
+        "c4_title": "Direct Contact", "c4_desc": "Connect via LinkedIn, join the global networking group, or initiate a dialogue with mariusmarAI.", "c4_cta": "Connect on LinkedIn →"
+      },
+      "es": {
+        "nav_home": "Inicio", "nav_cv": "CV", "nav_projects": "Proyectos", "nav_play": "Interactive Play", "nav_blog": "Blog", "nav_contact": "Contacto",
+        "ft_profile": "mariusmarAI en LinkedIn ↗", "ft_news": "Humans of Linked In (HoLI) ↗", "ft_net": "HoLI Networking ↗", "ft_jobs": "HoLI Jobs ↗", "ft_cand": "HoLI Candidates ↗",
+        "ft_share": "Compartir página:", "ft_copy": "© mariusmarAI. Operaciones Globales, Liderazgo Comercial y Transformación impulsada por IA.",
+        "ft_terms": "Términos y Condiciones", "ft_privacy": "Política de Privacidad",
+        "hero_badge": "Operaciones Globales y Transformación Comercial",
+        "hero_title": "Transformando la Complejidad Operativa en Crecimiento Escalable e Impacto Medible en P&L.",
+        "hero_sub": "Más de 20 años en ventas y más de 14 en dirección en Amazon, Veeam, Schneider Electric y Oracle. Lideré operaciones complejas, construí equipos de alto rendimiento y entregué resultados medibles. Fluido en 5 idiomas (francés, italiano, portugués, inglés y rumano), aportando sensibilidad cultural a cada enfoque de negocio.",
+        "hero_cta1": "Explorar el CV de mariusmarAI →", "hero_cta2": "Ver Proyectos e Iniciativas →",
+        "m1_label": "Alcance de Cuota Anual", "m1_desc": "Cumplimiento sostenido superior al 100% en motores globales de ingresos de alta velocidad.",
+        "m2_label": "Alcance Global de Equipos", "m2_desc": "Liderazgo estratégico de operaciones en 39 sedes a nivel mundial.",
+        "m3_label": "Agentes de IA Personalizados", "m3_desc": "Impulsando a más de 6.000 líderes a generar 4 veces más resultados en un 75% menos de tiempo.",
+        "m4_label": "Ahorro Interanual de Costes", "m4_desc": "Logrado junto con una reducción del 75% en latencia de respuesta y reportes 483 veces más rápidos.",
+        "p1_title": "01. Estrategia Traducida en Ejecución", "p1_desc": "Convirtiendo objetivos corporativos en ritmos operativos claros, gobernanza de KPI e ingresos predecibles.",
+        "p2_title": "02. Automatización como Multiplicador", "p2_desc": "Eliminando cuellos de botella manuales mediante agentes de IA, sistemas inteligentes Excel/VBA y flujos escalables.",
+        "p3_title": "03. Liderazgo Global Centrado en las Personas", "p3_desc": "Liderando equipos diversos a nivel global en inglés, francés, italiano, portugués, rumano y español.",
+        "nav_kicker": "Explora el Ecosistema", "nav_heading": "Trayectoria, Marcos Aplicados y Diálogo",
+        "nav_desc": "Descubre el historial profesional completo, claves prácticas de automatización, guías interactivas y comunidades en LinkedIn.",
+        "c1_title": "CV de mariusmarAI", "c1_desc": "Trayectoria profesional completa, MBA, certificación Lean Six Sigma Black Belt y competencias clave.", "c1_cta": "Abrir Perfil Completo →",
+        "c2_title": "Proyectos y Ecosistema", "c2_desc": "Explora Automatización (IA, Excel, Flujos), Humans of Linked In, Mentoring y Coaching.", "c2_cta": "Explorar Proyectos →",
+        "c3_title": "Interactive Play", "c3_desc": "Listas de verificación interactivas, barras de progreso y redes de seguridad para tus decisiones.", "c3_cta": "Abrir Guías Interactivas →",
+        "c4_title": "Contacto Directo", "c4_desc": "Conecta vía LinkedIn, únete al grupo global de networking o inicia un diálogo con mariusmarAI.", "c4_cta": "Conectar en LinkedIn →"
+      },
+      "fr": {
+        "nav_home": "Accueil", "nav_cv": "CV", "nav_projects": "Projets", "nav_play": "Interactive Play", "nav_blog": "Blog", "nav_contact": "Contact",
+        "ft_profile": "mariusmarAI sur LinkedIn ↗", "ft_news": "Humans of Linked In (HoLI) ↗", "ft_net": "HoLI Networking ↗", "ft_jobs": "HoLI Jobs ↗", "ft_cand": "HoLI Candidates ↗",
+        "ft_share": "Partager la page :", "ft_copy": "© mariusmarAI. Opérations Globales, Leadership Commercial & Transformation par l'IA.",
+        "ft_terms": "Conditions Générales", "ft_privacy": "Politique de Confidentialité",
+        "hero_badge": "Opérations Globales & Transformation Commerciale",
+        "hero_title": "Transformer la Complexité Opérationnelle en Croissance Évolutive et Impact P&L Mesurable.",
+        "hero_sub": "Plus de 20 ans dans la vente et plus de 14 ans en direction chez Amazon, Veeam, Schneider Electric et Oracle. Pilotage d'opérations complexes, constitution d'équipes performantes et résultats mesurables. Courant en 5 langues (français, italien, portugais, anglais, roumain), avec une approche multiculturelle des affaires.",
+        "hero_cta1": "Découvrir le CV de mariusmarAI →", "hero_cta2": "Voir les Projets & Initiatives →",
+        "m1_label": "Portefeuille de Quota Annuel", "m1_desc": "Atteinte soutenue à plus de 100 % sur des moteurs de revenus mondiaux à forte vélocité.",
+        "m2_label": "Périmètre Mondial d'Équipes", "m2_desc": "Direction stratégique des opérations sur 39 sites dans le monde.",
+        "m3_label": "Agents IA Sur Mesure Créés", "m3_desc": "Permettant à plus de 6 000 leaders de produire 4x plus en 75 % de temps en moins.",
+        "m4_label": "Économies Annuelles (YoY)", "m4_desc": "Réalisées avec une baisse de 75 % des délais de réponse et des rapports 483x plus rapides.",
+        "p1_title": "01. La Stratégie Traduite en Exécution", "p1_desc": "Transformer les objectifs stratégiques en rythmes opérationnels clairs, gouvernance KPI et revenus prévisibles.",
+        "p2_title": "02. L'Automatisation comme Multiplicateur", "p2_desc": "Éliminer les goulots manuels grâce aux agents IA, aux systèmes Excel/VBA intelligents et aux workflows évolutifs.",
+        "p3_title": "03. Leadership Global Centré sur l'Humain", "p3_desc": "Diriger des équipes multiculturelles à l'échelle mondiale en anglais, français, italien, portugais, roumain et espagnol.",
+        "nav_kicker": "Explorer l'Écosystème", "nav_heading": "Parcours, Cadres Appliqués & Dialogue",
+        "nav_desc": "Consultez le parcours complet, les analyses pratiques sur l'automatisation, les playbooks interactifs et les communautés LinkedIn.",
+        "c1_title": "CV de mariusmarAI", "c1_desc": "Parcours complet, MBA, certification Lean Six Sigma Black Belt et compétences clés.", "c1_cta": "Ouvrir le Profil Complet →",
+        "c2_title": "Projets & Écosystème", "c2_desc": "Explorez l'Automatisation (IA, Excel, Workflows), Humans of Linked In, le Mentoring et le Coaching.", "c2_cta": "Explorer les Projets →",
+        "c3_title": "Interactive Play", "c3_desc": "Checklists de diagnostic, suivi de progression et filets de sécurité décisionnels sur les quatre piliers.", "c3_cta": "Lancer les Playbooks →",
+        "c4_title": "Contact Direct", "c4_desc": "Connectez-vous via LinkedIn, rejoignez le groupe mondial ou engagez un échange avec mariusmarAI.", "c4_cta": "Se connecter sur LinkedIn →"
+      },
+      "it": {
+        "nav_home": "Home", "nav_cv": "CV", "nav_projects": "Progetti", "nav_play": "Interactive Play", "nav_blog": "Blog", "nav_contact": "Contatti",
+        "ft_profile": "mariusmarAI su LinkedIn ↗", "ft_news": "Humans of Linked In (HoLI) ↗", "ft_net": "HoLI Networking ↗", "ft_jobs": "HoLI Jobs ↗", "ft_cand": "HoLI Candidates ↗",
+        "ft_share": "Condividi pagina:", "ft_copy": "© mariusmarAI. Operazioni Globali, Leadership Commerciale e Trasformazione guidata dall'IA.",
+        "ft_terms": "Termini e Condizioni", "ft_privacy": "Informativa sulla Privacy",
+        "hero_badge": "Operazioni Globali e Trasformazione Commerciale",
+        "hero_title": "Trasformare la Complessità Operativa in Crescita Scalabile e Impatto Misurabile sul P&L.",
+        "hero_sub": "Oltre 20 anni nelle vendite e più di 14 nella gestione in Amazon, Veeam, Schneider Electric e Oracle. Ho guidato operazioni complesse, costruito team ad alte prestazioni e ottenuto risultati misurabili. Fluente in 5 lingue (francese, italiano, portoghese, inglese, rumeno), portando sensibilità culturale in ogni approccio di business.",
+        "hero_cta1": "Esplora il CV di mariusmarAI →", "hero_cta2": "Vedi Progetti e Iniziative →",
+        "m1_label": "Portafoglio Quota Annuale", "m1_desc": "Raggiungimento costante oltre il 100% su motori di ricavi globali ad alta velocità.",
+        "m2_label": "Perimetro Globale del Personale", "m2_desc": "Leadership operativa strategica su 39 sedi a livello mondiale.",
+        "m3_label": "Agenti IA Su Misura Creati", "m3_desc": "Supporto a oltre 6.000 leader per ottenere 4 volte più output nel 75% di tempo in meno.",
+        "m4_label": "Risparmi sui Costi YoY", "m4_desc": "Ottenuti insieme a una riduzione del 75% dei tempi di risposta e reportistica 483x più veloce.",
+        "p1_title": "01. Strategia Tradotta in Esecuzione", "p1_desc": "Trasformare gli obiettivi aziendali in ritmi operativi chiari, governance KPI e ricavi prevedibili.",
+        "p2_title": "02. Automazione come Moltiplicatore", "p2_desc": "Eliminare i colli di bottiglia manuali tramite agenti IA, sistemi intelligenti Excel/VBA e flussi scalabili.",
+        "p3_title": "03. Leadership Globale Centrata sulle Persone", "p3_desc": "Guidare team multiculturali a livello globale in inglese, francese, italiano, portoghese, rumeno e spagnolo.",
+        "nav_kicker": "Esplora l'Ecosistema", "nav_heading": "Percorso, Framework Applicati e Dialogo",
+        "nav_desc": "Scopri la storia professionale completa, approfondimenti pratici sull'automazione, playbook interattivi e community LinkedIn.",
+        "c1_title": "CV di mariusmarAI", "c1_desc": "Track record completo, MBA, certificazione Lean Six Sigma Black Belt e competenze chiave.", "c1_cta": "Apri Profilo Completo →",
+        "c2_title": "Progetti ed Ecosistema", "c2_desc": "Esplora Automazione (IA, Excel, Flussi), Humans of Linked In, Mentoring e Coaching.", "c2_cta": "Esplora Progetti →",
+        "c3_title": "Interactive Play", "c3_desc": "Checklist diagnostiche, barre di avanzamento e reti di sicurezza decisionale sui quattro pilastri.", "c3_cta": "Avvia i Playbook →",
+        "c4_title": "Contatto Diretto", "c4_desc": "Connettiti tramite LinkedIn, unisciti al gruppo globale o avvia un dialogo con mariusmarAI.", "c4_cta": "Connettiti su LinkedIn →"
+      },
+      "pt": {
+        "nav_home": "Início", "nav_cv": "CV", "nav_projects": "Projetos", "nav_play": "Interactive Play", "nav_blog": "Blog", "nav_contact": "Contacto",
+        "ft_profile": "mariusmarAI no LinkedIn ↗", "ft_news": "Humans of Linked In (HoLI) ↗", "ft_net": "HoLI Networking ↗", "ft_jobs": "HoLI Jobs ↗", "ft_cand": "HoLI Candidates ↗",
+        "ft_share": "Partilhar página:", "ft_copy": "© mariusmarAI. Operações Globais, Liderança Comercial e Transformação impulsionada por IA.",
+        "ft_terms": "Termos e Condições", "ft_privacy": "Política de Privacidade",
+        "hero_badge": "Operações Globais e Transformação Comercial",
+        "hero_title": "Transformar a Complexidade Operacional em Crescimento Escalável e Impacto Mensurável no P&L.",
+        "hero_sub": "Mais de 20 anos em vendas e mais de 14 em gestão na Amazon, Veeam, Schneider Electric e Oracle. Liderei operações complexas, construí equipas de alto desempenho e entreguei resultados mensuráveis. Fluente em 5 idiomas (francês, italiano, português, inglês e romeno), trazendo sensibilidade cultural a cada abordagem de negócio.",
+        "hero_cta1": "Explorar o CV de mariusmarAI →", "hero_cta2": "Ver Projetos e Iniciativas →",
+        "m1_label": "Âmbito de Quota Anual", "m1_desc": "Superação sustentada acima de 100% em motores globais de receita de alta velocidade.",
+        "m2_label": "Âmbito Global de Equipas", "m2_desc": "Liderança estratégica de operações em 39 centros a nível mundial.",
+        "m3_label": "Agentes de IA Personalizados", "m3_desc": "A capacitar mais de 6.000 líderes para entregar 4x mais resultados em 75% menos tempo.",
+        "m4_label": "Poupança Anual de Custos", "m4_desc": "Alcançada em conjunto com uma redução de 75% na latência de resposta e relatórios 483x mais rápidos.",
+        "p1_title": "01. Estratégia Traduzida em Execução", "p1_desc": "Converter metas corporativas em ritmos operacionais claros, governação de KPI e receita previsível.",
+        "p2_title": "02. Automação como Multiplicador", "p2_desc": "Eliminar gargalos manuais através de agentes de IA, sistemas inteligentes Excel/VBA e fluxos escaláveis.",
+        "p3_title": "03. Liderança Global Centrada nas Pessoas", "p3_desc": "Liderar equipas diversas globalmente em inglês, francês, italiano, português, romeno e espanhol.",
+        "nav_kicker": "Navegue pelo Ecossistema", "nav_heading": "Percurso, Modelos Aplicados e Diálogo",
+        "nav_desc": "Explore o historial profissional completo, análises práticas de automação, guias interativos e comunidades no LinkedIn.",
+        "c1_title": "CV de mariusmarAI", "c1_desc": "Percurso profissional completo, MBA, certificação Lean Six Sigma Black Belt e competências principais.", "c1_cta": "Abrir Perfil Completo →",
+        "c2_title": "Projetos e Ecossistema", "c2_desc": "Explore Automação (IA, Excel, Fluxos), Humans of Linked In, Mentoring e Coaching.", "c2_cta": "Explorar Projetos →",
+        "c3_title": "Interactive Play", "c3_desc": "Checklists de diagnóstico, barras de progresso e redes de segurança para decisões nos quatro pilares.", "c3_cta": "Abrir Guias Interativos →",
+        "c4_title": "Contacto Direto", "c4_desc": "Ligue-se via LinkedIn, junte-se ao grupo global de networking ou inicie um diálogo com mariusmarAI.", "c4_cta": "Conectar no LinkedIn →"
+      },
+      "ro": {
+        "nav_home": "Acasă", "nav_cv": "CV", "nav_projects": "Proiecte", "nav_play": "Interactive Play", "nav_blog": "Blog", "nav_contact": "Contact",
+        "ft_profile": "mariusmarAI pe LinkedIn ↗", "ft_news": "Humans of Linked In (HoLI) ↗", "ft_net": "HoLI Networking ↗", "ft_jobs": "HoLI Jobs ↗", "ft_cand": "HoLI Candidates ↗",
+        "ft_share": "Distribuie pagina:", "ft_copy": "© mariusmarAI. Operațiuni Globale, Leadership Comercial și Transformare prin AI.",
+        "ft_terms": "Termeni și Condiții", "ft_privacy": "Politica de Confidențialitate",
+        "hero_badge": "Operațiuni Globale și Transformare Comercială",
+        "hero_title": "Transformarea Complexității Operaționale în Creștere Scalabilă și Impact Măsurabil în P&L.",
+        "hero_sub": "Peste 20 de ani în vânzări și peste 14 în management la Amazon, Veeam, Schneider Electric și Oracle. Am condus operațiuni complexe, am construit echipe performante și am livrat rezultate măsurabile. Fluent în 5 limbi (franceză, italiană, portugheză, engleză, română), aducând înțelegere culturală în fiecare abordare de business.",
+        "hero_cta1": "Explorează CV-ul mariusmarAI →", "hero_cta2": "Vezi Proiecte și Inițiative →",
+        "m1_label": "Portofoliu Cotă Anuală", "m1_desc": "Depășire constantă de peste 100% în organizații globale de vânzări cu ritm ridicat.",
+        "m2_label": "Anvergură Globală Echipe", "m2_desc": "Leadership strategic de operațiuni în 39 de centre la nivel mondial.",
+        "m3_label": "Agenți AI Personalizați", "m3_desc": "Sprijinind peste 6.000 de lideri să livreze de 4 ori mai mult în 75% mai puțin timp.",
+        "m4_label": "Economii Anuale de Costuri", "m4_desc": "Obținute alături de o scădere cu 75% a timpului de răspuns și raportare de 483x mai rapidă.",
+        "p1_title": "01. Strategie Tradusă în Execuție", "p1_desc": "Transformarea obiectivelor strategice în ritmuri operaționale clare, guvernanță KPI și venituri predictibile.",
+        "p2_title": "02. Automatizarea ca Multiplicator de Forță", "p2_desc": "Eliminarea blocajelor manuale prin agenți AI, sisteme inteligente Excel/VBA și fluxuri de lucru scalabile.",
+        "p3_title": "03. Leadership Global Centrat pe Oameni", "p3_desc": "Coordonarea echipelor diverse la nivel global în engleză, franceză, italiană, portugheză, română și spaniolă.",
+        "nav_kicker": "Explorează Ecosistemul", "nav_heading": "Experiență, Cadre Aplicate și Dialog",
+        "nav_desc": "Descoperă parcursul profesional complet, perspective practice despre automatizare, ghiduri interactive și comunitățile LinkedIn.",
+        "c1_title": "CV-ul mariusmarAI", "c1_desc": "Parcurs profesional complet, MBA, certificare Lean Six Sigma Black Belt și competențe cheie.", "c1_cta": "Deschide Profilul Complet →",
+        "c2_title": "Proiecte și Ecosistem", "c2_desc": "Explorează Automatizare (AI, Excel, Fluxuri), Humans of Linked In, Mentoring și Coaching.", "c2_cta": "Explorează Proiectele →",
+        "c3_title": "Interactive Play", "c3_desc": "Checklist-uri de diagnostic, bare de progres și plase de siguranță decizională pe toți cei patru piloni.", "c3_cta": "Deschide Ghidurile Interactive →",
+        "c4_title": "Contact Direct", "c4_desc": "Conectează-te pe LinkedIn, intră în grupul global de networking sau inițiază un dialog cu mariusmarAI.", "c4_cta": "Conectează-te pe LinkedIn →"
+      }
+    };
+
+    let currentLang = 'en';
+    try { currentLang = localStorage.getItem('mariusmarai_lang') || 'en'; } catch (e) {}
+    if (!translations[currentLang]) currentLang = 'en';
+
+    const hamburgerBtn = document.getElementById('hamburger-btn');
+    const navDrawer = document.getElementById('nav-drawer');
+    hamburgerBtn.addEventListener('click', () => {
+      const isOpen = navDrawer.classList.toggle('open');
+      hamburgerBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      hamburgerBtn.textContent = isOpen ? '✕' : '☰';
+    });
+
+    function applyLanguage(lang) {
+      currentLang = lang;
+      try { localStorage.setItem('mariusmarai_lang', lang); } catch (e) {}
+      document.documentElement.lang = lang;
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.lang === lang);
+      });
+      const dict = translations[lang];
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.dataset.i18n;
+        if (dict[key] !== undefined) {
+          el.textContent = dict[key];
+        }
+      });
+      document.querySelectorAll('[data-i18n-html]').forEach(el => {
+        const key = el.dataset.i18nHtml;
+        if (dict[key] !== undefined) {
+          el.innerHTML = dict[key];
+        }
+      });
+      const menuBlogLink = document.getElementById('menu-blog-link');
+      if (menuBlogLink) {
+        menuBlogLink.href = `blog/${lang}/`;
+      }
+      if (typeof onLanguageApplied === 'function') {
+        onLanguageApplied(lang, dict);
+      }
+    }
+
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.addEventListener('click', () => applyLanguage(btn.dataset.lang));
+    });
+
+    (function () {
+      const pageUrl = window.location.href;
+      const encodedUrl = encodeURIComponent(pageUrl);
+      const encodedTitle = encodeURIComponent(document.title);
+
+      const li = document.getElementById('share-linkedin');
+      const wa = document.getElementById('share-whatsapp');
+      const em = document.getElementById('share-email');
+      const cp = document.getElementById('share-copy');
+
+      if (li) li.href = `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`;
+      if (wa) wa.href = `https://api.whatsapp.com/send?text=${encodedTitle}%20-%20${encodedUrl}`;
+      if (em) em.href = `mailto:?subject=${encodedTitle}&body=${encodedTitle}%0A${encodedUrl}`;
+
+      if (cp) {
+        cp.addEventListener('click', function () {
+          navigator.clipboard.writeText(pageUrl).then(function () {
+            const copyIcon = document.getElementById('icon-copy');
+            const checkIcon = document.getElementById('icon-check');
+            if (!copyIcon || !checkIcon) return;
+            copyIcon.style.display = 'none';
+            checkIcon.style.display = 'block';
+            setTimeout(function () {
+              checkIcon.style.display = 'none';
+              copyIcon.style.display = 'block';
+            }, 2000);
+          });
+        });
+      }
+    })();
+
+    applyLanguage(currentLang);
+  </script>
+  <script src="cookie-consent.js"></script>
+</body>
+</html>

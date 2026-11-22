@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.png">
+  <title>CV | mariusmarAI</title>
+  <link rel="icon" type="image/jpeg" href="mariusmarAI_Logo.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-primary: #0B1220;
+      --bg-secondary: #111A2E;
+      --bg-card: #162238;
+      --bg-card-hover: #1C2B47;
+      --text-primary: #F8FAFC;
+      --text-secondary: #CBD5E1;
+      --text-muted: #94A3B8;
+      --accent: #F59E0B;
+      --accent-hover: #D97706;
+      --accent-soft: rgba(245, 158, 11, 0.14);
+      --cyan: #38BDF8;
+      --cyan-soft: rgba(56, 189, 248, 0.12);
+      --danger-soft: rgba(239, 68, 68, 0.12);
+      --danger-border: rgba(239, 68, 68, 0.42);
+      --success: #10B981;
+      --border: rgba(148, 163, 184, 0.16);
+      --border-strong: rgba(245, 158, 11, 0.42);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    html, body { max-width: 100%; overflow-x: clip; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Unified Sticky Header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 9999;
+      background: rgba(11, 18, 32, 0.96);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      width: 100%;
+    }
+    .header-inner {
+      max-width: 1060px;
+      margin: 0 auto;
+      padding: 0.65rem 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+    }
+    .header-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      gap: 0.75rem;
+    }
+    .brand-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      text-decoration: none;
+      color: var(--text-primary);
+      min-width: 0;
+    }
+    .brand-logo {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1.5px solid var(--border-strong);
+      flex-shrink: 0;
+      display: block;
+    }
+    .brand-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+    }
+    .brand-title span { color: var(--accent); }
+    .hamburger-btn {
+      margin-left: auto;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: var(--bg-secondary);
+      color: var(--text-primary);
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      font-size: 1.25rem;
+      line-height: 1;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+    }
+    .hamburger-btn:hover,
+    .hamburger-btn[aria-expanded="true"] {
+      border-color: var(--border-strong);
+      background: var(--bg-card);
+      color: var(--accent);
+    }
+    .lang-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+    }
+    .lang-switcher {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.22rem;
+      background: var(--bg-secondary);
+      padding: 0.22rem;
+      border-radius: 9px;
+      border: 1px solid var(--border);
+    }
+    .lang-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.74rem;
+      font-weight: 600;
+      padding: 0.28rem 0.54rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .lang-btn:hover { color: var(--text-primary); background: rgba(255, 255, 255, 0.06); }
+    .lang-btn.active { background: var(--accent); color: #0B1220; }
+
+    .nav-drawer {
+      display: none;
+      flex-direction: column;
+      gap: 0.35rem;
+      width: 100%;
+      padding-top: 0.55rem;
+      border-top: 1px solid var(--border);
+    }
+    .nav-drawer.open { display: flex; }
+    .nav-link {
+      text-decoration: none;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 0.58rem 0.85rem;
+      border-radius: 9px;
+      border: 1px solid transparent;
+      transition: all 0.2s ease;
+      display: block;
+    }
+    .nav-link:hover { color: var(--text-primary); background: var(--bg-card); border-color: var(--border); }
+    .nav-link.active {
+      color: var(--accent);
+      background: var(--accent-soft);
+      border-color: var(--border-strong);
+      font-weight: 600;
+    }
+
+    @media (max-width: 400px) {
+      .header-inner { padding: 0.55rem 0.85rem; gap: 0.45rem; }
+      .brand-logo { width: 34px; height: 34px; }
+      .brand-title { font-size: 1.02rem; }
+      .hamburger-btn { width: 36px; height: 36px; font-size: 1.1rem; }
+      .lang-btn { font-size: 0.7rem; padding: 0.24rem 0.44rem; }
+    }
+
+    /* Main Container */
+    .container { max-width: 1020px; margin: 0 auto; padding: 2.75rem 1.25rem 4.5rem; }
+    .hero { max-width: 840px; margin-bottom: 3.25rem; }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      background: var(--accent-soft);
+      color: var(--accent);
+      border: 1px solid var(--border-strong);
+      padding: 0.34rem 0.85rem;
+      border-radius: 999px;
+      font-size: 0.76rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 1.15rem;
+    }
+    h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(1.95rem, 4.3vw, 2.95rem);
+      line-height: 1.16;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 1.15rem;
+    }
+    .hero-sub { font-size: 1.05rem; color: var(--text-secondary); margin-bottom: 1.75rem; max-width: 780px; }
+
+    h2 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      color: var(--text-primary);
+      line-height: 1.25;
+      margin-bottom: 0.45rem;
+    }
+
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+
+    .clean-list { list-style: none; display: flex; flex-direction: column; gap: 0.65rem; margin-top: 0.75rem; }
+    .clean-list li {
+      position: relative;
+      padding-left: 1.25rem;
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+    .clean-list li::before {
+      content: "▸";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 700;
+    }
+    .clean-list strong { color: var(--text-primary); }
+
+    /* Footer */
+    .site-footer {
+      border-top: 1px solid var(--border);
+      background: var(--bg-secondary);
+      padding: 2.35rem 1.25rem;
+      text-align: center;
+    }
+    .footer-inner { max-width: 960px; margin: 0 auto; }
+    .footer-brand {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      margin-bottom: 1rem;
+      text-decoration: none;
+      color: var(--text-primary);
+    }
+    .footer-logo {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1px solid var(--border-strong);
+      display: block;
+    }
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.15rem;
+      margin-bottom: 1.15rem;
+    }
+    .footer-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+    .footer-links a:hover { color: var(--accent); }
+    .footer-share {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 1.25rem;
+    }
+    .footer-share-label {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      margin-right: 2px;
+    }
+    .share-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      padding: 0;
+      color: var(--text-secondary);
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease, transform 0.15s ease;
+    }
+    .share-btn:hover {
+      border-color: var(--border-strong);
+      color: var(--accent);
+      background: var(--bg-card-hover);
+      transform: translateY(-1px);
+    }
+    .share-btn svg {
+      width: 18px;
+      height: 18px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.75;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .footer-copy { font-size: 0.8rem; color: var(--text-muted); }
+    .footer-legal-line { margin-top: 0.45rem; }
+    .footer-legal-line a { color: inherit; text-decoration: none; transition: color 0.2s ease; }
+    .footer-legal-line a:hover { color: var(--accent); text-decoration: underline; }
+
+    .cv-section {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      padding: 1.75rem;
+      margin-bottom: 1.75rem;
+    }
+    .cv-section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+    .cv-section-header h2 { margin-bottom: 0; font-size: 1.45rem; }
+    .expand-btn {
+      background: var(--accent-soft);
+      border: 1px solid var(--border-strong);
+      color: var(--accent);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      padding: 0.42rem 0.85rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .expand-btn:hover { background: var(--accent); color: #0B1220; }
+    .about-details {
+      display: none;
+      margin-top: 1.25rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--border);
+    }
+    .about-details.open { display: block; animation: fadeIn 0.22s ease; }
+    .about-subhead {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin: 1.15rem 0 0.55rem;
+    }
+    .about-subhead:first-child { margin-top: 0; }
+    .expertise-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-top: 0.65rem;
+    }
+    .pill {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      font-size: 0.78rem;
+      font-weight: 500;
+      padding: 0.28rem 0.65rem;
+      border-radius: 999px;
+    }
+    .role-card {
+      background: var(--bg-primary);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.35rem;
+      margin-bottom: 1.1rem;
+    }
+    .role-card:last-child { margin-bottom: 0; }
+    .role-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 0.35rem;
+    }
+    .role-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.14rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+    .role-period {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--accent);
+      background: var(--accent-soft);
+      padding: 0.2rem 0.6rem;
+      border-radius: 6px;
+    }
+    .role-scope {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      margin-bottom: 0.65rem;
+      font-weight: 500;
+    }
+    .edu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+    .edu-item {
+      background: var(--bg-primary);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.2rem;
+    }
+    .edu-item h3 { font-size: 1.02rem; color: var(--text-primary); margin-bottom: 0.25rem; }
+    .edu-item p { font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 0.25rem; }
+    .edu-item span { font-size: 0.78rem; color: var(--accent); font-weight: 600; }
+  </style>
+  <script data-goatcounter="https://mariusmarai.goatcounter.com/count"
+          async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="header-top">
+        <a href="index.html" class="brand-link">
+          <img src="mariusmarAI_Logo.jpg" alt="mariusmarAI Logo" class="brand-logo" />
+          <span class="brand-title">mariusmar<span>AI</span></span>
+        </a>
+        <button type="button" class="hamburger-btn" id="hamburger-btn" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-drawer">☰</button>
+      </div>
+      <div class="lang-row">
+        <div class="lang-switcher" aria-label="Language selector">
+          <button type="button" class="lang-btn active" data-lang="en">EN</button>
+          <button type="button" class="lang-btn" data-lang="es">ES</button>
+          <button type="button" class="lang-btn" data-lang="fr">FR</button>
+          <button type="button" class="lang-btn" data-lang="it">IT</button>
+          <button type="button" class="lang-btn" data-lang="pt">PT</button>
+          <button type="button" class="lang-btn" data-lang="ro">RO</button>
+        </div>
+      </div>
+      <nav class="nav-drawer" id="nav-drawer" aria-label="Main navigation">
+        <a href="index.html" class="nav-link" data-i18n="nav_home">Home</a>
+        <a href="cv.html" class="nav-link active" data-i18n="nav_cv">CV</a>
+        <a href="projects.html" class="nav-link" data-i18n="nav_projects">Projects</a>
+        <a href="interactive-play.html" class="nav-link" data-i18n="nav_play">Interactive Play</a>
+        <a href="blog/en/" class="nav-link" id="menu-blog-link" data-i18n="nav_blog">Blog</a>
+        <a href="contact.html" class="nav-link" data-i18n="nav_contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero" style="margin-bottom: 2.25rem;">
+      <div class="eyebrow" data-i18n="cv_badge">Curriculum Vitae & Track Record</div>
+      <h1 data-i18n="cv_title">Marius Marai — Global Operations & Commercial Transformation Leader</h1>
+      <p class="hero-sub" style="margin-bottom: 0;" data-i18n="cv_sub">
+        Bucharest, Romania · Worldwide & Remote Leadership Scope · 5 Fluent Languages + Spanish
+      </p>
+    </section>
+
+    <!-- 1. ABOUT -->
+    <section class="cv-section" id="about">
+      <div class="cv-section-header">
+        <h2 data-i18n="sec_about">01. About</h2>
+        <button type="button" class="expand-btn" id="about-toggle" aria-expanded="false" data-i18n="btn_expand">Expand Full Profile +</button>
+      </div>
+      <p style="color: var(--text-secondary); font-size: 0.96rem;" data-i18n="about_lead">
+        20+ years in sales, 14+ in management across Amazon, Veeam, Schneider Electric & Oracle. Led complex operations, built high-performing teams & delivered measurable results. Fluent in 5 languages (French, Italian, Portuguese, English, Romanian), bringing cultural awareness to every business approach.
+      </p>
+
+      <div class="about-details" id="about-details">
+        <h3 class="about-subhead" data-i18n="ab_bring_h">What I bring to an organization:</h3>
+        <ul class="clean-list" data-i18n-html="ab_bring_list"></ul>
+
+        <h3 class="about-subhead" data-i18n="ab_ach_h">Selected career achievements:</h3>
+        <ul class="clean-list" data-i18n-html="ab_ach_list"></ul>
+
+        <h3 class="about-subhead" data-i18n="ab_exp_h">Areas of expertise:</h3>
+        <div class="expertise-pills">
+          <span class="pill">Operations Management</span>
+          <span class="pill">Operations Director</span>
+          <span class="pill">Global Business Operations</span>
+          <span class="pill">Sales Operations</span>
+          <span class="pill">Commercial Leadership</span>
+          <span class="pill">P&L Management</span>
+          <span class="pill">Operational Excellence</span>
+          <span class="pill">Business Transformation</span>
+          <span class="pill">Revenue Growth</span>
+          <span class="pill">Lean Six Sigma</span>
+          <span class="pill">Process Improvement</span>
+          <span class="pill">Digital Transformation</span>
+          <span class="pill">Performance Management</span>
+          <span class="pill">Strategic Planning</span>
+        </div>
+
+        <p style="margin-top: 1.15rem; font-size: 0.92rem; color: var(--text-primary); font-weight: 500;" data-i18n="ab_closing">
+          I welcome conversations with organizations seeking experienced leadership in Operations Management, Business Operations, Commercial Operations, and Sales Leadership.
+        </p>
+      </div>
+    </section>
+
+    <!-- 2. PROFESSIONAL EXPERIENCE -->
+    <section class="cv-section" id="experience">
+      <div class="cv-section-header">
+        <h2 data-i18n="sec_exp">02. Professional Experience</h2>
+      </div>
+
+      <div class="role-card">
+        <div class="role-top">
+          <span class="role-title">Strategic Operations Leader — Amazon Worldwide Stores</span>
+          <span class="role-period" data-i18n="r1_period">July 2025 – Present</span>
+        </div>
+        <div class="role-scope" data-i18n="r1_scope">Global · 39 sites, 48K+ employees</div>
+        <ul class="clean-list" data-i18n-html="r1_list"></ul>
+      </div>
+
+      <div class="role-card">
+        <div class="role-top">
+          <span class="role-title">Strategic Operations Leader — Amazon EMEA & FRITESBE Stores</span>
+          <span class="role-period" data-i18n="r2_period">Oct 2021 – July 2025</span>
+        </div>
+        <div class="role-scope" data-i18n="r2_scope">Belgium, Colombia, Costa Rica, France, Italy, Romania, Spain</div>
+        <ul class="clean-list" data-i18n-html="r2_list"></ul>
+      </div>
+
+      <div class="role-card">
+        <div class="role-top">
+          <span class="role-title">Senior Business Operations Manager — Amazon Stores Romania</span>
+          <span class="role-period" data-i18n="r3_period">May 2020 – Oct 2021</span>
+        </div>
+        <div class="role-scope" data-i18n="r3_scope">Bucharest, Romania · 600+ employees</div>
+        <ul class="clean-list" data-i18n-html="r3_list"></ul>
+      </div>
+
+      <div class="role-card">
+        <div class="role-top">
+          <span class="role-title">Inside Sales Senior Operations Manager — Veeam Software</span>
+          <span class="role-period" data-i18n="r4_period">Aug 2019 – May 2020</span>
+        </div>
+        <div class="role-scope" data-i18n="r4_scope">France & Africa · 60+ employees across Enterprise, Channel/Partner, B2B & Consumer</div>
+        <ul class="clean-list" data-i18n-html="r4_list"></ul>
+      </div>
+
+      <div class="role-card">
+        <div class="role-top">
+          <span class="role-title">Sales Director — Schneider Electric (Secure Power)</span>
+          <span class="role-period" data-i18n="r5_period">Jan 2014 – Aug 2019</span>
+        </div>
+        <div class="role-scope" data-i18n="r5_scope">Global · 40+ professionals, three continents, six business verticals</div>
+        <ul class="clean-list" data-i18n-html="r5_list"></ul>
+      </div>
+
+      <div class="role-card">
+        <div class="role-top">
+          <span class="role-title" data-i18n="r6_title">Early Career Foundation — Oracle, SeCoGlob & Embassy of Portugal</span>
+          <span class="role-period">2005 – 2014</span>
+        </div>
+        <div class="role-scope" data-i18n="r6_scope">Brazil, France, Italy, Portugal, Romania</div>
+        <ul class="clean-list" data-i18n-html="r6_list"></ul>
+      </div>
+    </section>
+
+    <!-- 3. EDUCATION -->
+    <section class="cv-section" id="education">
+      <div class="cv-section-header">
+        <h2 data-i18n="sec_edu">03. Education</h2>
+      </div>
+      <div class="edu-grid">
+        <div class="edu-item">
+          <h3>Jack Welch Management Institute</h3>
+          <p data-i18n="edu1_deg">Master of Business Administration (MBA), Operations Management & Strategic Execution</p>
+          <span>2023 – 2025</span>
+        </div>
+        <div class="edu-item">
+          <h3>University of Bucharest</h3>
+          <p data-i18n="edu2_deg">Bachelor's Degree in Business & Corporate Communications (French & Portuguese)</p>
+          <span>2002 – 2006</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. LICENSES & CERTIFICATIONS -->
+    <section class="cv-section" id="certifications">
+      <div class="cv-section-header">
+        <h2 data-i18n="sec_cert">04. Licenses & Certifications</h2>
+      </div>
+      <div class="edu-grid">
+        <div class="edu-item">
+          <h3>Certified Six Sigma Black Belt (CSSBB)</h3>
+          <p>National Association of State Boards of Accountancy (NASBA)</p>
+          <span>Lean Six Sigma · Operational Excellence</span>
+        </div>
+        <div class="edu-item">
+          <h3>Financial Modeling & Valuation Analyst (FMVA®)</h3>
+          <p>Corporate Finance Institute® (CFI)</p>
+          <span>Financial Analysis & P&L Modeling</span>
+        </div>
+        <div class="edu-item">
+          <h3 data-i18n="cert3_title">Leadership & Community Governance</h3>
+          <p data-i18n="cert3_org">Amazon (Executive Presence) & Meta (Community Moderation, Brand Safety & Targeted Campaigns)</p>
+          <span>Enterprise Governance</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. SKILLS & LANGUAGES -->
+    <section class="cv-section" id="skills">
+      <div class="cv-section-header">
+        <h2 data-i18n="sec_skills">05. Skills & Languages</h2>
+      </div>
+      <ul class="clean-list" data-i18n-html="skills_list"></ul>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <a href="index.html" class="footer-brand">
+        <img src="mariusmarAI_Logo.jpg" alt="mariusmarAI" class="footer-logo" />
+        <span style="font-family: 'Playfair Display', Georgia, serif; font-weight: 700; font-size: 1rem;">mariusmar<span style="color: var(--accent);">AI</span></span>
+      </a>
+      <div class="footer-links">
+        <a href="https://www.linkedin.com/in/marius-marai" target="_blank" rel="noopener noreferrer" data-i18n="ft_profile">mariusmarAI on LinkedIn ↗</a>
+        <a href="https://www.linkedin.com/newsletters/humans-of-linked-in-holi-7161329778250162176/" target="_blank" rel="noopener noreferrer" data-i18n="ft_news">Humans of Linked In (HoLI) ↗</a>
+        <a href="https://www.linkedin.com/groups/40607397/" target="_blank" rel="noopener noreferrer" data-i18n="ft_net">HoLI Networking ↗</a>
+        <a href="https://www.linkedin.com/groups/14608931/" target="_blank" rel="noopener noreferrer" data-i18n="ft_jobs">HoLI Jobs ↗</a>
+        <a href="https://www.linkedin.com/groups/16185013/" target="_blank" rel="noopener noreferrer" data-i18n="ft_cand">HoLI Candidates ↗</a>
+      </div>
+      <div class="footer-share" aria-label="Share this page">
+        <span class="footer-share-label" data-i18n="ft_share">Share page:</span>
+        <a class="share-btn" id="share-linkedin" target="_blank" rel="noopener noreferrer" title="LinkedIn" aria-label="Share on LinkedIn">
+          <svg viewBox="0 0 24 24">
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+            <rect x="2" y="9" width="4" height="12"/>
+            <circle cx="4" cy="4" r="2"/>
+          </svg>
+        </a>
+        <a class="share-btn" id="share-whatsapp" target="_blank" rel="noopener noreferrer" title="WhatsApp" aria-label="Share on WhatsApp">
+          <svg viewBox="0 0 24 24">
+            <path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21"/>
+            <path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1"/>
+          </svg>
+        </a>
+        <a class="share-btn" id="share-email" title="Email" aria-label="Share via Email">
+          <svg viewBox="0 0 24 24">
+            <rect x="2" y="4" width="20" height="16" rx="2"/>
+            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+          </svg>
+        </a>
+        <button type="button" class="share-btn" id="share-copy" title="Copy link" aria-label="Copy page link">
+          <svg id="icon-copy" viewBox="0 0 24 24">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+          <svg id="icon-check" viewBox="0 0 24 24" style="display: none; color: var(--accent);">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        </button>
+      </div>
+      <p class="footer-copy" data-i18n="ft_copy">© mariusmarAI. Global Operations, Commercial Leadership & AI-Driven Transformation.</p>
+      <p class="footer-copy footer-legal-line">
+        <a href="terms.html" data-i18n="ft_terms">Terms and Conditions</a>
+        <span> · </span>
+        <a href="privacy.html" data-i18n="ft_privacy">Privacy Policy</a>
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    const translations = {
+      "en": {
+        "nav_home": "Home", "nav_cv": "CV", "nav_projects": "Projects", "nav_play": "Interactive Play", "nav_blog": "Blog", "nav_contact": "Contact",
+        "ft_profile": "mariusmarAI on LinkedIn ↗", "ft_news": "Humans of Linked In (HoLI) ↗", "ft_net": "HoLI Networking ↗", "ft_jobs": "HoLI Jobs ↗", "ft_cand": "HoLI Candidates ↗",
+        "ft_share": "Share page:", "ft_copy": "© mariusmarAI. Global Operations, Commercial Leadership & AI-Driven Transformation.",
+        "ft_terms": "Terms and Conditions", "ft_privacy": "Privacy Policy",
+        "cv_badge": "Curriculum Vitae & Track Record",
+        "cv_title": "Marius Marai — Global Operations & Commercial Transformation Leader",
+        "cv_sub": "Bucharest, Romania · Worldwide & Remote Leadership Scope · 5 Fluent Languages + Spanish",
+        "sec_about": "01. About", "btn_expand": "Expand Full Profile +", "btn_collapse": "Collapse Profile −",
+        "about_lead": "20+ years in sales, 14+ in management across Amazon, Veeam, Schneider Electric & Oracle. Led complex operations, built high-performing teams & delivered measurable results. Fluent in 5 languages (French, Italian, Portuguese, English, Romanian), bringing cultural awareness to every business approach.",
+        "ab_bring_h": "What I bring to an organization:",
+        "ab_bring_list": "<li><strong>Global Operations Leadership:</strong> Experience coordinating international teams, optimizing operating models, and translating business strategy into measurable execution.</li>\n          <li><strong>P&L and Financial Performance:</strong> Strong focus on profitability, cost optimization, budget management, and operational efficiency.</li>\n          <li><strong>Sales & Commercial Leadership:</strong> Extensive experience in sales management, commercial operations, revenue growth, pipeline governance, and sales performance optimization.</li>\n          <li><strong>Business Transformation:</strong> Proven ability to redesign processes, implement performance frameworks, drive organizational change, and improve operational scalability.</li>\n          <li><strong>Operational Excellence:</strong> Lean Six Sigma Black Belt expertise, continuous improvement, automation, KPI management, and data-driven decision-making.</li>\n          <li><strong>People Leadership:</strong> Experience building, coaching, and developing multicultural teams across international business environments.</li>",
+        "ab_ach_h": "Selected career achievements:",
+        "ab_ach_list": "<li>Led a 60+ person sales organization ($720M+ quota) and architected 36 AI agents at Amazon — blending strategic thinking with hands-on execution to connect people, process, technology, and financial performance.</li>\n          <li>Accelerated sales target attainment from 75% to 95% in 60 days at Veeam (sustaining 100%+), consistently hit 125% at Oracle, and delivered 40% cost savings at Schneider Electric.</li>\n          <li>Reduced onboarding time by 50%, drove international expansion across multiple markets, and built a leadership culture rooted in accountability, operational discipline, and continuous improvement.</li>",
+        "ab_exp_h": "Areas of expertise:",
+        "ab_closing": "I welcome conversations with organizations seeking experienced leadership in Operations Management, Business Operations, Commercial Operations, and Sales Leadership.",
+        "sec_exp": "02. Professional Experience",
+        "r1_period": "July 2025 – Present", "r1_scope": "Global · 39 sites, 48K+ employees",
+        "r1_list": "<li>Architected an ecosystem of 36 tailored AI agents (document generation, process re-engineering, corporate strategy, financial modeling, and leadership development) powering 6K+ leaders to deliver 4x more output in 75% less time.</li>\n          <li>Engineered a suite of 6 Excel-based intelligent automation tools eliminating high-volume manual processing — compressing ~199 hours of performance analysis into ~25 minutes (483x speed multiplier at 99.8% efficiency).</li>",
+        "r2_period": "Oct 2021 – July 2025", "r2_scope": "Belgium, Colombia, Costa Rica, France, Italy, Romania, Spain",
+        "r2_list": "<li>Scaled from a flagship country mandate to multi-country strategic operations oversight spanning EMEA and LATAM — transforming operational frameworks across multiple markets simultaneously.</li>\n          <li>Spearheaded a centralized Distribution List governance transformation consolidating 1.2K+ standardized communication channels across four pillars, reducing enterprise response latency from minutes to seconds.</li>",
+        "r3_period": "May 2020 – Oct 2021", "r3_scope": "Bucharest, Romania · 600+ employees",
+        "r3_list": "<li>Engineered a full-spectrum operational transformation of Amazon's flagship Romania customer service organization: cut customer response times by 75%, unlocked 60% YoY cost savings at 100% financial accuracy, reduced manager reporting workload by 15%, and ignited a 200%+ surge in associate participation and morale.</li>",
+        "r4_period": "Aug 2019 – May 2020", "r4_scope": "France & Africa · 60+ employees across Enterprise, Channel/Partner, B2B & Consumer",
+        "r4_list": "<li>Reversed a chronic performance deficit within 60 days — lifting attainment from 75% to 95%, then sustaining 100%+ against a $60M+ monthly ($720M+ annual) quota through structural redesign, forecast governance, and leadership coaching.</li>",
+        "r5_period": "Jan 2014 – Aug 2019", "r5_scope": "Global · 40+ professionals, three continents, six business verticals",
+        "r5_list": "<li>Scaled consistent overachievement against a $60M+ annual quota while cutting operating costs by 40% (hard savings) through strategic vendor contract renegotiation and VP/SVP cross-functional P&L alignment.</li>",
+        "r6_title": "Early Career Foundation — Oracle, SeCoGlob & Embassy of Portugal", "r6_scope": "Brazil, France, Italy, Portugal, Romania",
+        "r6_list": "<li><strong>Direct Sales \"Hunter\" — Oracle (2007–2013):</strong> Sustained 125% individual quota attainment across Brazil, France, Italy, and Portugal; closed strategic deals up to $1.7M and cut new-hire ramp-up time by 50%.</li>\n          <li><strong>Inside Sales Operations Manager — SeCoGlob (2006–2007):</strong> Scaled an Italo-Romanian startup across 4 European markets (Italy, France, Portugal, Romania), increasing company turnover by 75%.</li>\n          <li><strong>Diplomatic Consultant — Embassy of Portugal in Bucharest (2005–2006):</strong> Directed bilateral stakeholder relations, strategic advisory, and high-volume consular operations.</li>",
+        "sec_edu": "03. Education",
+        "edu1_deg": "Master of Business Administration (MBA), Operations Management & Strategic Execution",
+        "edu2_deg": "Bachelor's Degree in Business & Corporate Communications (French & Portuguese)",
+        "sec_cert": "04. Licenses & Certifications",
+        "cert3_title": "Leadership & Community Governance",
+        "cert3_org": "Amazon (Executive Presence) & Meta (Community Moderation, Brand Safety & Targeted Campaigns)",
+        "sec_skills": "05. Skills & Languages",
+        "skills_list": "<li><strong>Leadership & Strategy:</strong> Global Operations, P&L Ownership, Commercial Architecture, Go-to-Market Strategy, Cross-Functional Stakeholder Influence, Change Management.</li>\n          <li><strong>Operational Excellence & Tech:</strong> Lean Six Sigma Black Belt, Agile & Scrum, AI Agent Architecture, Excel / VBA / Power Query Intelligent Automation, Financial Modeling.</li>\n          <li><strong>Languages:</strong> Romanian (Native), French (Bilingual), English (Full Professional), Italian (Full Professional), Portuguese (Full Professional), Spanish (Working / Elementary).</li>"
+      },
+      "es": {
+        "nav_home": "Inicio", "nav_cv": "CV", "nav_projects": "Proyectos", "nav_play": "Interactive Play", "nav_blog": "Blog", "nav_contact": "Contacto",
+        "ft_profile": "mariusmarAI en LinkedIn ↗", "ft_news": "Humans of Linked In (HoLI) ↗", "ft_net": "HoLI Networking ↗", "ft_jobs": "HoLI Jobs ↗", "ft_cand": "HoLI Candidates ↗",
+        "ft_share": "Compartir página:", "ft_copy": "© mariusmarAI. Operaciones Globales, Liderazgo Comercial y Transformación impulsada por IA.",
+        "ft_terms": "Términos y Condiciones", "ft_privacy": "Política de Privacidad",
+        "cv_badge": "Currículum Vitae y Trayectoria",
+        "cv_title": "Marius Marai — Líder de Operaciones Globales y Transformación Comercial",
+        "cv_sub": "Bucarest, Rumanía · Alcance Global y Remoto · 5 Idiomas Fluidos + Español",
+        "sec_about": "01. Acerca de", "btn_expand": "Ver Perfil Completo +", "btn_collapse": "Contraer Perfil −",
+        "about_lead": "Más de 20 años en ventas y más de 14 en dirección en Amazon, Veeam, Schneider Electric y Oracle. Lideré operaciones complejas, construí equipos de alto rendimiento y entregué resultados medibles. Fluido en 5 idiomas (francés, italiano, portugués, inglés y rumano), aportando sensibilidad cultural a cada enfoque de negocio.",
+        "ab_bring_h": "Lo que aporto a una organización:",
+        "ab_bring_list": "<li><strong>Liderazgo de Operaciones Globales:</strong> Experiencia coordinando equipos internacionales, optimizando modelos operativos y traduciendo estrategia en ejecución medible.</li>\n          <li><strong>P&L y Rendimiento Financiero:</strong> Fuerte enfoque en rentabilidad, optimización de costes, gestión presupuestaria y eficiencia operativa.</li>\n          <li><strong>Liderazgo Comercial y de Ventas:</strong> Amplia experiencia en dirección comercial, operaciones de ventas, crecimiento de ingresos y gobernanza de pipeline.</li>\n          <li><strong>Transformación de Negocio:</strong> Capacidad probada para rediseñar procesos, implementar marcos de desempeño y escalar operaciones.</li>\n          <li><strong>Excelencia Operativa:</strong> Certificación Lean Six Sigma Black Belt, mejora continua, automatización, gestión de KPI y decisiones basadas en datos.</li>\n          <li><strong>Liderazgo de Personas:</strong> Experiencia desarrollando y formando equipos multiculturales en entornos internacionales.</li>",
+        "ab_ach_h": "Logros profesionales destacados:",
+        "ab_ach_list": "<li>Dirigí una organización comercial de más de 60 personas (cuota de $720M+) y diseñé 36 agentes de IA en Amazon, conectando personas, procesos, tecnología y resultados financieros.</li>\n          <li>Aceleré el cumplimiento de ventas del 75% al 95% en 60 días en Veeam (manteniendo 100%+), alcancé 125% de forma sostenida en Oracle y logré un 40% de ahorro de costes en Schneider Electric.</li>\n          <li>Reduje el tiempo de incorporación (onboarding) en un 50% e impulsé la expansión internacional en múltiples mercados.</li>",
+        "ab_exp_h": "Áreas de especialización:",
+        "ab_closing": "Estoy abierto a conversar con organizaciones que busquen liderazgo experimentado en Dirección de Operaciones, Operaciones de Negocio, Operaciones Comerciales y Dirección de Ventas.",
+        "sec_exp": "02. Experiencia Profesional",
+        "r1_period": "Julio 2025 – Presente", "r1_scope": "Global · 39 sedes, 48.000+ empleados",
+        "r1_list": "<li>Diseñé un ecosistema de 36 agentes de IA personalizados (generación documental, reingeniería de procesos, estrategia corporativa y modelado financiero) que impulsan a más de 6.000 líderes a lograr 4x más resultados en un 75% menos de tiempo.</li>\n          <li>Desarrollé 6 herramientas inteligentes en Excel que comprimieron ~199 horas de análisis de rendimiento en ~25 minutos (multiplicador de velocidad 483x con 99,8% de eficiencia).</li>",
+        "r2_period": "Oct 2021 – Julio 2025", "r2_scope": "Bélgica, Colombia, Costa Rica, España, Francia, Italia, Rumanía",
+        "r2_list": "<li>Escalé desde la dirección operativa de país hacia la supervisión estratégica multipaís en EMEA y LATAM, transformando marcos operativos en varios mercados simultáneamente.</li>\n          <li>Consolidé más de 1.200 canales de comunicación corporativa en cuatro pilares de gobernanza, reduciendo la latencia de respuesta de minutos a segundos.</li>",
+        "r3_period": "Mayo 2020 – Oct 2021", "r3_scope": "Bucarest, Rumanía · 600+ empleados",
+        "r3_list": "<li>Lideré la transformación integral de atención al cliente en Rumanía: reduje tiempos de respuesta en un 75%, generé ahorros interanuales del 60% con 100% de precisión financiera y aumenté en más de un 200% la participación del equipo.</li>",
+        "r4_period": "Ago 2019 – Mayo 2020", "r4_scope": "Francia y África · 60+ empleados en Enterprise, Channel/Partner, B2B y Consumo",
+        "r4_list": "<li>Revertí un déficit crónico de rendimiento en 60 días, elevando el cumplimiento del 75% al 95% y sosteniendo 100%+ frente a una cuota mensual de $60M+ ($720M+ anuales).</li>",
+        "r5_period": "Ene 2014 – Ago 2019", "r5_scope": "Global · 40+ profesionales, tres continentes, seis verticales",
+        "r5_list": "<li>Superé de forma sostenida una cuota anual de $60M+ reduciendo los costes operativos en un 40% mediante renegociación estratégica de proveedores y alineación financiera con VP/SVP.</li>",
+        "r6_title": "Base Profesional Inicial — Oracle, SeCoGlob y Embajada de Portugal", "r6_scope": "Brasil, España, Francia, Italia, Portugal, Rumanía",
+        "r6_list": "<li><strong>Direct Sales \"Hunter\" — Oracle (2007–2013):</strong> 125% de cumplimiento individual sostenido en Brasil, Francia, Italia y Portugal; acuerdos estratégicos de hasta $1,7M y reducción del 50% en tiempos de onboarding.</li>\n          <li><strong>Inside Sales Operations Manager — SeCoGlob (2006–2007):</strong> Expansión de una startup ítalo-rumana a 4 mercados europeos con un crecimiento del 75% en facturación.</li>\n          <li><strong>Consultor Diplomático — Embajada de Portugal en Bucarest (2005–2006):</strong> Relaciones bilaterales institucionales y gestión consular de alto volumen.</li>",
+        "sec_edu": "03. Educación",
+        "edu1_deg": "Master of Business Administration (MBA), Gestión de Operaciones y Ejecución Estratégica",
+        "edu2_deg": "Licenciatura en Comunicación Corporativa y Empresarial (Francés y Portugués)",
+        "sec_cert": "04. Licencias y Certificaciones",
+        "cert3_title": "Liderazgo y Gobernanza Comunitaria",
+        "cert3_org": "Amazon (Executive Presence) y Meta (Moderación de Comunidades, Brand Safety y Campañas)",
+        "sec_skills": "05. Competencias e Idiomas",
+        "skills_list": "<li><strong>Liderazgo y Estrategia:</strong> Operaciones Globales, Gestión de P&L, Arquitectura Comercial, Estrategia Go-to-Market, Gestión del Cambio.</li>\n          <li><strong>Excelencia Operativa y Tecnología:</strong> Lean Six Sigma Black Belt, Agile y Scrum, Arquitectura de Agentes de IA, Automatización Excel / VBA / Power Query, Modelado Financiero.</li>\n          <li><strong>Idiomas:</strong> Rumano (Nativo), Francés (Bilingüe), Inglés (Profesional Completo), Italiano (Profesional Completo), Portugués (Profesional Completo), Español (Intermedio / En progreso).</li>"
+      },
+      "fr": {
+        "nav_home": "Accueil", "nav_cv": "CV", "nav_projects": "Projets", "nav_play": "Interactive Play", "nav_blog": "Blog", "nav_contact": "Contact",
+        "ft_profile": "mariusmarAI sur LinkedIn ↗", "ft_news": "Humans of Linked In (HoLI) ↗", "ft_net": "HoLI Networking ↗", "ft_jobs": "HoLI Jobs ↗", "ft_cand": "HoLI Candidates ↗",
+        "ft_share": "Partager la page :", "ft_copy": "© mariusmarAI. Opérations Globales, Leadership Commercial & Transformation par l'IA.",
+        "ft_terms": "Conditions Générales", "ft_privacy": "Politique de Confidentialité",
+        "cv_badge": "Curriculum Vitae & Parcours",
+        "cv_title": "Marius Marai — Leader Opérations Globales & Transformation Commerciale",
+        "cv_sub": "Bucarest, Roumanie · Périmètre Mondial & Remote · 5 Langues Courantes + Espagnol",
+        "sec_about": "01. À Propos", "btn_expand": "Afficher le Profil Complet +", "btn_collapse": "Réduire le Profil −",
+        "about_lead": "Plus de 20 ans dans la vente et plus de 14 ans en direction chez Amazon, Veeam, Schneider Electric et Oracle. Pilotage d'opérations complexes, constitution d'équipes performantes et résultats mesurables. Courant en 5 langues (français, italien, portugais, anglais, roumain), avec une approche multiculturelle des affaires.",
+        "ab_bring_h": "Ce que j'apporte à une organisation :",
+        "ab_bring_list": "<li><strong>Direction des Opérations Globales :</strong> Coordination d'équipes internationales, optimisation des modèles opérationnels et traduction de la stratégie en exécution mesurable.</li>\n          <li><strong>P&L et Performance Financière :</strong> Forte orientation rentabilité, optimisation des coûts, gestion budgétaire et efficience opérationnelle.</li>\n          <li><strong>Leadership Commercial & Ventes :</strong> Direction commerciale, opérations de vente, croissance du chiffre d'affaires et gouvernance du pipeline.</li>\n          <li><strong>Transformation d'Entreprise :</strong> Refonte des processus, déploiement de cadres de performance et conduite du changement à grande échelle.</li>\n          <li><strong>Excellence Opérationnelle :</strong> Expertise Lean Six Sigma Black Belt, amélioration continue, automatisation, pilotage par KPI et décision par la donnée.</li>\n          <li><strong>Leadership Humain :</strong> Constitution, coaching et développement d'équipes multiculturelles en environnement international.</li>",
+        "ab_ach_h": "Réalisations clés sélectionnées :",
+        "ab_ach_list": "<li>Direction d'une organisation commerciale de 60+ personnes (quota de 720 M$+) et conception de 36 agents IA chez Amazon — reliant talents, processus, technologie et performance financière.</li>\n          <li>Accélération de l'atteinte des objectifs de 75 % à 95 % en 60 jours chez Veeam (maintien à 100 %+), 125 % constants chez Oracle et 40 % d'économies chez Schneider Electric.</li>\n          <li>Réduction de 50 % du temps d'intégration (onboarding) et pilotage de l'expansion internationale sur plusieurs marchés.</li>",
+        "ab_exp_h": "Domaines d'expertise :",
+        "ab_closing": "Je suis ouvert aux échanges avec les organisations recherchant un leadership expérimenté en Direction des Opérations, Business Operations, Opérations Commerciales et Direction des Ventes.",
+        "sec_exp": "02. Expérience Professionnelle",
+        "r1_period": "Juillet 2025 – Présent", "r1_scope": "Monde · 39 sites, 48 000+ collaborateurs",
+        "r1_list": "<li>Conception d'un écosystème de 36 agents IA sur mesure (génération documentaire, réingénierie des processus, stratégie et modélisation financière) permettant à 6 000+ leaders de produire 4x plus en 75 % de temps en moins.</li>\n          <li>Développement de 6 outils intelligents sous Excel compressant ~199 heures d'analyse de performance en ~25 minutes (accélération 483x à 99,8 % d'efficience).</li>",
+        "r2_period": "Oct 2021 – Juillet 2025", "r2_scope": "Belgique, Colombie, Costa Rica, Espagne, France, Italie, Roumanie",
+        "r2_list": "<li>Évolution d'un mandat national vers une supervision stratégique multi-pays en EMEA et LATAM, transformant simultanément les cadres opérationnels de plusieurs marchés.</li>\n          <li>Consolidation de 1 200+ canaux de communication interne autour de quatre piliers de gouvernance, réduisant les délais de réponse de plusieurs minutes à quelques secondes.</li>",
+        "r3_period": "Mai 2020 – Oct 2021", "r3_scope": "Bucarest, Roumanie · 600+ collaborateurs",
+        "r3_list": "<li>Transformation complète du centre de service client Amazon Roumanie : baisse de 75 % des délais de réponse, 60 % d'économies annuelles avec 100 % de précision financière et hausse de 200 %+ de l'engagement des équipes.</li>",
+        "r4_period": "Août 2019 – Mai 2020", "r4_scope": "France & Afrique · 60+ collaborateurs (Enterprise, Channel/Partner, B2B & Consumer)",
+        "r4_list": "<li>Redressement d'un déficit chronique de performance en 60 jours — passant de 75 % à 95 % d'atteinte, puis maintenant 100 %+ face à un quota mensuel de 60 M$+ (720 M$+ par an).</li>",
+        "r5_period": "Jan 2014 – Août 2019", "r5_scope": "Monde · 40+ professionnels, trois continents, six verticales",
+        "r5_list": "<li>Surperformance durable sur un quota annuel de 60 M$+ tout en réduisant les coûts opérationnels de 40 % par la renégociation stratégique des contrats fournisseurs et l'alignement P&L avec les VP/SVP.</li>",
+        "r6_title": "Fondations de Carrière — Oracle, SeCoGlob & Ambassade du Portugal", "r6_scope": "Brésil, France, Italie, Portugal, Roumanie",
+        "r6_list": "<li><strong>Direct Sales « Hunter » — Oracle (2007–2013) :</strong> 125 % d'atteinte individuelle au Brésil, en France, en Italie et au Portugal ; contrats stratégiques jusqu'à 1,7 M$ et réduction de 50 % du temps de montée en compétence.</li>\n          <li><strong>Inside Sales Operations Manager — SeCoGlob (2006–2007) :</strong> Déploiement d'une startup italo-roumaine sur 4 marchés européens avec +75 % de chiffre d'affaires.</li>\n          <li><strong>Consultant Diplomatique — Ambassade du Portugal à Bucarest (2005–2006) :</strong> Relations bilatérales institutionnelles et gestion des opérations consulaires à fort volume.</li>",
+        "sec_edu": "03. Formation",
+        "edu1_deg": "Master of Business Administration (MBA), Gestion des Opérations & Exécution Stratégique",
+        "edu2_deg": "Licence en Communication d'Entreprise et des Affaires (Français & Portugais)",
+        "sec_cert": "04. Licences & Certifications",
+        "cert3_title": "Leadership & Gouvernance Communautaire",
+        "cert3_org": "Amazon (Executive Presence) & Meta (Modération de Communautés, Brand Safety & Campagnes)",
+        "sec_skills": "05. Compétences & Langues",
+        "skills_list": "<li><strong>Leadership & Stratégie :</strong> Opérations Globales, Gestion de P&L, Architecture Commerciale, Stratégie Go-to-Market, Conduite du Changement.</li>\n          <li><strong>Excellence Opérationnelle & Tech :</strong> Lean Six Sigma Black Belt, Agile & Scrum, Architecture d'Agents IA, Automatisation Excel / VBA / Power Query, Modélisation Financière.</li>\n          <li><strong>Langues :</strong> Roumain (Langue maternelle), Français (Bilingue), Anglais (Courant professionnel), Italien (Courant professionnel), Portugais (Courant professionnel), Espagnol (Notions opérationnelles).</li>"
+      },
+      "it": {
+        "nav_home": "Home", "nav_cv": "CV", "nav_projects": "Progetti", "nav_play": "Interactive Play", "nav_blog": "Blog", "nav_contact": "Contatti",
+        "ft_profile": "mariusmarAI su LinkedIn ↗", "ft_news": "Humans of Linked In (HoLI) ↗", "ft_net": "HoLI Networking ↗", "ft_jobs": "HoLI Jobs ↗", "ft_cand": "HoLI Candidates ↗",
+        "ft_share": "Condividi pagina:", "ft_copy": "© mariusmarAI. Operazioni Globali, Leadership Commerciale e Trasformazione guidata dall'IA.",
+        "ft_terms": "Termini e Condizioni", "ft_privacy": "Informativa sulla Privacy",
+        "cv_badge": "Curriculum Vitae e Percorso",
+        "cv_title": "Marius Marai — Leader Operazioni Globali e Trasformazione Commerciale",
+        "cv_sub": "Bucarest, Romania · Perimetro Globale e Remoto · 5 Lingue Fluenti + Spagnolo",
+        "sec_about": "01. Profilo", "btn_expand": "Espandi Profilo Completo +", "btn_collapse": "Riduci Profilo −",
+        "about_lead": "Oltre 20 anni nelle vendite e più di 14 nella gestione in Amazon, Veeam, Schneider Electric e Oracle. Ho guidato operazioni complesse, costruito team ad alte prestazioni e ottenuto risultati misurabili. Fluente in 5 lingue (francese, italiano, portoghese, inglese, rumeno), portando sensibilità culturale in ogni approccio di business.",
+        "ab_bring_h": "Cosa porto in un'organizzazione:",
+        "ab_bring_list": "<li><strong>Leadership delle Operazioni Globali:</strong> Coordinamento di team internazionali, ottimizzazione dei modelli operativi e traduzione della strategia in esecuzione misurabile.</li>\n          <li><strong>P&L e Performance Finanziaria:</strong> Forte focus su redditività, ottimizzazione dei costi, gestione budget ed efficienza operativa.</li>\n          <li><strong>Leadership Commerciale e Vendite:</strong> Direzione vendite, commercial operations, crescita dei ricavi e governance della pipeline.</li>\n          <li><strong>Business Transformation:</strong> Riprogettazione dei processi, implementazione di framework di performance e scalabilità organizzativa.</li>\n          <li><strong>Eccellenza Operativa:</strong> Certificazione Lean Six Sigma Black Belt, miglioramento continuo, automazione, gestione KPI e decisioni data-driven.</li>\n          <li><strong>Leadership delle Persone:</strong> Creazione, coaching e sviluppo di team multiculturali in contesti internazionali.</li>",
+        "ab_ach_h": "Risultati professionali selezionati:",
+        "ab_ach_list": "<li>Ho guidato un'organizzazione commerciale di oltre 60 persone (quota $720M+) e progettato 36 agenti IA in Amazon, collegando persone, processi, tecnologia e risultati finanziari.</li>\n          <li>Ho accelerato il raggiungimento dei target dal 75% al 95% in 60 giorni in Veeam (mantenendo il 100%+), raggiunto costantemente il 125% in Oracle e generato il 40% di risparmi in Schneider Electric.</li>\n          <li>Ho ridotto i tempi di onboarding del 50% e guidato l'espansione internazionale su più mercati.</li>",
+        "ab_exp_h": "Aree di competenza:",
+        "ab_closing": "Accolgo con piacere il confronto con organizzazioni alla ricerca di leadership esperta in Operations Management, Business Operations, Commercial Operations e Sales Leadership.",
+        "sec_exp": "02. Esperienza Professionale",
+        "r1_period": "Luglio 2025 – Presente", "r1_scope": "Globale · 39 sedi, 48.000+ dipendenti",
+        "r1_list": "<li>Progettato un ecosistema di 36 agenti IA su misura (generazione documentale, reingegnerizzazione dei processi, strategia e modellazione finanziaria) che supportano oltre 6.000 leader nel generare 4x più output nel 75% di tempo in meno.</li>\n          <li>Sviluppato 6 strumenti intelligenti in Excel che hanno compresso ~199 ore di analisi delle performance in ~25 minuti (velocità 483x con efficienza del 99,8%).</li>",
+        "r2_period": "Ott 2021 – Luglio 2025", "r2_scope": "Belgio, Colombia, Costa Rica, Francia, Italia, Romania, Spagna",
+        "r2_list": "<li>Evoluzione da un mandato nazionale alla supervisione operativa strategica multi-paese in EMEA e LATAM, trasformando contemporaneamente i modelli operativi di più mercati.</li>\n          <li>Consolidati oltre 1.200 canali di comunicazione aziendale su quattro pilastri di governance, riducendo la latenza di risposta da minuti a secondi.</li>",
+        "r3_period": "Maggio 2020 – Ott 2021", "r3_scope": "Bucarest, Romania · 600+ dipendenti",
+        "r3_list": "<li>Trasformazione completa del servizio clienti Amazon Romania: riduzione del 75% nei tempi di risposta, risparmi annui del 60% con accuratezza finanziaria al 100% e crescita del 200%+ nella partecipazione del team.</li>",
+        "r4_period": "Ago 2019 – Maggio 2020", "r4_scope": "Francia e Africa · 60+ dipendenti tra Enterprise, Channel/Partner, B2B e Consumer",
+        "r4_list": "<li>Invertito un deficit cronico di performance in 60 giorni — portando il raggiungimento dal 75% al 95% e mantenendo il 100%+ su una quota mensile di $60M+ ($720M+ annui).</li>",
+        "r5_period": "Gen 2014 – Ago 2019", "r5_scope": "Globale · 40+ professionisti, tre continenti, sei verticali",
+        "r5_list": "<li>Superamento costante di una quota annua di $60M+ riducendo i costi operativi del 40% tramite rinegoziazione strategica dei contratti fornitori e allineamento P&L con VP/SVP.</li>",
+        "r6_title": "Esperienze Iniziali — Oracle, SeCoGlob e Ambasciata del Portogallo", "r6_scope": "Brasile, Francia, Italia, Portogallo, Romania",
+        "r6_list": "<li><strong>Direct Sales \"Hunter\" — Oracle (2007–2013):</strong> 125% di quota individuale sostenuta in Brasile, Francia, Italia e Portogallo; contratti strategici fino a $1,7M e riduzione del 50% dei tempi di onboarding.</li>\n          <li><strong>Inside Sales Operations Manager — SeCoGlob (2006–2007):</strong> Espansione di una startup italo-rumena su 4 mercati europei con +75% di fatturato.</li>\n          <li><strong>Consulente Diplomatico — Ambasciata del Portogallo a Bucarest (2005–2006):</strong> Relazioni bilaterali istituzionali e gestione consolare ad alto volume.</li>",
+        "sec_edu": "03. Istruzione",
+        "edu1_deg": "Master of Business Administration (MBA), Operations Management & Strategic Execution",
+        "edu2_deg": "Laurea in Comunicazione Aziendale e d'Impresa (Francese e Portoghese)",
+        "sec_cert": "04. Licenze e Certificazioni",
+        "cert3_title": "Leadership e Governance delle Community",
+        "cert3_org": "Amazon (Executive Presence) e Meta (Moderazione Community, Brand Safety e Campagne)",
+        "sec_skills": "05. Competenze e Lingue",
+        "skills_list": "<li><strong>Leadership e Strategia:</strong> Operazioni Globali, Gestione P&L, Architettura Commerciale, Strategia Go-to-Market, Change Management.</li>\n          <li><strong>Eccellenza Operativa e Tecnologia:</strong> Lean Six Sigma Black Belt, Agile e Scrum, Architettura Agenti IA, Automazione Excel / VBA / Power Query, Modellazione Finanziaria.</li>\n          <li><strong>Lingue:</strong> Rumeno (Madrelingua), Francese (Bilingue), Inglese (Professionale completo), Italiano (Professionale completo), Portoghese (Professionale completo), Spagnolo (Base / Operativo).</li>"
+      },
+      "pt": {
+        "nav_home": "Início", "nav_cv": "CV", "nav_projects": "Projetos", "nav_play": "Interactive Play", "nav_blog": "Blog", "nav_contact": "Contacto",
+        "ft_profile": "mariusmarAI no LinkedIn ↗", "ft_news": "Humans of Linked In (HoLI) ↗", "ft_net": "HoLI Networking ↗", "ft_jobs": "HoLI Jobs ↗", "ft_cand": "HoLI Candidates ↗",
+        "ft_share": "Partilhar página:", "ft_copy": "© mariusmarAI. Operações Globais, Liderança Comercial e Transformação impulsionada por IA.",
+        "ft_terms": "Termos e Condições", "ft_privacy": "Política de Privacidade",
+        "cv_badge": "Curriculum Vitae e Percurso",
+        "cv_title": "Marius Marai — Líder de Operações Globais e Transformação Comercial",
+        "cv_sub": "Bucareste, Roménia · Âmbito Global e Remoto · 5 Idiomas Fluentes + Espanhol",
+        "sec_about": "01. Sobre", "btn_expand": "Expandir Perfil Completo +", "btn_collapse": "Recolher Perfil −",
+        "about_lead": "Mais de 20 anos em vendas e mais de 14 em gestão na Amazon, Veeam, Schneider Electric e Oracle. Liderei operações complexas, construí equipas de alto desempenho e entreguei resultados mensuráveis. Fluente em 5 idiomas (francês, italiano, português, inglês e romeno), trazendo sensibilidade cultural a cada abordagem de negócio.",
+        "ab_bring_h": "O que trago para uma organização:",
+        "ab_bring_list": "<li><strong>Liderança de Operações Globais:</strong> Coordenação de equipas internacionais, otimização de modelos operacionais e tradução da estratégia em execução mensurável.</li>\n          <li><strong>P&L e Desempenho Financeiro:</strong> Forte foco em rentabilidade, otimização de custos, gestão orçamental e eficiência operacional.</li>\n          <li><strong>Liderança Comercial e de Vendas:</strong> Vasta experiência em direção de vendas, operações comerciais, crescimento de receita e governação de pipeline.</li>\n          <li><strong>Transformação de Negócios:</strong> Capacidade comprovada de redesenhar processos, implementar estruturas de desempenho e escalar operações.</li>\n          <li><strong>Excelência Operacional:</strong> Certificação Lean Six Sigma Black Belt, melhoria contínua, automação, gestão de KPI e decisões baseadas em dados.</li>\n          <li><strong>Liderança de Pessoas:</strong> Experiência na criação, coaching e desenvolvimento de equipas multiculturais em ambientes internacionais.</li>",
+        "ab_ach_h": "Conquistas profissionais selecionadas:",
+        "ab_ach_list": "<li>Liderei uma organização de vendas com mais de 60 pessoas (quota de $720M+) e arquitetei 36 agentes de IA na Amazon — ligando pessoas, processos, tecnologia e desempenho financeiro.</li>\n          <li>Acelerei o cumprimento de metas de 75% para 95% em 60 dias na Veeam (mantendo 100%+), atingi 125% de forma consistente na Oracle e gerei 40% de poupança na Schneider Electric.</li>\n          <li>Reduzi o tempo de integração (onboarding) em 50% e impulsionei a expansão internacional em vários mercados.</li>",
+        "ab_exp_h": "Áreas de especialização:",
+        "ab_closing": "Acolho conversas com organizações que procurem liderança experiente em Gestão de Operações, Operações de Negócio, Operações Comerciais e Liderança de Vendas.",
+        "sec_exp": "02. Experiência Profissional",
+        "r1_period": "Julho 2025 – Presente", "r1_scope": "Global · 39 centros, 48.000+ colaboradores",
+        "r1_list": "<li>Arquitetei um ecossistema de 36 agentes de IA personalizados (geração documental, reengenharia de processos, estratégia e modelação financeira) capacitando mais de 6.000 líderes a entregar 4x mais resultados em 75% menos tempo.</li>\n          <li>Desenvolvi 6 ferramentas inteligentes em Excel que comprimiram ~199 horas de análise de desempenho em ~25 minutos (multiplicador de velocidade de 483x com 99,8% de eficiência).</li>",
+        "r2_period": "Out 2021 – Julho 2025", "r2_scope": "Bélgica, Colômbia, Costa Rica, Espanha, França, Itália, Roménia",
+        "r2_list": "<li>Escalei de um mandato nacional para a supervisão estratégica multipaís na EMEA e LATAM, transformando estruturas operacionais em vários mercados simultaneamente.</li>\n          <li>Consolidei mais de 1.200 canais de comunicação interna em quatro pilares de governação, reduzindo a latência de resposta de minutos para segundos.</li>",
+        "r3_period": "Maio 2020 – Out 2021", "r3_scope": "Bucareste, Roménia · 600+ colaboradores",
+        "r3_list": "<li>Liderei a transformação operacional completa do serviço de apoio ao cliente da Amazon Roménia: redução de 75% nos tempos de resposta, 60% de poupança anual com 100% de precisão financeira e aumento de 200%+ na participação das equipas.</li>",
+        "r4_period": "Ago 2019 – Maio 2020", "r4_scope": "França e África · 60+ colaboradores em Enterprise, Channel/Partner, B2B e Consumo",
+        "r4_list": "<li>Reverti um défice crónico de desempenho em 60 dias — elevando o cumprimento de 75% para 95% e sustentando 100%+ perante uma quota mensal de $60M+ ($720M+ anuais).</li>",
+        "r5_period": "Jan 2014 – Ago 2019", "r5_scope": "Global · 40+ profissionais, três continentes, seis verticais",
+        "r5_list": "<li>Superei de forma consistente uma quota anual de $60M+ reduzindo os custos operacionais em 40% através da renegociação estratégica de contratos e alinhamento de P&L com VP/SVP.</li>",
+        "r6_title": "Base Profissional Inicial — Oracle, SeCoGlob e Embaixada de Portugal", "r6_scope": "Brasil, Espanha, França, Itália, Portugal, Roménia",
+        "r6_list": "<li><strong>Direct Sales \"Hunter\" — Oracle (2007–2013):</strong> 125% de cumprimento individual no Brasil, França, Itália e Portugal; negócios estratégicos até $1,7M e redução de 50% no tempo de onboarding.</li>\n          <li><strong>Inside Sales Operations Manager — SeCoGlob (2006–2007):</strong> Expansão de uma startup ítalo-romena para 4 mercados europeus, aumentando a faturação em 75%.</li>\n          <li><strong>Consultor Diplomático — Embaixada de Portugal em Bucareste (2005–2006):</strong> Relações bilaterais institucionais e operações consulares de elevado volume.</li>",
+        "sec_edu": "03. Educação",
+        "edu1_deg": "Master of Business Administration (MBA), Gestão de Operações e Execução Estratégica",
+        "edu2_deg": "Licenciatura em Comunicação Empresarial e Corporativa (Francês e Português)",
+        "sec_cert": "04. Licenças e Certificações",
+        "cert3_title": "Liderança e Governação de Comunidades",
+        "cert3_org": "Amazon (Executive Presence) e Meta (Moderação de Comunidades, Brand Safety e Campanhas)",
+        "sec_skills": "05. Competências e Idiomas",
+        "skills_list": "<li><strong>Liderança e Estratégia:</strong> Operações Globais, Gestão de P&L, Arquitetura Comercial, Estratégia Go-to-Market, Gestão da Mudança.</li>\n          <li><strong>Excelência Operacional e Tecnologia:</strong> Lean Six Sigma Black Belt, Agile e Scrum, Arquitetura de Agentes de IA, Automação Excel / VBA / Power Query, Modelação Financeira.</li>\n          <li><strong>Idiomas:</strong> Romeno (Nativo), Francês (Bilingue), Inglês (Profissional completo), Italiano (Profissional completo), Português (Profissional completo), Espanhol (Elementar / Em progresso).</li>"
+      },
+      "ro": {
+        "nav_home": "Acasă", "nav_cv": "CV", "nav_projects": "Proiecte", "nav_play": "Interactive Play", "nav_blog": "Blog", "nav_contact": "Contact",
+        "ft_profile": "mariusmarAI pe LinkedIn ↗", "ft_news": "Humans of Linked In (HoLI) ↗", "ft_net": "HoLI Networking ↗", "ft_jobs": "HoLI Jobs ↗", "ft_cand": "HoLI Candidates ↗",
+        "ft_share": "Distribuie pagina:", "ft_copy": "© mariusmarAI. Operațiuni Globale, Leadership Comercial și Transformare prin AI.",
+        "ft_terms": "Termeni și Condiții", "ft_privacy": "Politica de Confidențialitate",
+        "cv_badge": "Curriculum Vitae și Experiență",
+        "cv_title": "Marius Marai — Lider Operațiuni Globale și Transformare Comercială",
+        "cv_sub": "București, România · Anvergură Globală și Remote · 5 Limbi Fluente + Spaniolă",
+        "sec_about": "01. Despre Mine", "btn_expand": "Extinde Profilul Complet +", "btn_collapse": "Restrânge Profilul −",
+        "about_lead": "Peste 20 de ani în vânzări și peste 14 ani în management la Amazon, Veeam, Schneider Electric și Oracle. Am condus operațiuni complexe, am construit echipe performante și am livrat rezultate măsurabile. Fluent în 5 limbi (franceză, italiană, portugheză, engleză, română), aducând înțelegere culturală în fiecare abordare de business.",
+        "ab_bring_h": "Ce aduc într-o organizație:",
+        "ab_bring_list": "<li><strong>Leadership de Operațiuni Globale:</strong> Coordonarea echipelor internaționale, optimizarea modelelor operaționale și traducerea strategiei în execuție măsurabilă.</li>\n          <li><strong>P&L și Performanță Financiară:</strong> Accent puternic pe profitabilitate, optimizarea costurilor, management bugetar și eficiență operațională.</li>\n          <li><strong>Leadership Comercial și Vânzări:</strong> Experiență extinsă în managementul vânzărilor, operațiuni comerciale, creșterea veniturilor și guvernanța pipeline-ului.</li>\n          <li><strong>Transformare de Business:</strong> Capacitate dovedită de a reproiecta procese, implementa cadre de performanță și scala operațiuni.</li>\n          <li><strong>Excelență Operațională:</strong> Certificare Lean Six Sigma Black Belt, îmbunătățire continuă, automatizare, management KPI și decizii bazate pe date.</li>\n          <li><strong>Leadership de Echipe:</strong> Construirea, mentoratul și dezvoltarea echipelor multiculturale în medii internaționale.</li>",
+        "ab_ach_h": "Realizări profesionale selectate:",
+        "ab_ach_list": "<li>Am condus o organizație de vânzări de peste 60 de persoane (cotă de $720M+) și am proiectat 36 de agenți AI la Amazon — îmbinând gândirea strategică cu execuția practică pentru a conecta oamenii, procesele, tehnologia și performanța financiară.</li>\n          <li>Am accelerat atingerea țintelor de vânzări de la 75% la 95% în 60 de zile la Veeam (menținând 100%+), am atins constant 125% la Oracle și am generat economii de costuri de 40% la Schneider Electric.</li>\n          <li>Am redus timpul de onboarding cu 50% și am coordonat expansiunea internațională pe multiple piețe.</li>",
+        "ab_exp_h": "Arii de expertiză:",
+        "ab_closing": "Sunt deschis la dialog cu organizațiile care caută leadership cu experiență în Management Operațional, Business Operations, Operațiuni Comerciale și Sales Leadership.",
+        "sec_exp": "02. Experiență Profesională",
+        "r1_period": "Iulie 2025 – Prezent", "r1_scope": "Global · 39 centre, 48.000+ angajați",
+        "r1_list": "<li>Am proiectat un ecosistem de 36 de agenți AI personalizați (generare documente, reinginerie de procese, strategie corporativă și modelare financiară) care susțin peste 6.000 de lideri să livreze de 4x mai mult în 75% mai puțin timp.</li>\n          <li>Am dezvoltat 6 instrumente inteligente în Excel care au comprimat ~199 de ore de analiză a performanței în ~25 de minute (viteză de 483x la o eficiență de 99,8%).</li>",
+        "r2_period": "Oct 2021 – Iulie 2025", "r2_scope": "Belgia, Columbia, Costa Rica, Franța, Italia, România, Spania",
+        "r2_list": "<li>Am scalat de la un mandat de țară la coordonarea strategică multi-țară în EMEA și LATAM, transformând simultan cadrele operaționale pe mai multe piețe.</li>\n          <li>Am consolidat peste 1.200 de canale de comunicare internă în patru piloni de guvernanță, reducând timpul de răspuns la nivel de organizație de la minute la secunde.</li>",
+        "r3_period": "Mai 2020 – Oct 2021", "r3_scope": "București, România · 600+ angajați",
+        "r3_list": "<li>Am coordonat transformarea operațională completă a centrului Amazon Customer Service România: reducerea timpului de răspuns cu 75%, economii anuale de 60% la 100% acuratețe financiară și o creștere de peste 200% a implicării echipelor.</li>",
+        "r4_period": "Aug 2019 – Mai 2020", "r4_scope": "Franța și Africa · 60+ angajați (Enterprise, Channel/Partner, B2B & Consumer)",
+        "r4_list": "<li>Am inversat un deficit cronic de performanță în 60 de zile — crescând atingerea țintelor de la 75% la 95% și menținând 100%+ față de o cotă lunară de $60M+ ($720M+ anual).</li>",
+        "r5_period": "Ian 2014 – Aug 2019", "r5_scope": "Global · 40+ profesioniști, trei continente, șase verticale",
+        "r5_list": "<li>Am depășit constant o cotă anuală de $60M+ reducând costurile operaționale cu 40% prin renegocierea strategică a contractelor cu furnizorii și alinierea financiară la nivel VP/SVP.</li>",
+        "r6_title": "Fundația Carierei — Oracle, SeCoGlob și Ambasada Portugaliei", "r6_scope": "Brazilia, Franța, Italia, Portugalia, România",
+        "r6_list": "<li><strong>Direct Sales \"Hunter\" — Oracle (2007–2013):</strong> 125% atingere individuală a cotei în Brazilia, Franța, Italia și Portugalia; tranzacții strategice de până la $1,7M și reducerea cu 50% a timpului de onboarding.</li>\n          <li><strong>Inside Sales Operations Manager — SeCoGlob (2006–2007):</strong> Extinderea unui startup italo-român pe 4 piețe europene, crescând cifra de afaceri cu 75%.</li>\n          <li><strong>Consultant Diplomatic — Ambasada Portugaliei la București (2005–2006):</strong> Relații bilaterale instituționale și gestionarea operațiunilor consulare de volum mare.</li>",
+        "sec_edu": "03. Educație",
+        "edu1_deg": "Master of Business Administration (MBA), Management Operațional și Execuție Strategică",
+        "edu2_deg": "Licență în Comunicare Corporativă și în Afaceri (Franceză și Portugheză)",
+        "sec_cert": "04. Licențe și Certificări",
+        "cert3_title": "Leadership și Guvernanță Comunitară",
+        "cert3_org": "Amazon (Executive Presence) și Meta (Moderare Comunități, Brand Safety și Campanii)",
+        "sec_skills": "05. Competențe și Limbi Străine",
+        "skills_list": "<li><strong>Leadership și Strategie:</strong> Operațiuni Globale, P&L Ownership, Arhitectură Comercială, Strategie Go-to-Market, Managementul Schimbării.</li>\n          <li><strong>Excelență Operațională și Tehnologie:</strong> Lean Six Sigma Black Belt, Agile și Scrum, Arhitectură Agenți AI, Automatizare Excel / VBA / Power Query, Modelare Financiară.</li>\n          <li><strong>Limbi Străine:</strong> Română (Nativ), Franceză (Bilingv), Engleză (Profesional complet), Italiană (Profesional complet), Portugheză (Profesional complet), Spaniolă (Nivel de lucru / În curs).</li>"
+      }
+    };
+
+    let currentLang = 'en';
+    try { currentLang = localStorage.getItem('mariusmarai_lang') || 'en'; } catch (e) {}
+    if (!translations[currentLang]) currentLang = 'en';
+
+    const hamburgerBtn = document.getElementById('hamburger-btn');
+    const navDrawer = document.getElementById('nav-drawer');
+    hamburgerBtn.addEventListener('click', () => {
+      const isOpen = navDrawer.classList.toggle('open');
+      hamburgerBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      hamburgerBtn.textContent = isOpen ? '✕' : '☰';
+    });
+
+    function applyLanguage(lang) {
+      currentLang = lang;
+      try { localStorage.setItem('mariusmarai_lang', lang); } catch (e) {}
+      document.documentElement.lang = lang;
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.lang === lang);
+      });
+      const dict = translations[lang];
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.dataset.i18n;
+        if (dict[key] !== undefined) {
+          el.textContent = dict[key];
+        }
+      });
+      document.querySelectorAll('[data-i18n-html]').forEach(el => {
+        const key = el.dataset.i18nHtml;
+        if (dict[key] !== undefined) {
+          el.innerHTML = dict[key];
+        }
+      });
+      const menuBlogLink = document.getElementById('menu-blog-link');
+      if (menuBlogLink) {
+        menuBlogLink.href = `blog/${lang}/`;
+      }
+      if (typeof onLanguageApplied === 'function') {
+        onLanguageApplied(lang, dict);
+      }
+    }
+
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.addEventListener('click', () => applyLanguage(btn.dataset.lang));
+    });
+
+    const aboutToggle = document.getElementById('about-toggle');
+    const aboutDetails = document.getElementById('about-details');
+    function updateAboutBtnLabel() {
+      const isOpen = aboutDetails.classList.contains('open');
+      aboutToggle.textContent = translations[currentLang][isOpen ? 'btn_collapse' : 'btn_expand'];
+    }
+    aboutToggle.addEventListener('click', () => {
+      const isOpen = aboutDetails.classList.toggle('open');
+      aboutToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      updateAboutBtnLabel();
+    });
+    function onLanguageApplied() {
+      updateAboutBtnLabel();
+    }
+
+    (function () {
+      const pageUrl = window.location.href;
+      const encodedUrl = encodeURIComponent(pageUrl);
+      const encodedTitle = encodeURIComponent(document.title);
+
+      const li = document.getElementById('share-linkedin');
+      const wa = document.getElementById('share-whatsapp');
+      const em = document.getElementById('share-email');
+      const cp = document.getElementById('share-copy');
+
+      if (li) li.href = `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`;
+      if (wa) wa.href = `https://api.whatsapp.com/send?text=${encodedTitle}%20-%20${encodedUrl}`;
+      if (em) em.href = `mailto:?subject=${encodedTitle}&body=${encodedTitle}%0A${encodedUrl}`;
+
+      if (cp) {
+        cp.addEventListener('click', function () {
+          navigator.clipboard.writeText(pageUrl).then(function () {
+            const copyIcon = document.getElementById('icon-copy');
+            const checkIcon = document.getElementById('icon-check');
+            if (!copyIcon || !checkIcon) return;
+            copyIcon.style.display = 'none';
+            checkIcon.style.display = 'block';
+            setTimeout(function () {
+              checkIcon.style.display = 'none';
+              copyIcon.style.display = 'block';
+            }, 2000);
+          });
+        });
+      }
+    })();
+
+    applyLanguage(currentLang);
+  </script>
+  <script src="cookie-consent.js"></script>
+</body>
+</html>

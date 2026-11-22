@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.png" />
+  <title>mariusmarAI | Privacy Policy</title>
+  <link rel="icon" type="image/jpeg" href="mariusmarAI_Logo.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-primary: #0B1220;
+      --bg-secondary: #111A2E;
+      --bg-card: #162238;
+      --bg-card-hover: #1C2B47;
+      --text-primary: #F8FAFC;
+      --text-secondary: #CBD5E1;
+      --text-muted: #94A3B8;
+      --accent: #F59E0B;
+      --accent-hover: #D97706;
+      --accent-soft: rgba(245, 158, 11, 0.14);
+      --cyan: #38BDF8;
+      --cyan-soft: rgba(56, 189, 248, 0.12);
+      --danger-soft: rgba(239, 68, 68, 0.12);
+      --danger-border: rgba(239, 68, 68, 0.42);
+      --success: #10B981;
+      --border: rgba(148, 163, 184, 0.16);
+      --border-strong: rgba(245, 158, 11, 0.42);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    html, body { max-width: 100%; overflow-x: clip; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Unified Sticky Header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 9999;
+      background: rgba(11, 18, 32, 0.96);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      width: 100%;
+    }
+    .header-inner {
+      max-width: 1060px;
+      margin: 0 auto;
+      padding: 0.65rem 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+    }
+    .header-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      gap: 0.75rem;
+    }
+    .brand-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      text-decoration: none;
+      color: var(--text-primary);
+      min-width: 0;
+    }
+    .brand-logo {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1.5px solid var(--border-strong);
+      flex-shrink: 0;
+      display: block;
+    }
+    .brand-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+    }
+    .brand-title span { color: var(--accent); }
+    .hamburger-btn {
+      margin-left: auto;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: var(--bg-secondary);
+      color: var(--text-primary);
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      font-size: 1.25rem;
+      line-height: 1;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+    }
+    .hamburger-btn:hover,
+    .hamburger-btn[aria-expanded="true"] {
+      border-color: var(--border-strong);
+      background: var(--bg-card);
+      color: var(--accent);
+    }
+    .lang-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+    }
+    .lang-switcher {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.22rem;
+      background: var(--bg-secondary);
+      padding: 0.22rem;
+      border-radius: 9px;
+      border: 1px solid var(--border);
+    }
+    .lang-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.74rem;
+      font-weight: 600;
+      padding: 0.28rem 0.54rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .lang-btn:hover { color: var(--text-primary); background: rgba(255, 255, 255, 0.06); }
+    .lang-btn.active { background: var(--accent); color: #0B1220; }
+
+    .nav-drawer {
+      display: none;
+      flex-direction: column;
+      gap: 0.35rem;
+      width: 100%;
+      padding-top: 0.55rem;
+      border-top: 1px solid var(--border);
+    }
+    .nav-drawer.open { display: flex; }
+    .nav-link {
+      text-decoration: none;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 0.58rem 0.85rem;
+      border-radius: 9px;
+      border: 1px solid transparent;
+      transition: all 0.2s ease;
+      display: block;
+    }
+    .nav-link:hover { color: var(--text-primary); background: var(--bg-card); border-color: var(--border); }
+    .nav-link.active {
+      color: var(--accent);
+      background: var(--accent-soft);
+      border-color: var(--border-strong);
+      font-weight: 600;
+    }
+
+    @media (max-width: 400px) {
+      .header-inner { padding: 0.55rem 0.85rem; gap: 0.45rem; }
+      .brand-logo { width: 34px; height: 34px; }
+      .brand-title { font-size: 1.02rem; }
+      .hamburger-btn { width: 36px; height: 36px; font-size: 1.1rem; }
+      .lang-btn { font-size: 0.7rem; padding: 0.24rem 0.44rem; }
+    }
+
+    /* Legal Content */
+    .container { max-width: 960px; margin: 0 auto; padding: 2.75rem 1.25rem 4.5rem; }
+    .legal-hero { max-width: 840px; margin-bottom: 2.25rem; }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      background: var(--accent-soft);
+      color: var(--accent);
+      border: 1px solid var(--border-strong);
+      padding: 0.34rem 0.85rem;
+      border-radius: 999px;
+      font-size: 0.76rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 1.1rem;
+    }
+    h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(1.95rem, 4.3vw, 2.85rem);
+      line-height: 1.16;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 0.85rem;
+    }
+    .legal-meta {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      line-height: 1.6;
+    }
+    .legal-meta a { color: var(--cyan); text-decoration: none; }
+    .legal-meta a:hover { text-decoration: underline; }
+
+    .legal-section {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      padding: 1.65rem 1.75rem;
+      margin-bottom: 1.25rem;
+    }
+    .legal-section h2 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.28rem;
+      color: var(--text-primary);
+      line-height: 1.3;
+      margin-bottom: 0.65rem;
+    }
+    .legal-section p {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 0.8rem;
+    }
+    .legal-section p:last-child { margin-bottom: 0; }
+    .legal-section a { color: var(--cyan); text-decoration: none; }
+    .legal-section a:hover { text-decoration: underline; }
+    .clean-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+      margin-top: 0.6rem;
+      margin-bottom: 0.3rem;
+    }
+    .clean-list li {
+      position: relative;
+      padding-left: 1.25rem;
+      font-size: 0.94rem;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+    .clean-list li::before {
+      content: "▸";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 700;
+    }
+    .clean-list strong { color: var(--text-primary); }
+
+    /* Footer */
+    .site-footer {
+      border-top: 1px solid var(--border);
+      background: var(--bg-secondary);
+      padding: 2.35rem 1.25rem;
+      text-align: center;
+    }
+    .footer-inner { max-width: 960px; margin: 0 auto; }
+    .footer-brand {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      margin-bottom: 1rem;
+      text-decoration: none;
+      color: var(--text-primary);
+    }
+    .footer-logo {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1px solid var(--border-strong);
+      display: block;
+    }
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.15rem;
+      margin-bottom: 1.15rem;
+    }
+    .footer-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+    .footer-links a:hover { color: var(--accent); }
+    .footer-share {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 1.25rem;
+    }
+    .footer-share-label {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      margin-right: 2px;
+    }
+    .share-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      padding: 0;
+      color: var(--text-secondary);
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease, transform 0.15s ease;
+    }
+    .share-btn:hover {
+      border-color: var(--border-strong);
+      color: var(--accent);
+      background: var(--bg-card-hover);
+      transform: translateY(-1px);
+    }
+    .share-btn svg {
+      width: 18px;
+      height: 18px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.75;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .footer-copy { font-size: 0.8rem; color: var(--text-muted); }
+    .footer-legal-line { margin-top: 0.45rem; }
+    .footer-legal-line a { color: inherit; text-decoration: none; transition: color 0.2s ease; }
+    .footer-legal-line a:hover { color: var(--accent); text-decoration: underline; }
+  </style>
+  <script data-goatcounter="https://mariusmarai.goatcounter.com/count"
+          async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="header-top">
+        <a href="index.html" class="brand-link">
+          <img src="mariusmarAI_Logo.jpg" alt="mariusmarAI Logo" class="brand-logo" />
+          <span class="brand-title">mariusmar<span>AI</span></span>
+        </a>
+        <button type="button" class="hamburger-btn" id="hamburger-btn" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-drawer">☰</button>
+      </div>
+      <div class="lang-row">
+        <div class="lang-switcher" aria-label="Language selector">
+          <button type="button" class="lang-btn active" data-lang="en">EN</button>
+          <button type="button" class="lang-btn" data-lang="es">ES</button>
+          <button type="button" class="lang-btn" data-lang="fr">FR</button>
+          <button type="button" class="lang-btn" data-lang="it">IT</button>
+          <button type="button" class="lang-btn" data-lang="pt">PT</button>
+          <button type="button" class="lang-btn" data-lang="ro">RO</button>
+        </div>
+      </div>
+      <nav class="nav-drawer" id="nav-drawer" aria-label="Main navigation">
+        <a href="index.html" class="nav-link" data-i18n="nav_home">Home</a>
+        <a href="cv.html" class="nav-link" data-i18n="nav_cv">CV</a>
+        <a href="projects.html" class="nav-link" data-i18n="nav_projects">Projects</a>
+        <a href="interactive-play.html" class="nav-link" data-i18n="nav_play">Interactive Play</a>
+        <a href="blog/en/" class="nav-link" id="menu-blog-link" data-i18n="nav_blog">Blog</a>
+        <a href="contact.html" class="nav-link" data-i18n="nav_contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="legal-hero">
+      <div class="eyebrow" data-i18n="p_badge">Data Protection &amp; Privacy</div>
+      <h1 data-i18n="p_title">Privacy Policy</h1>
+      <p class="legal-meta" data-i18n-html="p_meta">Last updated: November 22, 2026<br />Website: <a href="https://mariusmarai.com">https://mariusmarai.com</a></p>
+    </section>
+
+    <article class="legal-section">
+      <h2 data-i18n="p_s1_title">1. Data Controller &amp; Contact</h2>
+      <p data-i18n-html="p_s1_p1">This Privacy Policy explains how personal data is handled on <strong>mariusmarai.com</strong> (operated by Marius Marai, based in Bucharest, Romania)[cite: 1].</p>
+      <p data-i18n-html="p_s1_p2">For any privacy questions, data requests, or notices, please contact: <a href="mailto:hello@mariusmarai.com">hello@mariusmarai.com</a>.</p>
+    </article>
+
+    <article class="legal-section">
+      <h2 data-i18n="p_s2_title">2. Newsletter &amp; Subscription Data (MailerLite)</h2>
+      <p data-i18n-html="p_s2_p1">If you choose to subscribe to the newsletter or updates published on this website:</p>
+      <ul class="clean-list" data-i18n-html="p_s2_list">
+        <li><strong>Data collected:</strong> Your email address (and any optional fields you explicitly provide in the subscription form).</li>
+        <li><strong>Consent &amp; Double Opt-In:</strong> Subscriptions use a double opt-in workflow. Your email address is added to the active mailing list only after you confirm your subscription via the verification message sent to your inbox.</li>
+        <li><strong>Purpose &amp; Legal Basis:</strong> We process your email address solely to deliver requested articles, updates, or announcements, based on your explicit consent (for example, under Article 6(1)(a) GDPR where applicable).</li>
+        <li><strong>Processor:</strong> Subscriber management and email delivery are performed by MailerLite (MailerLite Limited / UAB MailerLite), acting as a data processor under applicable data protection terms.</li>
+        <li><strong>Retention &amp; Unsubscribe:</strong> Your email address is kept until you unsubscribe or request deletion. Every email contains an Unsubscribe link, and you may also request access, correction, or deletion at any time by emailing <a href="mailto:hello@mariusmarai.com">hello@mariusmarai.com</a>.</li>
+      </ul>
+    </article>
+
+    <article class="legal-section">
+      <h2 data-i18n="p_s3_title">3. Website Analytics (GoatCounter)</h2>
+      <p data-i18n-html="p_s3_p1">This website uses GoatCounter for privacy-conscious traffic measurement (such as page views, referrers, and general browser/device statistics)[cite: 1].</p>
+      <ul class="clean-list" data-i18n-html="p_s3_list">
+        <li>GoatCounter is configured without advertising trackers or cross-site behavioral profiling cookies.</li>
+        <li>Aggregated statistics help understand which content is most useful to readers while respecting visitor privacy.</li>
+      </ul>
+    </article>
+
+    <article class="legal-section">
+      <h2 data-i18n="p_s4_title">4. Hosting, DNS &amp; Security Infrastructure (GitHub Pages &amp; Cloudflare)</h2>
+      <ul class="clean-list" data-i18n-html="p_s4_list">
+        <li><strong>Hosting:</strong> Static website files are delivered via GitHub Pages (GitHub, Inc.)[cite: 1].</li>
+        <li><strong>DNS, Routing &amp; Security:</strong> Domain resolution, HTTPS encryption, security controls, and Cloudflare Email Routing (used to route emails sent to <a href="mailto:hello@mariusmarai.com">hello@mariusmarai.com</a>) are provided by Cloudflare, Inc.[cite: 1].</li>
+        <li>As part of standard internet delivery, routing, and security protection, Cloudflare and GitHub may process technical connection metadata (such as IP addresses, request headers, and timestamps) in accordance with their respective security and privacy practices.</li>
+      </ul>
+    </article>
+
+    <article class="legal-section">
+      <h2 data-i18n="p_s5_title">5. Cookies &amp; Privacy Signals</h2>
+      <p data-i18n-html="p_s5_p1">This website does not deploy advertising or third-party tracking cookies. Only technical mechanisms strictly necessary to serve pages, route requests, or handle user-initiated actions (such as language selection or form submission) are used. Where browser-based privacy signals such as Global Privacy Control (GPC) are supported and applicable, reasonable efforts are made to honor non-tracking preferences.</p>
+    </article>
+
+    <article class="legal-section">
+      <h2 data-i18n="p_s6_title">6. International Data Transfers &amp; Global Privacy Rights</h2>
+      <p data-i18n-html="p_s6_p1">Because <strong>mariusmarai.com</strong> is accessible globally and uses cloud infrastructure and service providers (MailerLite, Cloudflare, GitHub) that may process data outside your country of residence, personal data may be transferred internationally subject to applicable legal safeguards and provider terms[cite: 1].</p>
+      <p data-i18n-html="p_s6_p2">Depending on where you reside, you may have specific rights regarding your personal information:</p>
+      <ul class="clean-list" data-i18n-html="p_s6_list">
+        <li><strong>EEA &amp; United Kingdom (GDPR / UK GDPR):</strong> Rights of access, rectification, erasure ("right to be forgotten"), restriction of processing, objection, data portability, withdrawal of consent at any time without affecting prior lawful processing, and the right to lodge a complaint with a supervisory authority (in Romania: ANSPDCP; in the UK: ICO).</li>
+        <li><strong>United States (including California CCPA/CPRA and other US state privacy laws):</strong> Where applicable, rights to know/access categories and specific pieces of personal information, request deletion or correction, and opt out of "sale" or "sharing" for cross-context behavioral advertising. We do not sell personal information or share it for cross-context behavioral advertising.</li>
+        <li><strong>LATAM, Canada, Asia-Pacific &amp; Middle East (such as Brazil LGPD, Canada PIPEDA / Quebec Law 25, Singapore PDPA, Japan APPI, South Korea PIPA, China PIPL, UAE/Saudi PDPL, Australia/NZ privacy laws):</strong> Subject to applicable local laws, you may have rights to request information about processing and cross-border transfers, access, correct, or delete your personal data, or withdraw consent. If you are in a jurisdiction with specific cross-border or local disclosure requirements (such as China's PIPL or specific US states) and wish to request additional details or deletion, please contact <a href="mailto:hello@mariusmarai.com">hello@mariusmarai.com</a>.</li>
+      </ul>
+    </article>
+
+    <article class="legal-section">
+      <h2 data-i18n="p_s7_title">7. Policy Updates</h2>
+      <p data-i18n-html="p_s7_p1">This Privacy Policy may be updated from time to time to reflect technical, operational, or legal developments. The "Last updated" date at the top indicates the current version.</p>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <a href="index.html" class="footer-brand">
+        <img src="mariusmarAI_Logo.jpg" alt="mariusmarAI" class="footer-logo" />
+        <span style="font-family: 'Playfair Display', Georgia, serif; font-weight: 700; font-size: 1rem;">mariusmar<span style="color: var(--accent);">AI</span></span>
+      </a>
+      <div class="footer-links">
+        <a href="https://www.linkedin.com/in/marius-marai" target="_blank" rel="noopener noreferrer" data-i18n="ft_profile">mariusmarAI on LinkedIn ↗</a>
+        <a href="https://www.linkedin.com/newsletters/humans-of-linked-in-holi-7161329778250162176/" target="_blank" rel="noopener noreferrer" data-i18n="ft_news">Humans of Linked In (HoLI) ↗</a>
+        <a href="https://www.linkedin.com/groups/40607397/" target="_blank" rel="noopener noreferrer" data-i18n="ft_net">HoLI Networking ↗</a>
+        <a href="https://www.linkedin.com/groups/14608931/" target="_blank" rel="noopener noreferrer" data-i18n="ft_jobs">HoLI Jobs ↗</a>
+        <a href="https://www.linkedin.com/groups/16185013/" target="_blank" rel="noopener noreferrer" data-i18n="ft_cand">HoLI Candidates ↗</a>
+      </div>
+      <div class="footer-share" aria-label="Share this page">
+        <span class="footer-share-label" data-i18n="ft_share">Share page:</span>
+        <a class="share-btn" id="share-linkedin" target="_blank" rel="noopener noreferrer" title="LinkedIn" aria-label="Share on LinkedIn">
+          <svg viewBox="0 0 24 24">
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+            <rect x="2" y="9" width="4" height="12"/>
+            <circle cx="4" cy="4" r="2"/>
+          </svg>
+        </a>
+        <a class="share-btn" id="share-whatsapp" target="_blank" rel="noopener noreferrer" title="WhatsApp" aria-label="Share on WhatsApp">
+          <svg viewBox="0 0 24 24">
+            <path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21"/>
+            <path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1"/>
+          </svg>
+        </a>
+        <a class="share-btn" id="share-email" title="Email" aria-label="Share via Email">
+          <svg viewBox="0 0 24 24">
+            <rect x="2" y="4" width="20" height="16" rx="2"/>
+            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+          </svg>
+        </a>
+        <button type="button" class="share-btn" id="share-copy" title="Copy link" aria-label="Copy page link">
+          <svg id="icon-copy" viewBox="0 0 24 24">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+          <svg id="icon-check" viewBox="0 0 24 24" style="display: none; color: var(--accent);">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        </button>
+      </div>
+      <p class="footer-copy" data-i18n="ft_copy">© mariusmarAI. Global Operations, Commercial Leadership & AI-Driven Transformation.</p>
+      <p class="footer-copy footer-legal-line">
+        <a href="terms.html" data-i18n="ft_terms">Terms and Conditions</a>
+        <span> · </span>
+        <a href="privacy.html" data-i18n="ft_privacy">Privacy Policy</a>
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    const translations = {
+      en: {
+        nav_home: "Home", nav_cv: "CV", nav_projects: "Projects", nav_play: "Interactive Play", nav_blog: "Blog", nav_contact: "Contact",
+        ft_profile: "mariusmarAI on LinkedIn ↗", ft_news: "Humans of Linked In (HoLI) ↗", ft_net: "HoLI Networking ↗", ft_jobs: "HoLI Jobs ↗", ft_cand: "HoLI Candidates ↗", ft_share: "Share page:", ft_copy: "© mariusmarAI. Global Operations, Commercial Leadership & AI-Driven Transformation.",
+        ft_terms: "Terms and Conditions", ft_privacy: "Privacy Policy",
+        p_badge: "Data Protection & Privacy",
+        p_title: "Privacy Policy",
+        p_meta: 'Last updated: November 22, 2026<br />Website: <a href="https://mariusmarai.com">https://mariusmarai.com</a>',
+        p_s1_title: "1. Data Controller &amp; Contact",
+        p_s1_p1: 'This Privacy Policy explains how personal data is handled on <strong>mariusmarai.com</strong> (operated by Marius Marai, based in Bucharest, Romania).',
+        p_s1_p2: 'For any privacy questions, data requests, or notices, please contact: <a href="mailto:hello@mariusmarai.com">hello@mariusmarai.com</a>.',
+        p_s2_title: "2. Newsletter &amp; Subscription Data (MailerLite)",
+        p_s2_p1: 'If you choose to subscribe to the newsletter or updates published on this website:',
+        p_s2_list: '<li><strong>Data collected:</strong> Your email address (and any optional fields you explicitly provide in the subscription form).</li><li><strong>Consent &amp; Double Opt-In:</strong> Subscriptions use a double opt-in workflow. Your email address is added to the active mailing list only after you confirm your subscription via the verification message sent to your inbox.</li><li><strong>Purpose &amp; Legal Basis:</strong> We process your email address solely to deliver requested articles, updates, or announcements, based on your explicit consent (for example, under Article 6(1)(a) GDPR where applicable).</li><li><strong>Processor:</strong> Subscriber management and email delivery are performed by MailerLite (MailerLite Limited / UAB MailerLite), acting as a data processor under applicable data protection terms.</li><li><strong>Retention &amp; Unsubscribe:</strong> Your email address is kept until you unsubscribe or request deletion. Every email contains an Unsubscribe link, and you may also request access, correction, or deletion at any time by emailing <a href="mailto:hello@mariusmarai.com">hello@mariusmarai.com</a>.</li>',
+        p_s3_title: "3. Website Analytics (GoatCounter)",
+        p_s3_p1: 'This website uses GoatCounter for privacy-conscious traffic measurement (such as page views, referrers, and general browser/device statistics).',
+        p_s3_list: '<li>GoatCounter is configured without advertising trackers or cross-site behavioral profiling cookies.</li><li>Aggregated statistics help understand which content is most useful to readers while respecting visitor privacy.</li>',
+        p_s4_title: "4. Hosting, DNS &amp; Security Infrastructure (GitHub Pages &amp; Cloudflare)",
+        p_s4_list: '<li><strong>Hosting:</strong> Static website files are delivered via GitHub Pages (GitHub, Inc.).</li><li><strong>DNS, Routing &amp; Security:</strong> Domain resolution, HTTPS encryption, security controls, and Cloudflare Email Routing (used to route emails sent to <a href="mailto:hello@mariusmarai.com">hello@mariusmarai.com</a>) are provided by Cloudflare, Inc..</li><li>As part of standard internet delivery, routing, and security protection, Cloudflare and GitHub may process technical connection metadata (such as IP addresses, request headers, and timestamps) in accordance with their respective security and privacy practices.</li>',
+        p_s5_title: "5. Cookies &amp; Privacy Signals",
+        p_s5_p1: 'This website does not deploy advertising or third-party tracking cookies. Only technical mechanisms strictly necessary to serve pages, route requests, or handle user-initiated actions (such as language selection or form submission) are used. Where browser-based privacy signals such as Global Privacy Control (GPC) are supported and applicable, reasonable efforts are made to honor non-tracking preferences.',
+        p_s6_title: "6. International Data Transfers &amp; Global Privacy Rights",
+        p_s6_p1: 'Because <strong>mariusmarai.com</strong> is accessible globally and uses cloud infrastructure and service providers (MailerLite, Cloudflare, GitHub) that may process data outside your country of residence, personal data may be transferred internationally subject to applicable legal safeguards and provider terms.',
+        p_s6_p2: 'Depending on where you reside, you may have specific rights regarding your personal information:',
+        p_s6_list: '<li><strong>EEA &amp; United Kingdom (GDPR / UK GDPR):</strong> Rights of access, rectification, erasure ("right to be forgotten"), restriction of processing, objection, data portability, withdrawal of consent at any time without affecting prior lawful processing, and the right to lodge a complaint with a supervisory authority (in Romania: ANSPDCP; in the UK: ICO).</li><li><strong>United States (including California CCPA/CPRA and other US state privacy laws):</strong> Where applicable, rights to know/access categories and specific pieces of personal information, request deletion or correction, and opt out of "sale" or "sharing" for cross-context behavioral advertising. We do not sell personal information or share it for cross-context behavioral advertising.</li><li><strong>LATAM, Canada, Asia-Pacific &amp; Middle East (such as Brazil LGPD, Canada PIPEDA / Quebec Law 25, Singapore PDPA, Japan APPI, South Korea PIPA, China PIPL, UAE/Saudi PDPL, Australia/NZ privacy laws):</strong> Subject to applicable local laws, you may have rights to request information about processing and cross-border transfers, access, correct, or delete your personal data, or withdraw consent. If you are in a jurisdiction with specific cross-border or local disclosure requirements (such as China\'s PIPL or specific US states) and wish to request additional details or deletion, please contact <a href="mailto:hello@mariusmarai.com">hello@mariusmarai.com</a>.</li>',
+        p_s7_title: "7. Policy Updates",
+        p_s7_p1: 'This Privacy Policy may be updated from time to time to reflect technical, operational, or legal developments. The "Last updated" date at the top indicates the current version.'
+      },
+      es: {
+        nav_home: "Inicio", nav_cv: "CV", nav_projects: "Proyectos", nav_play: "Interactive Play", nav_blog: "Blog", nav_contact: "Contacto",
+        ft_profile: "mariusmarAI en LinkedIn ↗", ft_news: "Humans of Linked In (HoLI) ↗", ft_net: "HoLI Networking ↗", ft_jobs: "HoLI Jobs ↗", ft_cand: "HoLI Candidates ↗", ft_share: "Compartir página:", ft_copy: "© mariusmarAI. Operaciones Globales, Liderazgo Comercial y Transformación impulsada por IA.",
+        ft_terms: "Términos y Condiciones", ft_privacy: "Política de Privacidad",
+        p_badge: "Protección de Datos y Privacidad",
+        p_title: "Política de Privacidad",
+        p_meta: 'Última actualización: 22 de noviembre de 2026<br />Sitio web: <a href="https://mariusmarai.com">https://mariusmarai.com</a>',
+        p_s1_title: "1. Responsable del Tratamiento y Contacto",
+        p_s1_p1: 'Esta Política de Privacidad explica cómo se tratan los datos personales en <strong>mariusmarai.com</strong> (operado por Marius Marai, con sede en Bucarest, Rumanía).',
+        p_s1_p2: 'Para cualquier consulta sobre privacidad, solicitud de datos o aviso, escribe a: <a href="mailto:hello@mariusmarai.com">hello@mariusmarai.com</a>.',
+        p_s2_title: "2. Boletín y Datos de Suscripción (MailerLite)",
+        p_s2_p1: 'Si decides suscribirte al boletín o a las novedades publicadas en este sitio web:',
+        p_s2_list: '<li><strong>Datos recopilados:</strong> Tu dirección de correo electrónico (y cualquier campo opcional que proporciones explícitamente en el formulario de suscripción).</li><li><strong>Consentimiento y Doble Opt-In:</strong> Las suscripciones utilizan un flujo de doble confirmación (double opt-in). Tu correo electrónico se añade a la lista activa únicamente después de confirmar la suscripción mediante el mensaje de verificación enviado a tu bandeja de entrada.</li><li><strong>Finalidad y Base Legal:</strong> Tratamos tu correo electrónico exclusivamente para enviar los artículos, actualizaciones o avisos solicitados, sobre la base de tu consentimiento explícito (por ejemplo, conforme al artículo 6(1)(a) del RGPD cuando resulte aplicable).</li><li><strong>Encargado del Tratamiento:</strong> La gestión de suscriptores y el envío de correos son realizados por MailerLite (MailerLite Limited / UAB MailerLite), actuando como encargado del tratamiento bajo las condiciones aplicables de protección de datos.</li><li><strong>Conservación y Baja:</strong> Tu dirección de correo electrónico se conserva hasta que te des de baja o solicites su eliminación. Cada correo incluye un enlace para darte de baja, y también puedes solicitar acceso, rectificación o eliminación en cualquier momento escribiendo a <a href="mailto:hello@mariusmarai.com">hello@mariusmarai.com</a>.</li>',
+        p_s3_title: "3. Analítica Web (GoatCounter)",
+        p_s3_p1: 'Este sitio web utiliza GoatCounter para la medición de tráfico respetuosa con la privacidad (como páginas vistas, referentes y estadísticas generales de navegador o dispositivo).',
+        p_s3_list: '<li>GoatCounter está configurado sin rastreadores publicitarios ni cookies de perfilado conductual entre sitios.</li><li>Las estadísticas agregadas ayudan a comprender qué contenido resulta más útil a los lectores respetando la privacidad de los visitantes.</li>',
+        p_s4_title: "4. Alojamiento, DNS e Infraestructura de Seguridad (GitHub Pages y Cloudflare)",
+        p_s4_list: '<li><strong>Alojamiento:</strong> Los archivos estáticos del sitio web se sirven a través de GitHub Pages (GitHub, Inc.).</li><li><strong>DNS, Enrutamiento y Seguridad:</strong> La resolución de dominio, el cifrado HTTPS, los controles de seguridad y Cloudflare Email Routing (utilizado para enrutar los correos enviados a <a href="mailto:hello@mariusmarai.com">hello@mariusmarai.com</a>) son proporcionados por Cloudflare, Inc..</li><li>Como parte de la entrega estándar en internet, el enrutamiento y la protección de seguridad, Cloudflare y GitHub pueden tratar metadatos técnicos de conexión (como direcciones IP, cabeceras de solicitud y marcas de tiempo) de acuerdo con sus respectivas prácticas de seguridad y privacidad.</li>',
+        p_s5_title: "5. Cookies y Señales de Privacidad",
+        p_s5_p1: 'Este sitio web no instala cookies publicitarias ni de rastreo de terceros. Solo se utilizan mecanismos técnicos estrictamente necesarios para servir páginas, enrutar solicitudes o gestionar acciones iniciadas por el usuario (como la selección de idioma o el envío de un formulario). Cuando las señales de privacidad del navegador, como Global Privacy Control (GPC), son compatibles y aplicables, se realizan esfuerzos razonables para respetar las preferencias de no rastreo.',
+        p_s6_title: "6. Transferencias Internacionales de Datos y Derechos Globales de Privacidad",
+        p_s6_p1: 'Dado que <strong>mariusmarai.com</strong> es accesible a nivel global y utiliza infraestructura en la nube y proveedores de servicios (MailerLite, Cloudflare, GitHub) que pueden tratar datos fuera de tu país de residencia, los datos personales pueden transferirse internacionalmente con sujeción a las garantías legales aplicables y a los términos del proveedor.',
+        p_s6_p2: 'Según tu lugar de residencia, puedes tener derechos específicos respecto a tu información personal:',
+        p_s6_list: '<li><strong>EEE y Reino Unido (RGPD / UK GDPR):</strong> Derechos de acceso, rectificación, supresión ("derecho al olvido"), limitación del tratamiento, oposición, portabilidad de datos, retirada del consentimiento en cualquier momento sin afectar al tratamiento lícito previo y derecho a presentar una reclamación ante una autoridad de control (en Rumanía: ANSPDCP; en el Reino Unido: ICO).</li><li><strong>Estados Unidos (incluida California CCPA/CPRA y otras leyes estatales de privacidad de EE. UU.):</strong> Cuando resulte aplicable, derechos a conocer/acceder a las categorías y datos personales específicos, solicitar su eliminación o corrección y oponerte a la "venta" o "compartición" con fines de publicidad conductual contextual cruzada. No vendemos información personal ni la compartimos para publicidad conductual contextual cruzada.</li><li><strong>LATAM, Canadá, Asia-Pacífico y Oriente Medio (como Brasil LGPD, Canadá PIPEDA / Ley 25 de Quebec, Singapur PDPA, Japón APPI, Corea del Sur PIPA, China PIPL, EAU/Arabia Saudí PDPL, leyes de privacidad de Australia/NZ):</strong> Con sujeción a las leyes locales aplicables, puedes tener derecho a solicitar información sobre el tratamiento y las transferencias transfronterizas, acceder, rectificar o eliminar tus datos personales o retirar tu consentimiento. Si te encuentras en una jurisdicción con requisitos específicos de divulgación local o transfronteriza (como la PIPL de China o determinados estados de EE. UU.) y deseas solicitar detalles adicionales o la eliminación, contacta con <a href="mailto:hello@mariusmarai.com">hello@mariusmarai.com</a>.</li>',
+        p_s7_title: "7. Actualizaciones de la Política",
+        p_s7_p1: 'Esta Política de Privacidad puede actualizarse periódicamente para reflejar cambios técnicos, operativos o legales. La fecha de "Última actualización" en la parte superior indica la versión vigente.'
+      },
+      fr: {
+        nav_home: "Accueil", nav_cv: "CV", nav_projects: "Projets", nav_play: "Interactive Play", nav_blog: "Blog", nav_contact: "Contact",
+        ft_profile: "mariusmarAI sur LinkedIn ↗", ft_news: "Humans of Linked In (HoLI) ↗", ft_net: "HoLI Networking ↗", ft_jobs: "HoLI Jobs ↗", ft_cand: "HoLI Candidates ↗", ft_share: "Partager la page :", ft_copy: "© mariusmarAI. Opérations Globales, Leadership Commercial & Transformation par l'IA.",
+        ft_terms: "Conditions Générales", ft_privacy: "Politique de Confidentialité",
+        p_badge: "Protection des Données & Confidentialité",
+        p_title: "Politique de Confidentialité",
+        p_meta: 'Dernière mise à jour : 22 novembre 2026<br />Site web : <a href="https://mariusmarai.com">https://mariusmarai.com</a>',
+        p_s1_title: "1. Responsable du Traitement &amp; Contact",
+        p_s1_p1: 'Cette Politique de Confidentialité explique la manière dont les données personnelles sont traitées sur <strong>mariusmarai.com</strong> (exploité par Marius Marai, basé à Bucarest, Roumanie).',
+        p_s1_p2: 'Pour toute question relative à la confidentialité, demande d’accès/suppression ou notification, veuillez contacter : <a href="mailto:hello@mariusmarai.com">hello@mariusmarai.com</a>.',
+        p_s2_title: "2. Newsletter &amp; Données d'Abonnement (MailerLite)",
+        p_s2_p1: 'Si vous choisissez de vous abonner à la newsletter ou aux actualités publiées sur ce site web :',
+        p_s2_list: '<li><strong>Données collectées :</strong> Votre adresse e-mail (et tout champ facultatif que vous renseignez explicitement dans le formulaire d’inscription).</li><li><strong>Consentement &amp; Double Opt-In :</strong> Les inscriptions reposent sur un mécanisme de double confirmation (double opt-in). Votre adresse e-mail n’est ajoutée à la liste de diffusion active qu’après confirmation via le message de vérification envoyé dans votre boîte de réception.</li><li><strong>Finalité &amp; Base Légale :</strong> Nous traitons votre adresse e-mail uniquement pour vous transmettre les articles, mises à jour ou annonces demandés, sur la base de votre consentement explicite (par exemple au titre de l’article 6(1)(a) du RGPD lorsqu’il s’applique).</li><li><strong>Sous-traitant :</strong> La gestion des abonnés et l’envoi des e-mails sont assurés par MailerLite (MailerLite Limited / UAB MailerLite), agissant en qualité de sous-traitant selon les conditions applicables de protection des données.</li><li><strong>Conservation &amp; Désinscription :</strong> Votre adresse e-mail est conservée jusqu’à votre désinscription ou demande de suppression. Chaque e-mail contient un lien de désinscription, et vous pouvez également demander l’accès, la rectification ou la suppression à tout moment en écrivant à <a href="mailto:hello@mariusmarai.com">hello@mariusmarai.com</a>.</li>',
+        p_s3_title: "3. Mesure d'Audience Web (GoatCounter)",
+        p_s3_p1: 'Ce site web utilise GoatCounter pour une mesure de trafic respectueuse de la vie privée (telles que les pages vues, les pages référentes et les statistiques générales de navigateur ou d’appareil).',
+        p_s3_list: '<li>GoatCounter est configuré sans traceurs publicitaires ni cookies de profilage comportemental intersites.</li><li>Les statistiques agrégées permettent de comprendre quels contenus sont les plus utiles aux lecteurs tout en respectant la confidentialité des visiteurs.</li>',
+        p_s4_title: "4. Hébergement, DNS &amp; Infrastructure de Sécurité (GitHub Pages &amp; Cloudflare)",
+        p_s4_list: '<li><strong>Hébergement :</strong> Les fichiers statiques du site web sont diffusés via GitHub Pages (GitHub, Inc.).</li><li><strong>DNS, Routage &amp; Sécurité :</strong> La résolution DNS, le chiffrement HTTPS, les contrôles de sécurité et Cloudflare Email Routing (utilisé pour acheminer les e-mails envoyés à <a href="mailto:hello@mariusmarai.com">hello@mariusmarai.com</a>) sont fournis par Cloudflare, Inc..</li><li>Dans le cadre de la diffusion standard sur internet, du routage et de la protection de sécurité, Cloudflare et GitHub peuvent traiter des métadonnées techniques de connexion (telles que les adresses IP, en-têtes de requête et horodatages) conformément à leurs pratiques respectives de sécurité et de confidentialité.</li>',
+        p_s5_title: "5. Cookies &amp; Signaux de Confidentialité",
+        p_s5_p1: 'Ce site web ne déploie aucun cookie publicitaire ni cookie de suivi tiers. Seuls des mécanismes techniques strictement nécessaires pour délivrer les pages, acheminer les requêtes ou traiter des actions initiées par l’utilisateur (telles que le choix de la langue ou la soumission d’un formulaire) sont utilisés. Lorsque les signaux de confidentialité du navigateur tels que Global Privacy Control (GPC) sont pris en charge et applicables, des efforts raisonnables sont mis en œuvre pour honorer les préférences de non-suivi.',
+        p_s6_title: "6. Transferts Internationaux de Données &amp; Droits Mondiaux de Confidentialité",
+        p_s6_p1: 'Étant donné que <strong>mariusmarai.com</strong> est accessible dans le monde entier et s’appuie sur une infrastructure cloud et des prestataires (MailerLite, Cloudflare, GitHub) susceptibles de traiter des données en dehors de votre pays de résidence, des données personnelles peuvent être transférées à l’international sous réserve des garanties juridiques applicables et des conditions des prestataires.',
+        p_s6_p2: 'Selon votre lieu de résidence, vous pouvez disposer de droits spécifiques concernant vos informations personnelles :',
+        p_s6_list: '<li><strong>EEE &amp; Royaume-Uni (RGPD / UK GDPR) :</strong> Droits d’accès, de rectification, d’effacement (« droit à l’oubli »), de limitation du traitement, d’opposition, de portabilité des données, de retrait du consentement à tout moment sans porter atteinte au traitement licite antérieur, ainsi que le droit d’introduire une réclamation auprès d’une autorité de contrôle (en Roumanie : ANSPDCP ; au Royaume-Uni : ICO).</li><li><strong>États-Unis (notamment Californie CCPA/CPRA et autres lois étatiques américaines sur la confidentialité) :</strong> Lorsqu’ils s’appliquent, droits de connaître/accéder aux catégories et éléments précis d’informations personnelles, de demander la suppression ou la rectification, et de refuser la « vente » ou le « partage » à des fins de publicité comportementale contextuelle croisée. Nous ne vendons pas d’informations personnelles et ne les partageons pas à des fins de publicité comportementale contextuelle croisée.</li><li><strong>LATAM, Canada, Asie-Pacifique &amp; Moyen-Orient (notamment Brésil LGPD, Canada PIPEDA / Loi 25 du Québec, Singapour PDPA, Japon APPI, Corée du Sud PIPA, Chine PIPL, EAU/Arabie saoudite PDPL, lois de confidentialité d’Australie/NZ) :</strong> Sous réserve des lois locales applicables, vous pouvez avoir le droit de demander des informations sur le traitement et les transferts transfrontaliers, d’accéder, de rectifier ou de supprimer vos données personnelles, ou de retirer votre consentement. Si vous relevez d’une juridiction soumise à des exigences spécifiques de divulgation locale ou transfrontalière (telles que la PIPL en Chine ou certains États américains) et souhaitez obtenir des précisions supplémentaires ou une suppression, veuillez contacter <a href="mailto:hello@mariusmarai.com">hello@mariusmarai.com</a>.</li>',
+        p_s7_title: "7. Mises à Jour de la Politique",
+        p_s7_p1: 'Cette Politique de Confidentialité peut être mise à jour périodiquement afin de refléter des évolutions techniques, opérationnelles ou juridiques. La date de « Dernière mise à jour » en haut de page indique la version en vigueur.'
+      },
+      it: {
+        nav_home: "Home", nav_cv: "CV", nav_projects: "Progetti", nav_play: "Interactive Play", nav_blog: "Blog", nav_contact: "Contatti",
+        ft_profile: "mariusmarAI su LinkedIn ↗", ft_news: "Humans of Linked In (HoLI) ↗", ft_net: "HoLI Networking ↗", ft_jobs: "HoLI Jobs ↗", ft_cand: "HoLI Candidates ↗", ft_share: "Condividi pagina:", ft_copy: "© mariusmarAI. Operazioni Globali, Leadership Commerciale e Trasformazione guidata dall'IA.",
+        ft_terms: "Termini e Condizioni", ft_privacy: "Informativa sulla Privacy",
+        p_badge: "Protezione dei Dati e Privacy",
+        p_title: "Privacy Policy",
+        p_meta: 'Ultimo aggiornamento: 22 novembre 2026<br />Sito web: <a href="https://mariusmarai.com">https://mariusmarai.com</a>',
+        p_s1_title: "1. Titolare del Trattamento e Contatti",
+        p_s1_p1: 'La presente Privacy Policy spiega come vengono trattati i dati personali su <strong>mariusmarai.com</strong> (gestito da Marius Marai, con sede a Bucarest, Romania).',
+        p_s1_p2: 'Per qualsiasi domanda sulla privacy, richiesta relativa ai dati o avviso, contattare: <a href="mailto:hello@mariusmarai.com">hello@mariusmarai.com</a>.',
+        p_s2_title: "2. Newsletter e Dati di Iscrizione (MailerLite)",
+        p_s2_p1: 'Se scegli di iscriverti alla newsletter o agli aggiornamenti pubblicati su questo sito web:',
+        p_s2_list: '<li><strong>Dati raccolti:</strong> Il tuo indirizzo e-mail (e qualsiasi campo facoltativo fornito esplicitamente nel modulo di iscrizione).</li><li><strong>Consenso e Double Opt-In:</strong> Le iscrizioni utilizzano una procedura di doppia conferma (double opt-in). Il tuo indirizzo e-mail viene aggiunto alla mailing list attiva solo dopo aver confermato l’iscrizione tramite il messaggio di verifica inviato nella tua casella di posta.</li><li><strong>Finalità e Base Giuridica:</strong> Trattiamo il tuo indirizzo e-mail esclusivamente per inviare articoli, aggiornamenti o annunci richiesti, in base al tuo consenso esplicito (ad esempio ai sensi dell’articolo 6(1)(a) del GDPR ove applicabile).</li><li><strong>Responsabile del Trattamento:</strong> La gestione degli iscritti e l’invio delle e-mail sono svolti da MailerLite (MailerLite Limited / UAB MailerLite), in qualità di responsabile del trattamento ai sensi delle condizioni applicabili sulla protezione dei dati.</li><li><strong>Conservazione e Disiscrizione:</strong> Il tuo indirizzo e-mail viene conservato fino alla disiscrizione o alla richiesta di cancellazione. Ogni e-mail contiene un link di disiscrizione ed è inoltre possibile richiedere accesso, rettifica o cancellazione in qualsiasi momento scrivendo a <a href="mailto:hello@mariusmarai.com">hello@mariusmarai.com</a>.</li>',
+        p_s3_title: "3. Statistiche del Sito Web (GoatCounter)",
+        p_s3_p1: 'Questo sito web utilizza GoatCounter per una misurazione del traffico attenta alla privacy (come visualizzazioni di pagina, referrer e statistiche generali su browser o dispositivo).',
+        p_s3_list: '<li>GoatCounter è configurato senza tracker pubblicitari né cookie di profilazione comportamentale cross-site.</li><li>Le statistiche aggregate aiutano a comprendere quali contenuti risultano più utili ai lettori nel rispetto della privacy dei visitatori.</li>',
+        p_s4_title: "4. Hosting, DNS e Infrastruttura di Sicurezza (GitHub Pages e Cloudflare)",
+        p_s4_list: '<li><strong>Hosting:</strong> I file statici del sito web sono erogati tramite GitHub Pages (GitHub, Inc.).</li><li><strong>DNS, Instradamento e Sicurezza:</strong> La risoluzione DNS, la crittografia HTTPS, i controlli di sicurezza e Cloudflare Email Routing (utilizzato per instradare le e-mail inviate a <a href="mailto:hello@mariusmarai.com">hello@mariusmarai.com</a>) sono forniti da Cloudflare, Inc..</li><li>Nell’ambito della normale erogazione su internet, dell’instradamento e della protezione di sicurezza, Cloudflare e GitHub possono trattare metadati tecnici di connessione (quali indirizzi IP, intestazioni delle richieste e timestamp) in conformità alle rispettive pratiche di sicurezza e privacy.</li>',
+        p_s5_title: "5. Cookie e Segnali di Privacy",
+        p_s5_p1: 'Questo sito web non utilizza cookie pubblicitari né cookie di tracciamento di terze parti. Vengono impiegati esclusivamente meccanismi tecnici strettamente necessari per servire le pagine, instradare le richieste o gestire azioni avviate dall’utente (come la selezione della lingua o l’invio di un modulo). Laddove i segnali di privacy del browser come Global Privacy Control (GPC) siano supportati e applicabili, vengono compiuti sforzi ragionevoli per rispettare le preferenze di non tracciamento.',
+        p_s6_title: "6. Trasferimenti Internazionali di Dati e Diritti Globali sulla Privacy",
+        p_s6_p1: 'Poiché <strong>mariusmarai.com</strong> è accessibile a livello globale e si avvale di infrastrutture cloud e fornitori di servizi (MailerLite, Cloudflare, GitHub) che possono trattare dati al di fuori del tuo Paese di residenza, i dati personali possono essere trasferiti a livello internazionale nel rispetto delle tutele legali applicabili e dei termini dei fornitori.',
+        p_s6_p2: 'A seconda del luogo in cui risiedi, potresti avere diritti specifici riguardanti le tue informazioni personali:',
+        p_s6_list: '<li><strong>SEE e Regno Unito (GDPR / UK GDPR):</strong> Diritti di accesso, rettifica, cancellazione («diritto all’oblio»), limitazione del trattamento, opposizione, portabilità dei dati, revoca del consenso in qualsiasi momento senza pregiudicare la liceità del trattamento precedente e diritto di proporre reclamo a un’autorità di controllo (in Romania: ANSPDCP; nel Regno Unito: ICO).</li><li><strong>Stati Uniti (inclusa California CCPA/CPRA e altre leggi statali USA sulla privacy):</strong> Ove applicabili, diritti di conoscere/accedere alle categorie e a specifici elementi di informazioni personali, richiedere la cancellazione o la rettifica e opporsi alla «vendita» o «condivisione» per pubblicità comportamentale cross-context. Non vendiamo informazioni personali né le condividiamo per pubblicità comportamentale cross-context.</li><li><strong>LATAM, Canada, Asia-Pacifico e Medio Oriente (come Brasile LGPD, Canada PIPEDA / Legge 25 del Québec, Singapore PDPA, Giappone APPI, Corea del Sud PIPA, Cina PIPL, EAU/Arabia Saudita PDPL, leggi sulla privacy di Australia/NZ):</strong> In base alle leggi locali applicabili, potresti avere il diritto di richiedere informazioni sul trattamento e sui trasferimenti transfrontalieri, accedere, rettificare o cancellare i tuoi dati personali o revocare il consenso. Se ti trovi in una giurisdizione con specifici obblighi di informativa locale o transfrontaliera (come la PIPL cinese o determinati Stati USA) e desideri richiedere ulteriori dettagli o la cancellazione, contatta <a href="mailto:hello@mariusmarai.com">hello@mariusmarai.com</a>.</li>',
+        p_s7_title: "7. Aggiornamenti della Policy",
+        p_s7_p1: 'La presente Privacy Policy può essere aggiornata periodicamente per riflettere sviluppi tecnici, operativi o legali. La data di «Ultimo aggiornamento» in alto indica la versione corrente.'
+      },
+      pt: {
+        nav_home: "Início", nav_cv: "CV", nav_projects: "Projetos", nav_play: "Interactive Play", nav_blog: "Blog", nav_contact: "Contacto",
+        ft_profile: "mariusmarAI no LinkedIn ↗", ft_news: "Humans of Linked In (HoLI) ↗", ft_net: "HoLI Networking ↗", ft_jobs: "HoLI Jobs ↗", ft_cand: "HoLI Candidates ↗", ft_share: "Partilhar página:", ft_copy: "© mariusmarAI. Operações Globais, Liderança Comercial e Transformação impulsionada por IA.",
+        ft_terms: "Termos e Condições", ft_privacy: "Política de Privacidade",
+        p_badge: "Proteção de Dados e Privacidade",
+        p_title: "Política de Privacidade",
+        p_meta: 'Última atualização: 22 de novembro de 2026<br />Website: <a href="https://mariusmarai.com">https://mariusmarai.com</a>',
+        p_s1_title: "1. Responsável pelo Tratamento e Contacto",
+        p_s1_p1: 'Esta Política de Privacidade explica como os dados pessoais são tratados em <strong>mariusmarai.com</strong> (operado por Marius Marai, sediado em Bucareste, Roménia).',
+        p_s1_p2: 'Para quaisquer questões de privacidade, pedidos de dados ou notificações, contacte: <a href="mailto:hello@mariusmarai.com">hello@mariusmarai.com</a>.',
+        p_s2_title: "2. Newsletter e Dados de Subscrição (MailerLite)",
+        p_s2_p1: 'Se optar por subscrever a newsletter ou atualizações publicadas neste website:',
+        p_s2_list: '<li><strong>Dados recolhidos:</strong> O seu endereço de e-mail (e quaisquer campos opcionais que forneça explicitamente no formulário de subscrição).</li><li><strong>Consentimento e Double Opt-In:</strong> As subscrições utilizam um fluxo de confirmação dupla (double opt-in). O seu endereço de e-mail é adicionado à lista ativa apenas após confirmar a subscrição através da mensagem de verificação enviada para a sua caixa de entrada.</li><li><strong>Finalidade e Base Jurídica:</strong> Tratamos o seu endereço de e-mail exclusivamente para enviar os artigos, atualizações ou anúncios solicitados, com base no seu consentimento explícito (por exemplo, ao abrigo do artigo 6.º, n.º 1, alínea a), do RGPD, quando aplicável).</li><li><strong>Subcontratante:</strong> A gestão de subscritores e o envio de e-mails são efetuados pela MailerLite (MailerLite Limited / UAB MailerLite), atuando como subcontratante nos termos aplicáveis de proteção de dados.</li><li><strong>Conservação e Cancelamento de Subscrição:</strong> O seu endereço de e-mail é mantido até cancelar a subscrição ou solicitar a eliminação. Cada e-mail inclui uma ligação para cancelar a subscrição, podendo também solicitar acesso, retificação ou eliminação a qualquer momento através do e-mail <a href="mailto:hello@mariusmarai.com">hello@mariusmarai.com</a>.</li>',
+        p_s3_title: "3. Estatísticas do Website (GoatCounter)",
+        p_s3_p1: 'Este website utiliza o GoatCounter para medição de tráfego atenta à privacidade (como visualizações de página, referentes e estatísticas gerais de navegador ou dispositivo).',
+        p_s3_list: '<li>O GoatCounter está configurado sem rastreadores publicitários nem cookies de definição de perfil comportamental entre sites.</li><li>As estatísticas agregadas ajudam a compreender quais os conteúdos mais úteis para os leitores, respeitando a privacidade dos visitantes.</li>',
+        p_s4_title: "4. Alojamento, DNS e Infraestrutura de Segurança (GitHub Pages e Cloudflare)",
+        p_s4_list: '<li><strong>Alojamento:</strong> Os ficheiros estáticos do website são disponibilizados através do GitHub Pages (GitHub, Inc.).</li><li><strong>DNS, Encaminhamento e Segurança:</strong> A resolução de DNS, a encriptação HTTPS, os controlos de segurança e o Cloudflare Email Routing (utilizado para encaminhar e-mails enviados para <a href="mailto:hello@mariusmarai.com">hello@mariusmarai.com</a>) são fornecidos pela Cloudflare, Inc..</li><li>Como parte da entrega padrão na internet, do encaminhamento e da proteção de segurança, a Cloudflare e o GitHub podem tratar metadados técnicos de ligação (como endereços IP, cabeçalhos de pedido e registos de data/hora) de acordo com as respetivas práticas de segurança e privacidade.</li>',
+        p_s5_title: "5. Cookies e Sinais de Privacidade",
+        p_s5_p1: 'Este website não utiliza cookies publicitários nem cookies de rastreamento de terceiros. São utilizados apenas mecanismos técnicos estritamente necessários para servir páginas, encaminhar pedidos ou processar ações iniciadas pelo utilizador (como a seleção de idioma ou a submissão de um formulário). Sempre que sinais de privacidade do navegador, como o Global Privacy Control (GPC), sejam suportados e aplicáveis, são envidados esforços razoáveis para respeitar as preferências de não rastreamento.',
+        p_s6_title: "6. Transferências Internacionais de Dados e Direitos Globais de Privacidade",
+        p_s6_p1: 'Uma vez que o <strong>mariusmarai.com</strong> é acessível a nível global e recorre a infraestrutura na nuvem e prestadores de serviços (MailerLite, Cloudflare, GitHub) que podem tratar dados fora do seu país de residência, os dados pessoais podem ser transferidos internacionalmente sujeitos às salvaguardas legais aplicáveis e aos termos dos prestadores.',
+        p_s6_p2: 'Dependendo do local onde reside, poderá ter direitos específicos relativamente às suas informações pessoais:',
+        p_s6_list: '<li><strong>EEE e Reino Unido (RGPD / UK GDPR):</strong> Direitos de acesso, retificação, apagamento («direito a ser esquecido»), limitação do tratamento, oposição, portabilidade dos dados, retirada do consentimento em qualquer momento sem afetar o tratamento lícito anterior e direito de apresentar reclamação junto de uma autoridade de controlo (na Roménia: ANSPDCP; no Reino Unido: ICO).</li><li><strong>Estados Unidos (incluindo Califórnia CCPA/CPRA e outras leis estaduais dos EUA sobre privacidade):</strong> Quando aplicável, direitos de conhecer/aceder às categorias e elementos específicos de informações pessoais, solicitar a eliminação ou correção e opor-se à «venda» ou «partilha» para publicidade comportamental entre contextos. Não vendemos informações pessoais nem as partilhamos para publicidade comportamental entre contextos.</li><li><strong>LATAM, Canadá, Ásia-Pacífico e Médio Oriente (como Brasil LGPD, Canadá PIPEDA / Lei 25 do Quebeque, Singapura PDPA, Japão APPI, Coreia do Sul PIPA, China PIPL, EAU/Arábia Saudita PDPL, leis de privacidade da Austrália/NZ):</strong> Sujeito às leis locais aplicáveis, poderá ter o direito de solicitar informações sobre o tratamento e transferências transfronteiriças, aceder, corrigir ou eliminar os seus dados pessoais ou retirar o consentimento. Caso se encontre numa jurisdição com requisitos específicos de divulgação local ou transfronteiriça (como a PIPL da China ou determinados estados dos EUA) e pretenda solicitar detalhes adicionais ou a eliminação, contacte <a href="mailto:hello@mariusmarai.com">hello@mariusmarai.com</a>.</li>',
+        p_s7_title: "7. Atualizações da Política",
+        p_s7_p1: 'Esta Política de Privacidade pode ser atualizada periodicamente para refletir evoluções técnicas, operacionais ou legais. A data de «Última atualização» no topo indica a versão atual.'
+      },
+      ro: {
+        nav_home: "Acasă", nav_cv: "CV", nav_projects: "Proiecte", nav_play: "Interactive Play", nav_blog: "Blog", nav_contact: "Contact",
+        ft_profile: "mariusmarAI pe LinkedIn ↗", ft_news: "Humans of Linked In (HoLI) ↗", ft_net: "HoLI Networking ↗", ft_jobs: "HoLI Jobs ↗", ft_cand: "HoLI Candidates ↗", ft_share: "Distribuie pagina:", ft_copy: "© mariusmarAI. Operațiuni Globale, Leadership Comercial și Transformare prin AI.",
+        ft_terms: "Termeni și Condiții", ft_privacy: "Politica de Confidențialitate",
+        p_badge: "Protecția Datelor și Confidențialitate",
+        p_title: "Politica de Confidențialitate",
+        p_meta: 'Ultima actualizare: 22 noiembrie 2026<br />Website: <a href="https://mariusmarai.com">https://mariusmarai.com</a>',
+        p_s1_title: "1. Operatorul de Date și Contact",
+        p_s1_p1: 'Această Politică de Confidențialitate explică modul în care sunt prelucrate datele cu caracter personal pe <strong>mariusmarai.com</strong> (operat de Marius Marai, cu sediul în București, România).',
+        p_s1_p2: 'Pentru orice întrebări privind confidențialitatea, solicitări legate de date sau notificări, te rugăm să contactezi: <a href="mailto:hello@mariusmarai.com">hello@mariusmarai.com</a>.',
+        p_s2_title: "2. Newsletter și Date de Abonare (MailerLite)",
+        p_s2_p1: 'Dacă alegi să te abonezi la newsletter sau la actualizările publicate pe acest website:',
+        p_s2_list: '<li><strong>Date colectate:</strong> Adresa ta de e-mail (precum și orice câmpuri opționale pe care le furnizezi în mod explicit în formularul de abonare).</li><li><strong>Consimțământ și Double Opt-In:</strong> Abonările utilizează un flux de dublă confirmare (double opt-in). Adresa ta de e-mail este adăugată pe lista activă de trimitere numai după ce îți confirmi abonarea prin mesajul de verificare trimis în inbox.</li><li><strong>Scop și Temei Juridic:</strong> Prelucrăm adresa ta de e-mail exclusiv pentru a livra articolele, actualizările sau anunțurile solicitate, pe baza consimțământului tău explicit (de exemplu, în temeiul Articolului 6(1)(a) GDPR, acolo unde este aplicabil).</li><li><strong>Împuternicit / Procesator:</strong> Gestionarea abonaților și livrarea e-mailurilor sunt realizate prin MailerLite (MailerLite Limited / UAB MailerLite), în calitate de persoană împuternicită / procesator de date conform termenilor aplicabili privind protecția datelor.</li><li><strong>Retenție și Dezabonare:</strong> Adresa ta de e-mail este păstrată până când te dezabonezi sau soliciți ștergerea. Fiecare e-mail conține un link de dezabonare, iar tu poți solicita accesul, rectificarea sau ștergerea în orice moment trimițând un e-mail la <a href="mailto:hello@mariusmarai.com">hello@mariusmarai.com</a>.</li>',
+        p_s3_title: "3. Analitice Website (GoatCounter)",
+        p_s3_p1: 'Acest website utilizează GoatCounter pentru măsurarea traficului într-un mod atent la confidențialitate (precum afișările de pagină, sursele de trimitere/referrers și statistici generale despre browser sau dispozitiv).',
+        p_s3_list: '<li>GoatCounter este configurat fără trackere publicitare sau cookie-uri de profilare comportamentală cross-site.</li><li>Statisticile agregate ajută la înțelegerea conținutului cel mai util pentru cititori, respectând în același timp confidențialitatea vizitatorilor.</li>',
+        p_s4_title: "4. Găzduire, DNS și Infrastructură de Securitate (GitHub Pages și Cloudflare)",
+        p_s4_list: '<li><strong>Găzduire:</strong> Fișierele statice ale website-ului sunt livrate prin GitHub Pages (GitHub, Inc.).</li><li><strong>DNS, Rutare și Securitate:</strong> Rezoluția DNS, criptarea HTTPS, controalele de securitate și Cloudflare Email Routing (utilizat pentru rutarea e-mailurilor trimise către <a href="mailto:hello@mariusmarai.com">hello@mariusmarai.com</a>) sunt furnizate de Cloudflare, Inc..</li><li>Ca parte a livrării standard pe internet, a rutării și a protecției de securitate, Cloudflare și GitHub pot prelucra metadate tehnice de conexiune (precum adrese IP, headere de cerere și marcaje de timp) în conformitate cu propriile practici de securitate și confidențialitate.</li>',
+        p_s5_title: "5. Cookie-uri și Semnale de Confidențialitate",
+        p_s5_p1: 'Acest website nu instalează cookie-uri publicitare sau cookie-uri de tracking terțe. Sunt utilizate doar mecanisme tehnice strict necesare pentru livrarea paginilor, rutarea cererilor sau gestionarea acțiunilor inițiate de utilizator (precum selectarea limbii sau trimiterea unui formular). Acolo unde semnalele de confidențialitate din browser, precum Global Privacy Control (GPC), sunt suportate și aplicabile, se depun eforturi rezonabile pentru a respecta preferințele de non-tracking.',
+        p_s6_title: "6. Transferuri Internaționale de Date și Drepturi Globale privind Confidențialitatea",
+        p_s6_p1: 'Deoarece <strong>mariusmarai.com</strong> este accesibil la nivel global și utilizează infrastructură cloud și furnizori de servicii (MailerLite, Cloudflare, GitHub) care pot prelucra date în afara țării tale de reședință, datele cu caracter personal pot fi transferate internațional cu respectarea garanțiilor legale aplicabile și a termenilor furnizorilor.',
+        p_s6_p2: 'În funcție de locul în care îți ai reședința, poți avea drepturi specifice cu privire la informațiile tale personale:',
+        p_s6_list: '<li><strong>SEE și Regatul Unit (GDPR / UK GDPR):</strong> Dreptul de acces, rectificare, ștergere („dreptul de a fi uitat”), restricționare a prelucrării, opoziție, portabilitatea datelor, retragerea consimțământului în orice moment fără a afecta legalitatea prelucrării anterioare și dreptul de a depune o plângere la o autoritate de supraveghere (în România: ANSPDCP; în Regatul Unit: ICO).</li><li><strong>Statele Unite (inclusiv California CCPA/CPRA și alte legi statale americane privind confidențialitatea):</strong> Acolo unde este aplicabil, dreptul de a cunoaște/accesa categoriile și elementele specifice de informații personale, de a solicita ștergerea sau corectarea și de a opta împotriva „vânzării” sau „partajării” în scop de publicitate comportamentală cross-context. Nu vindem informații personale și nu le partajăm pentru publicitate comportamentală cross-context.</li><li><strong>LATAM, Canada, Asia-Pacific și Orientul Mijlociu (precum Brazilia LGPD, Canada PIPEDA / Legea 25 din Quebec, Singapore PDPA, Japonia APPI, Coreea de Sud PIPA, China PIPL, EAU/Arabia Saudită PDPL, legile privind confidențialitatea din Australia/NZ):</strong> Sub rezerva legilor locale aplicabile, poți avea dreptul de a solicita informații privind prelucrarea și transferurile transfrontaliere, de a accesa, corecta sau șterge datele tale personale ori de a-ți retrage consimțământul. Dacă te afli într-o jurisdicție cu cerințe specifice de informare locală sau transfrontalieră (precum PIPL din China sau anumite state din SUA) și dorești să soliciți detalii suplimentare sau ștergerea, te rugăm să contactezi <a href="mailto:hello@mariusmarai.com">hello@mariusmarai.com</a>.</li>',
+        p_s7_title: "7. Actualizări ale Politicii",
+        p_s7_p1: 'Această Politică de Confidențialitate poate fi actualizată periodic pentru a reflecta evoluții tehnice, operaționale sau legale. Data „Ultima actualizare” din partea de sus indică versiunea curentă.'
+      }
+    };
+
+    let currentLang = 'en';
+    try { currentLang = localStorage.getItem('mariusmarai_lang') || 'en'; } catch (e) {}
+    if (!translations[currentLang]) currentLang = 'en';
+
+    const hamburgerBtn = document.getElementById('hamburger-btn');
+    const navDrawer = document.getElementById('nav-drawer');
+    hamburgerBtn.addEventListener('click', () => {
+      const isOpen = navDrawer.classList.toggle('open');
+      hamburgerBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      hamburgerBtn.textContent = isOpen ? '✕' : '☰';
+    });
+
+    function applyLanguage(lang) {
+      currentLang = lang;
+      try { localStorage.setItem('mariusmarai_lang', lang); } catch (e) {}
+      document.documentElement.lang = lang;
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.lang === lang);
+      });
+      const dict = translations[lang];
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.dataset.i18n;
+        if (dict[key] !== undefined) {
+          el.textContent = dict[key];
+        }
+      });
+      document.querySelectorAll('[data-i18n-html]').forEach(el => {
+        const key = el.dataset.i18nHtml;
+        if (dict[key] !== undefined) {
+          el.innerHTML = dict[key];
+        }
+      });
+      const menuBlogLink = document.getElementById('menu-blog-link');
+      if (menuBlogLink) {
+        menuBlogLink.href = `blog/${lang}/`;
+      }
+      if (typeof onLanguageApplied === 'function') {
+        onLanguageApplied(lang, dict);
+      }
+    }
+
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.addEventListener('click', () => applyLanguage(btn.dataset.lang));
+    });
+
+    (function () {
+      const pageUrl = window.location.href;
+      const encodedUrl = encodeURIComponent(pageUrl);
+      const encodedTitle = encodeURIComponent(document.title);
+
+      const li = document.getElementById('share-linkedin');
+      const wa = document.getElementById('share-whatsapp');
+      const em = document.getElementById('share-email');
+      const cp = document.getElementById('share-copy');
+
+      if (li) li.href = `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`;
+      if (wa) wa.href = `https://api.whatsapp.com/send?text=${encodedTitle}%20-%20${encodedUrl}`;
+      if (em) em.href = `mailto:?subject=${encodedTitle}&body=${encodedTitle}%0A${encodedUrl}`;
+
+      if (cp) {
+        cp.addEventListener('click', function () {
+          navigator.clipboard.writeText(pageUrl).then(function () {
+            const copyIcon = document.getElementById('icon-copy');
+            const checkIcon = document.getElementById('icon-check');
+            if (!copyIcon || !checkIcon) return;
+            copyIcon.style.display = 'none';
+            checkIcon.style.display = 'block';
+            setTimeout(function () {
+              checkIcon.style.display = 'none';
+              copyIcon.style.display = 'block';
+            }, 2000);
+          });
+        });
+      }
+    })();
+
+    applyLanguage(currentLang);
+  </script>
+  <script src="cookie-consent.js"></script>
+</body>
+</html>

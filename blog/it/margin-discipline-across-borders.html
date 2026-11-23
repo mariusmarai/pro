@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.png" />
+  <title>Disciplina dei Margini Transfrontalieri: Gestire Dinamiche di Costo Regionali e Attriti di Filiera | mariusmarAI</title>
+  <meta name="description" content="Come i leader commerciali tutelano la resilienza del P&L quando oscillazioni valutarie, frammentazione normativa e revisioni tariffarie dei fornitori mettono alla prova i modelli multi-Paese." />
+  <link rel="icon" type="image/jpeg" href="../../mariusmarAI_Logo.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-primary: #0B1220;
+      --bg-secondary: #111A2E;
+      --bg-card: #162238;
+      --bg-card-hover: #1C2B47;
+      --text-primary: #F8FAFC;
+      --text-secondary: #CBD5E1;
+      --text-muted: #94A3B8;
+      --accent: #F59E0B;
+      --accent-hover: #D97706;
+      --accent-soft: rgba(245, 158, 11, 0.14);
+      --cyan: #38BDF8;
+      --cyan-soft: rgba(56, 189, 248, 0.12);
+      --border: rgba(148, 163, 184, 0.16);
+      --border-strong: rgba(245, 158, 11, 0.42);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    html, body { max-width: 100%; overflow-x: clip; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Unified Sticky Header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 9999;
+      background: rgba(11, 18, 32, 0.96);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      width: 100%;
+    }
+    .header-inner {
+      max-width: 1060px;
+      margin: 0 auto;
+      padding: 0.65rem 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+    }
+    .header-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      gap: 0.75rem;
+    }
+    .brand-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      text-decoration: none;
+      color: var(--text-primary);
+      min-width: 0;
+    }
+    .brand-logo {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1.5px solid var(--border-strong);
+      flex-shrink: 0;
+      display: block;
+    }
+    .brand-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+    }
+    .brand-title span { color: var(--accent); }
+    .hamburger-btn {
+      margin-left: auto;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: var(--bg-secondary);
+      color: var(--text-primary);
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      font-size: 1.25rem;
+      line-height: 1;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+    }
+    .hamburger-btn:hover,
+    .hamburger-btn[aria-expanded="true"] {
+      border-color: var(--border-strong);
+      background: var(--bg-card);
+      color: var(--accent);
+    }
+    .lang-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+    }
+    .lang-switcher {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.22rem;
+      background: var(--bg-secondary);
+      padding: 0.22rem;
+      border-radius: 9px;
+      border: 1px solid var(--border);
+    }
+    .lang-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.74rem;
+      font-weight: 600;
+      padding: 0.28rem 0.54rem;
+      border-radius: 6px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    .lang-btn:hover { color: var(--text-primary); background: rgba(255, 255, 255, 0.06); }
+    .lang-btn.active { background: var(--accent); color: #0B1220; }
+
+    .nav-drawer {
+      display: none;
+      flex-direction: column;
+      gap: 0.35rem;
+      width: 100%;
+      padding-top: 0.55rem;
+      border-top: 1px solid var(--border);
+    }
+    .nav-drawer.open { display: flex; }
+    .nav-link {
+      text-decoration: none;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 0.58rem 0.85rem;
+      border-radius: 9px;
+      border: 1px solid transparent;
+      transition: all 0.2s ease;
+      display: block;
+    }
+    .nav-link:hover { color: var(--text-primary); background: var(--bg-card); border-color: var(--border); }
+    .nav-link.active {
+      color: var(--accent);
+      background: var(--accent-soft);
+      border-color: var(--border-strong);
+      font-weight: 600;
+    }
+
+    @media (max-width: 400px) {
+      .header-inner { padding: 0.55rem 0.85rem; gap: 0.45rem; }
+      .brand-logo { width: 34px; height: 34px; }
+      .brand-title { font-size: 1.02rem; }
+      .hamburger-btn { width: 36px; height: 36px; font-size: 1.1rem; }
+      .lang-btn { font-size: 0.7rem; padding: 0.24rem 0.44rem; }
+    }
+
+    /* Article Layout */
+    .article-container {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 2.5rem 1.25rem 4.5rem;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 600;
+      margin-bottom: 1.75rem;
+      transition: color 0.2s ease, transform 0.15s ease;
+    }
+    .back-link:hover {
+      color: var(--accent);
+      transform: translateX(-2px);
+    }
+
+    .article-header {
+      margin-bottom: 2rem;
+      padding-bottom: 1.75rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.55rem;
+      margin-bottom: 1rem;
+    }
+    .topic-tag {
+      display: inline-block;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0.24rem 0.62rem;
+      border-radius: 6px;
+    }
+    h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(1.9rem, 4.2vw, 2.75rem);
+      line-height: 1.18;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 1rem;
+    }
+    .article-meta {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    /* Executive Summary Box */
+    .exec-summary {
+      background: var(--bg-secondary);
+      border-left: 3.5px solid var(--accent);
+      border-top: 1px solid var(--border);
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.4rem 1.6rem;
+      margin-bottom: 2.25rem;
+    }
+    .exec-summary-title {
+      font-size: 0.76rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--accent);
+      margin-bottom: 0.45rem;
+    }
+    .exec-summary p {
+      font-size: 0.96rem;
+      color: var(--text-secondary);
+      line-height: 1.68;
+      margin: 0;
+    }
+
+    /* Editorial Typography */
+    .article-body p {
+      font-size: 1.03rem;
+      color: var(--text-secondary);
+      margin-bottom: 1.35rem;
+    }
+    .article-body strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+    .article-body h2 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(1.4rem, 2.8vw, 1.75rem);
+      line-height: 1.28;
+      color: var(--text-primary);
+      margin: 2.35rem 0 1rem;
+    }
+    .article-body h3 {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.08rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin: 1.65rem 0 0.55rem;
+    }
+    .article-body ul,
+    .article-body ol {
+      margin: 0.75rem 0 1.5rem 1.35rem;
+      color: var(--text-secondary);
+      font-size: 1.01rem;
+    }
+    .article-body li {
+      margin-bottom: 0.75rem;
+      padding-left: 0.25rem;
+    }
+    .article-body li strong {
+      color: var(--text-primary);
+    }
+
+    .layer-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem 1.45rem;
+      margin-bottom: 1rem;
+    }
+    .layer-card h3 {
+      margin-top: 0;
+      margin-bottom: 0.45rem;
+    }
+    .layer-card p:last-child,
+    .layer-card ul:last-child {
+      margin-bottom: 0;
+    }
+
+    .closing-callout {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-strong);
+      border-radius: 14px;
+      padding: 1.55rem 1.7rem;
+      margin: 2.25rem 0 2.75rem;
+    }
+    .closing-callout-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--accent);
+      margin-bottom: 0.4rem;
+    }
+    .closing-callout p {
+      margin: 0;
+      font-size: 1rem;
+      color: var(--text-primary);
+      line-height: 1.7;
+    }
+
+    /* Newsletter Subscription Block */
+    .newsletter-section {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-strong);
+      border-radius: 16px;
+      padding: 2.15rem 1.85rem;
+    }
+    .newsletter-header {
+      max-width: 720px;
+      margin-bottom: 1.5rem;
+    }
+    .section-kicker {
+      display: block;
+      font-size: 0.76rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--accent);
+      margin-bottom: 0.4rem;
+    }
+    .newsletter-section h2 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(1.35rem, 2.6vw, 1.75rem);
+      color: var(--text-primary);
+      line-height: 1.25;
+      margin-bottom: 0.65rem;
+    }
+    .newsletter-section p {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.68;
+    }
+    .ml-embed-wrap {
+      width: 100%;
+      max-width: 520px;
+      margin: 0.5rem auto 0;
+      display: flex;
+      justify-content: center;
+    }
+    .ml-embed-wrap .ml-embedded,
+    .ml-embed-wrap .ml-form-embedWrapper {
+      width: 100%;
+      margin-left: auto !important;
+      margin-right: auto !important;
+    }
+    .newsletter-note {
+      margin-top: 2rem;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+    .newsletter-note a {
+      color: var(--cyan);
+      text-decoration: none;
+    }
+    .newsletter-note a:hover { text-decoration: underline; }
+
+    /* Footer */
+    .site-footer {
+      border-top: 1px solid var(--border);
+      background: var(--bg-secondary);
+      padding: 2.35rem 1.25rem;
+      text-align: center;
+    }
+    .footer-inner { max-width: 960px; margin: 0 auto; }
+    .footer-brand {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      margin-bottom: 1rem;
+      text-decoration: none;
+      color: var(--text-primary);
+    }
+    .footer-logo {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1px solid var(--border-strong);
+      display: block;
+    }
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.15rem;
+      margin-bottom: 1.15rem;
+    }
+    .footer-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+    .footer-links a:hover { color: var(--accent); }
+    .footer-share {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 1.25rem;
+    }
+    .footer-share-label {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      margin-right: 2px;
+    }
+    .share-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      padding: 0;
+      color: var(--text-secondary);
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      text-decoration: none;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease, transform 0.15s ease;
+    }
+    .share-btn:hover {
+      border-color: var(--border-strong);
+      color: var(--accent);
+      background: var(--bg-card-hover);
+      transform: translateY(-1px);
+    }
+    .share-btn svg {
+      width: 18px;
+      height: 18px;
+      min-width: 18px;
+      min-height: 18px;
+      max-width: 18px;
+      max-height: 18px;
+      display: block;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.75;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .footer-copy { font-size: 0.8rem; color: var(--text-muted); }
+    .footer-legal-line { margin-top: 0.45rem; }
+    .footer-legal-line a { color: inherit; text-decoration: none; transition: color 0.2s ease; }
+    .footer-legal-line a:hover { color: var(--accent); text-decoration: underline; }
+  </style>
+  <script data-goatcounter="https://mariusmarai.goatcounter.com/count"
+          async src="//gc.zgo.at/count.js"></script>
+  <!-- MailerLite Universal -->
+  <script>
+      (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
+      .push(arguments);},l=d.createElement(e),l.async=1,l.src=u,
+      n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})
+      (window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
+      ml('account', '2815590');
+  </script>
+  <!-- End MailerLite Universal -->
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="header-top">
+        <a href="../../index.html" class="brand-link">
+          <img src="../../mariusmarAI_Logo.jpg" alt="mariusmarAI Logo" class="brand-logo" />
+          <span class="brand-title">mariusmar<span>AI</span></span>
+        </a>
+        <button type="button" class="hamburger-btn" id="hamburger-btn" aria-label="Apri o chiudi menu di navigazione" aria-expanded="false" aria-controls="nav-drawer">☰</button>
+      </div>
+      <div class="lang-row">
+        <div class="lang-switcher" aria-label="Selettore lingua">
+          <a href="../en/margin-discipline-across-borders.html" class="lang-btn" data-lang="en">EN</a>
+          <a href="../es/margin-discipline-across-borders.html" class="lang-btn" data-lang="es">ES</a>
+          <a href="../fr/margin-discipline-across-borders.html" class="lang-btn" data-lang="fr">FR</a>
+          <a href="../it/margin-discipline-across-borders.html" class="lang-btn active" data-lang="it">IT</a>
+          <a href="../pt/margin-discipline-across-borders.html" class="lang-btn" data-lang="pt">PT</a>
+          <a href="../ro/margin-discipline-across-borders.html" class="lang-btn" data-lang="ro">RO</a>
+        </div>
+      </div>
+      <nav class="nav-drawer" id="nav-drawer" aria-label="Navigazione principale">
+        <a href="../../index.html" class="nav-link">Home</a>
+        <a href="../../cv.html" class="nav-link">CV</a>
+        <a href="../../projects.html" class="nav-link">Progetti</a>
+        <a href="../../interactive-play.html" class="nav-link">Interactive Play</a>
+        <a href="./" class="nav-link active">Blog</a>
+        <a href="../../contact.html" class="nav-link">Contatti</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="article-container">
+    <a href="./" class="back-link">← Torna al Blog di mariusmarAI</a>
+
+    <header class="article-header">
+      <div class="badge-row">
+        <span class="topic-tag">Business, Geo &amp; FinTech</span>
+      </div>
+      <h1>Disciplina dei Margini Transfrontalieri: Gestire Dinamiche di Costo Regionali e Attriti di Filiera</h1>
+      <div class="article-meta">Novembre 2026 · 5 min di lettura · Di Marius Marai</div>
+    </header>
+
+    <aside class="exec-summary" aria-label="Sintesi Esecutiva">
+      <div class="exec-summary-title">Sintesi Esecutiva</div>
+      <p>
+        I conti economici multi-Paese raramente cedono per un singolo shock macroeconomico; si erodono silenziosamente a causa di disallineamenti valutari non coperti, contratti fornitori rigidi e ritardi negli adeguamenti tariffari locali. I leader commerciali resilienti proteggono i margini operativi integrando meccanismi di trasferimento dei costi, diversificando le fonti critiche e monitorando in tempo reale la redditività unitaria per singolo Paese.
+      </p>
+    </aside>
+
+    <article class="article-body">
+      <p>
+        L'espansione internazionale alimenta la crescita dei ricavi, ma moltiplica in silenzio le dispersioni di margine. Nei cicli stabili, le differenze regionali nell'inflazione salariale, nei tempi doganali o nei movimenti delle valute locali vengono assorbite dalla crescita dei volumi. Quando il contesto macroeconomico si irrigidisce, quegli stessi punti ciechi strutturali trasformano mercati redditizi in centri di assorbimento di cassa.
+      </p>
+      <p>
+        Nella guida commerciale e operativa multi-Paese, preservare il margine di contribuzione richiede di andare oltre le revisioni trimestrali a consuntivo. La disciplina dei margini va incorporata direttamente nei contratti commerciali, nei cicli di approvvigionamento e nella governance dei prezzi.
+      </p>
+
+      <h2>Dove si Erode Silenziosamente il Margine Transfrontaliero</h2>
+      <p>
+        Quando i risultati regionali sottoperformano nonostante una solida crescita dei ricavi, la causa principale riconduce quasi sempre a quattro punti di attrito ricorrenti:
+      </p>
+      <ol>
+        <li>
+          <strong>Asimmetria Valuta-Costi:</strong> Fatturare clienti enterprise o locali in valute regionali sostenendo al contempo impegni chiave di infrastruttura, licenze o logistica ancorati a EUR o USD crea un'imposta implicita sul margine ogni volta che i cambi escono dalle bande previste.
+        </li>
+        <li>
+          <strong>Clausole Unilaterali di Revisione dei Fornitori:</strong> Molti contratti pluriennali con i fornitori includono indicizzazioni annuali automatiche a favore del fornitore, mentre i contratti con i clienti restano bloccati su tariffe fisse senza clausole reciproche di adeguamento.
+        </li>
+        <li>
+          <strong>Sovraccarico Normativo e di Conformità:</strong> Regimi fiscali locali divergenti, obblighi di fatturazione elettronica, inquadramenti giuslavoristici e requisiti transfrontalieri sui dati introducono un attrito amministrativo nascosto raramente incluso nei modelli iniziali di ingresso nel mercato.
+        </li>
+        <li>
+          <strong>Zavorra sul Capitale Circolante:</strong> Tempi di incasso dilatati in determinati mercati, combinati con cicli doganali o di consegna più lunghi, immobilizzano liquidità e trasformano un margine lordo contabile positivo in flusso di cassa libero negativo.
+        </li>
+      </ol>
+
+      <h2>Quattro Leve per Proteggere la Resilienza del P&amp;L</h2>
+      <p>
+        Le organizzazioni commerciali disciplinate trattano la tutela dei margini come un sistema operativo permanente, non come un intervento d'emergenza sui costi:
+      </p>
+
+      <div class="layer-card">
+        <h3>1. Architettura Contrattuale Simmetrica e Indicizzazione</h3>
+        <p>
+          Allinea le condizioni commerciali e quelle di acquisto. Dove i costi di fornitura sono esposti a variazioni valutarie, sovrapprezzi energetici o oneri regolatori, inserisci corridoi trasparenti di adeguamento dei prezzi negli accordi con i clienti e imponi gare comparative ai rinnovi con i fornitori invece di accettare aumenti automatici.
+        </p>
+      </div>
+
+      <div class="layer-card">
+        <h3>2. Visibilità della Contribuzione per Singolo Paese</h3>
+        <p>
+          Le medie regionali aggregate nascondono i mercati in perdita. Monitora il margine di contribuzione completo per Paese, canale e coorte di clienti — includendo commissioni locali di pagamento, costi logistici e costo effettivo del supporto — per smettere di sussidiare volumi non redditizi.
+        </p>
+      </div>
+
+      <div class="layer-card">
+        <h3>3. Sourcing Modulare e Ridondanza Regionale</h3>
+        <p>
+          La dipendenza da un singolo fornitore o corridoio logistico espone le operazioni a improvvise variazioni tariffarie o colli di bottiglia. Qualificare partner regionali secondari e progettare un'erogazione modulare consente di riallocare rapidamente i volumi quando la struttura locale dei costi si deteriora.
+        </p>
+      </div>
+
+      <div class="layer-card">
+        <h3>4. Governance Rigorosa nelle Approvazioni Commerciali</h3>
+        <p>
+          Dota i team commerciali di soglie chiare di margine minimo e leve di valore preapprovate (come impegni pluriennali, fatturazione anticipata o livelli di SLA definiti) anziché ricorrere a sconti estemporanei per chiudere le trattative a fine trimestre.
+        </p>
+      </div>
+
+      <h2>Trasformare Acquisti e Pricing in Vantaggio Competitivo</h2>
+      <p>
+        La rinegoziazione dei fornitori guidata dai dati e la modellazione granulare del cost-to-serve sbloccano regolarmente risparmi operativi a doppia cifra senza degradare l'esperienza del cliente. Quando i leader commerciali e operativi condividono una lettura unica e trasparente dell'economia unitaria regionale, il pricing smette di essere reattivo e diventa una leva deliberata di crescita sostenibile.
+      </p>
+
+      <div class="closing-callout">
+        <div class="closing-callout-label">Principio Guida</div>
+        <p>
+          Il fatturato oltre confine è pura vanità se l'architettura sottostante dei costi non è coperta. La leadership di mercato duratura appartiene alle organizzazioni che uniscono agilità commerciale e disciplina implacabile dei margini, Paese per Paese.
+        </p>
+      </div>
+    </article>
+
+    <section class="newsletter-section" id="newsletter-subscribe">
+      <div class="newsletter-header">
+        <span class="section-kicker">Invio Diretto · Zero Rumore</span>
+        <h2>Ricevi Nuovi Saggi e Sintesi Executive via E-mail</h2>
+        <p>
+          Framework pratici, note su casi operativi e analisi di mercato — inviati solo alla pubblicazione di un nuovo articolo. Le comunicazioni vengono inviate in inglese, mentre ogni articolo completo è disponibile sul sito anche in spagnolo, francese, italiano, portoghese e rumeno.
+        </p>
+      </div>
+
+      <div class="ml-embed-wrap">
+        <div class="ml-embedded" data-form="3IyZ20"></div>
+      </div>
+
+      <p class="newsletter-note">
+        È richiesta la conferma tramite double opt-in. Puoi disiscriverti con un clic in qualsiasi momento. Leggi la nostra <a href="../../privacy.html">Informativa sulla Privacy</a>.
+      </p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <a href="../../index.html" class="footer-brand">
+        <img src="../../mariusmarAI_Logo.jpg" alt="mariusmarAI" class="footer-logo" />
+        <span style="font-family: 'Playfair Display', Georgia, serif; font-weight: 700; font-size: 1rem;">mariusmar<span style="color: var(--accent);">AI</span></span>
+      </a>
+      <div class="footer-links">
+        <a href="https://www.linkedin.com/in/marius-marai" target="_blank" rel="noopener noreferrer">mariusmarAI su LinkedIn ↗</a>
+        <a href="https://www.linkedin.com/newsletters/humans-of-linked-in-holi-7161329778250162176/" target="_blank" rel="noopener noreferrer">Humans of Linked In (HoLI) ↗</a>
+        <a href="https://www.linkedin.com/groups/40607397/" target="_blank" rel="noopener noreferrer">HoLI Networking ↗</a>
+        <a href="https://www.linkedin.com/groups/14608931/" target="_blank" rel="noopener noreferrer">HoLI Jobs ↗</a>
+        <a href="https://www.linkedin.com/groups/16185013/" target="_blank" rel="noopener noreferrer">HoLI Candidates ↗</a>
+      </div>
+      <div class="footer-share" aria-label="Condividi questa pagina">
+        <span class="footer-share-label">Condividi pagina:</span>
+        <a class="share-btn" id="share-linkedin" target="_blank" rel="noopener noreferrer" title="LinkedIn" aria-label="Condividi su LinkedIn">
+          <svg viewBox="0 0 24 24" width="18" height="18">
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+            <rect x="2" y="9" width="4" height="12"/>
+            <circle cx="4" cy="4" r="2"/>
+          </svg>
+        </a>
+        <a class="share-btn" id="share-whatsapp" target="_blank" rel="noopener noreferrer" title="WhatsApp" aria-label="Condividi su WhatsApp">
+          <svg viewBox="0 0 24 24" width="18" height="18">
+            <path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21"/>
+            <path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1"/>
+          </svg>
+        </a>
+        <a class="share-btn" id="share-email" title="E-mail" aria-label="Condividi via e-mail">
+          <svg viewBox="0 0 24 24" width="18" height="18">
+            <rect x="2" y="4" width="20" height="16" rx="2"/>
+            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+          </svg>
+        </a>
+        <button type="button" class="share-btn" id="share-copy" title="Copia link" aria-label="Copia link della pagina">
+          <svg id="icon-copy" viewBox="0 0 24 24" width="18" height="18">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+          <svg id="icon-check" viewBox="0 0 24 24" width="18" height="18" style="display: none; color: var(--accent);">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        </button>
+      </div>
+      <p class="footer-copy">© mariusmarAI. Operazioni Globali, Leadership Commerciale e Trasformazione guidata dall'IA.</p>
+      <p class="footer-copy footer-legal-line">
+        <a href="../../terms.html">Termini e Condizioni</a>
+        <span> · </span>
+        <a href="../../privacy.html">Informativa sulla Privacy</a>
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    try { localStorage.setItem('mariusmarai_lang', 'it'); } catch (e) {}
+
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        try { localStorage.setItem('mariusmarai_lang', btn.dataset.lang); } catch (e) {}
+      });
+    });
+
+    const hamburgerBtn = document.getElementById('hamburger-btn');
+    const navDrawer = document.getElementById('nav-drawer');
+    hamburgerBtn.addEventListener('click', () => {
+      const isOpen = navDrawer.classList.toggle('open');
+      hamburgerBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      hamburgerBtn.textContent = isOpen ? '✕' : '☰';
+    });
+
+    (function () {
+      const pageUrl = window.location.href;
+      const encodedUrl = encodeURIComponent(pageUrl);
+      const encodedTitle = encodeURIComponent(document.title);
+
+      const li = document.getElementById('share-linkedin');
+      const wa = document.getElementById('share-whatsapp');
+      const em = document.getElementById('share-email');
+      const cp = document.getElementById('share-copy');
+
+      if (li) li.href = `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`;
+      if (wa) wa.href = `https://api.whatsapp.com/send?text=${encodedTitle}%20-%20${encodedUrl}`;
+      if (em) em.href = `mailto:?subject=${encodedTitle}&body=${encodedTitle}%0A${encodedUrl}`;
+
+      if (cp) {
+        cp.addEventListener('click', function () {
+          navigator.clipboard.writeText(pageUrl).then(function () {
+            const copyIcon = document.getElementById('icon-copy');
+            const checkIcon = document.getElementById('icon-check');
+            if (!copyIcon || !checkIcon) return;
+            copyIcon.style.display = 'none';
+            checkIcon.style.display = 'block';
+            setTimeout(function () {
+              checkIcon.style.display = 'none';
+              copyIcon.style.display = 'block';
+            }, 2000);
+          });
+        });
+      }
+    })();
+  </script>
+  <script src="../../cookie-consent.js"></script>
+</body>
+</html>

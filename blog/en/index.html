@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="/favicon.png" />
-  <title>mariusmarAI Blog | Executive Perspectives & Applied Insights</title>
+  <title>mariusmarAI Blog | Executive Perspectives &amp; Applied Insights</title>
   <link rel="icon" type="image/jpeg" href="../../mariusmarAI_Logo.jpg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -246,7 +246,7 @@
       color: var(--accent);
     }
 
-    /* Featured Article Card */
+    /* Featured Essay Card */
     .featured-card {
       background: var(--bg-secondary);
       border: 1px solid var(--border-strong);
@@ -570,7 +570,7 @@
         <button type="button" class="hamburger-btn" id="hamburger-btn" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-drawer">☰</button>
       </div>
       <div class="lang-row">
-        <div class="lang-switcher" aria-label="Language selector">
+        <div class="lang-switcher" aria-label="Language switcher">
           <a href="../en/" class="lang-btn active" data-lang="en">EN</a>
           <a href="../es/" class="lang-btn" data-lang="es">ES</a>
           <a href="../fr/" class="lang-btn" data-lang="fr">FR</a>
@@ -579,7 +579,7 @@
           <a href="../ro/" class="lang-btn" data-lang="ro">RO</a>
         </div>
       </div>
-      <nav class="nav-drawer" id="nav-drawer" aria-label="Main navigation">
+      <nav class="nav-drawer" id="nav-drawer" aria-label="Primary navigation">
         <a href="../../index.html" class="nav-link">Home</a>
         <a href="../../cv.html" class="nav-link">CV</a>
         <a href="../../projects.html" class="nav-link">Projects</a>
@@ -591,7 +591,6 @@
   </header>
 
   <main class="container">
-    <!-- 2. Editorial Hero Section -->
     <section class="hero">
       <div class="eyebrow">Executive Perspectives &amp; Applied Insights</div>
       <h1>mariusmarAI Blog</h1>
@@ -600,7 +599,6 @@
       </p>
     </section>
 
-    <!-- 3. Topic Filter Bar -->
     <div class="filter-bar" role="tablist" aria-label="Filter articles by topic">
       <button type="button" class="filter-btn active" data-filter="all">All Articles</button>
       <button type="button" class="filter-btn" data-filter="ai-automation-ops">AI, Automation &amp; Ops</button>
@@ -609,21 +607,19 @@
       <button type="button" class="filter-btn" data-filter="market-trends-pulse">Market Trends &amp; Pulse</button>
     </div>
 
-    <!-- 4. Featured / Latest Article Card -->
     <article class="featured-card" data-topic="ai-automation-ops">
       <div class="badge-row">
-        <span class="badge-featured">Featured Article</span>
+        <span class="badge-featured">Featured Essay</span>
         <span class="topic-tag">AI, Automation &amp; Ops</span>
       </div>
       <div class="meta-line">November 2026 · 6 min read · By Marius Marai</div>
       <h2><a href="hybrid-operational-architecture.html">Hybrid Operational Architecture: Why Deterministic Engines Still Anchor Enterprise AI</a></h2>
       <p class="featured-excerpt">
-        Generative AI accelerates cognitive synthesis, yet financial auditability, zero-error reporting, and cost discipline still depend on deterministic workflows. A practical blueprint for pairing rule-based precision with AI reasoning without inflating operating overhead.
+        Generative AI accelerates cognitive synthesis, yet financial auditability, zero-error reporting, and cost discipline still depend on deterministic workflows. A practical blueprint for pairing rule-based precision with AI reasoning without inflating operational overhead.
       </p>
       <a href="hybrid-operational-architecture.html" class="read-link">Read Full Article →</a>
     </article>
 
-    <!-- 5. Article Archive Grid -->
     <section class="articles-grid" id="articles-grid" aria-label="Article archive">
       <article class="article-card" data-topic="business-geo-fintech">
         <div>
@@ -648,29 +644,28 @@
             <span class="topic-tag">Career, Remote &amp; Hybrid Skills</span>
             <span class="read-time">5 min read</span>
           </div>
-          <h3><a href="#newsletter-subscribe">Executive Positioning in Distributed Organizations: Leading Without Physical Proximity</a></h3>
+          <h3><a href="executive-positioning-distributed-organizations.html">Executive Positioning in Distributed Organizations: Leading Without Physical Proximity</a></h3>
           <p class="article-summary">
             Why senior impact in remote and hybrid environments relies on written clarity, measurable operating rhythms, and high-trust stakeholder alignment.
           </p>
         </div>
         <div class="card-bottom-row">
           <span class="pub-date">November 2026</span>
-          <a href="#newsletter-subscribe" class="read-link">Read →</a>
+          <a href="executive-positioning-distributed-organizations.html" class="read-link">Read →</a>
         </div>
       </article>
     </section>
 
     <div class="empty-state" id="empty-state" role="status">
-      New articles in this topic are currently in editorial review. Subscribe below to receive them directly in your inbox.
+      Upcoming essays in this topic are currently in editorial review. Subscribe below to receive them directly in your inbox.
     </div>
 
-    <!-- 6. Newsletter Subscription Block -->
     <section class="newsletter-section" id="newsletter-subscribe">
       <div class="newsletter-header">
         <span class="section-kicker">Direct Dispatch · Zero Noise</span>
-        <h2>Get New Articles &amp; Executive Briefings by Email</h2>
+        <h2>Receive New Essays and Executive Briefings by Email</h2>
         <p>
-          Practical frameworks, operational case notes, and market analyses—sent only when a new piece is published. Dispatches go out in English, while every full article is also available on the site in Spanish, French, Italian, Portuguese, and Romanian.
+          Practical frameworks, operational case notes, and market analysis — sent only when a new article is published. Dispatches go out in English, while every full article is also available on the site in Spanish, French, Italian, Portuguese, and Romanian.
         </p>
       </div>
 
@@ -684,7 +679,6 @@
     </section>
   </main>
 
-  <!-- 7. Footer -->
   <footer class="site-footer">
     <div class="footer-inner">
       <a href="../../index.html" class="footer-brand">
@@ -755,7 +749,6 @@
       hamburgerBtn.textContent = isOpen ? '✕' : '☰';
     });
 
-    // Topic Filter Logic
     const filterBtns = document.querySelectorAll('.filter-btn');
     const allArticles = document.querySelectorAll('.featured-card, .article-card');
     const emptyState = document.getElementById('empty-state');
@@ -776,7 +769,6 @@
       });
     });
 
-    // Share Buttons
     (function () {
       const pageUrl = window.location.href;
       const encodedUrl = encodeURIComponent(pageUrl);

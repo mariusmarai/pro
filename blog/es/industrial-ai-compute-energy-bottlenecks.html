@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.png" />
+  <title>El Cuello de Botella Físico de la IA Empresarial: Energía, Infraestructura y Asignación de Capital | mariusmarAI</title>
+  <meta name="description" content="Por qué el escalado comercial de la IA está cada vez más condicionado por la disponibilidad eléctrica, la capacidad de red y la economía edge-to-cloud." />
+  <link rel="icon" type="image/jpeg" href="../../mariusmarAI_Logo.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-primary: #0B1220;
+      --bg-secondary: #111A2E;
+      --bg-card: #162238;
+      --bg-card-hover: #1C2B47;
+      --text-primary: #F8FAFC;
+      --text-secondary: #CBD5E1;
+      --text-muted: #94A3B8;
+      --accent: #F59E0B;
+      --accent-hover: #D97706;
+      --accent-soft: rgba(245, 158, 11, 0.14);
+      --cyan: #38BDF8;
+      --cyan-soft: rgba(56, 189, 248, 0.12);
+      --border: rgba(148, 163, 184, 0.16);
+      --border-strong: rgba(245, 158, 11, 0.42);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    html, body { max-width: 100%; overflow-x: clip; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Unified Sticky Header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 9999;
+      background: rgba(11, 18, 32, 0.96);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      width: 100%;
+    }
+    .header-inner {
+      max-width: 1060px;
+      margin: 0 auto;
+      padding: 0.65rem 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+    }
+    .header-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      gap: 0.75rem;
+    }
+    .brand-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      text-decoration: none;
+      color: var(--text-primary);
+      min-width: 0;
+    }
+    .brand-logo {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1.5px solid var(--border-strong);
+      flex-shrink: 0;
+      display: block;
+    }
+    .brand-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+    }
+    .brand-title span { color: var(--accent); }
+    .hamburger-btn {
+      margin-left: auto;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: var(--bg-secondary);
+      color: var(--text-primary);
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      font-size: 1.25rem;
+      line-height: 1;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+    }
+    .hamburger-btn:hover,
+    .hamburger-btn[aria-expanded="true"] {
+      border-color: var(--border-strong);
+      background: var(--bg-card);
+      color: var(--accent);
+    }
+    .lang-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+    }
+    .lang-switcher {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.22rem;
+      background: var(--bg-secondary);
+      padding: 0.22rem;
+      border-radius: 9px;
+      border: 1px solid var(--border);
+    }
+    .lang-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.74rem;
+      font-weight: 600;
+      padding: 0.28rem 0.54rem;
+      border-radius: 6px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    .lang-btn:hover { color: var(--text-primary); background: rgba(255, 255, 255, 0.06); }
+    .lang-btn.active { background: var(--accent); color: #0B1220; }
+
+    .nav-drawer {
+      display: none;
+      flex-direction: column;
+      gap: 0.35rem;
+      width: 100%;
+      padding-top: 0.55rem;
+      border-top: 1px solid var(--border);
+    }
+    .nav-drawer.open { display: flex; }
+    .nav-link {
+      text-decoration: none;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 0.58rem 0.85rem;
+      border-radius: 9px;
+      border: 1px solid transparent;
+      transition: all 0.2s ease;
+      display: block;
+    }
+    .nav-link:hover { color: var(--text-primary); background: var(--bg-card); border-color: var(--border); }
+    .nav-link.active {
+      color: var(--accent);
+      background: var(--accent-soft);
+      border-color: var(--border-strong);
+      font-weight: 600;
+    }
+
+    @media (max-width: 400px) {
+      .header-inner { padding: 0.55rem 0.85rem; gap: 0.45rem; }
+      .brand-logo { width: 34px; height: 34px; }
+      .brand-title { font-size: 1.02rem; }
+      .hamburger-btn { width: 36px; height: 36px; font-size: 1.1rem; }
+      .lang-btn { font-size: 0.7rem; padding: 0.24rem 0.44rem; }
+    }
+
+    /* Article Layout */
+    .article-container {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 2.5rem 1.25rem 4.5rem;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 600;
+      margin-bottom: 1.75rem;
+      transition: color 0.2s ease, transform 0.15s ease;
+    }
+    .back-link:hover {
+      color: var(--accent);
+      transform: translateX(-2px);
+    }
+
+    .article-header {
+      margin-bottom: 2rem;
+      padding-bottom: 1.75rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.55rem;
+      margin-bottom: 1rem;
+    }
+    .topic-tag {
+      display: inline-block;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0.24rem 0.62rem;
+      border-radius: 6px;
+    }
+    h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(1.9rem, 4.2vw, 2.75rem);
+      line-height: 1.18;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 1rem;
+    }
+    .article-meta {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    /* Executive Summary Box */
+    .exec-summary {
+      background: var(--bg-secondary);
+      border-left: 3.5px solid var(--accent);
+      border-top: 1px solid var(--border);
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.4rem 1.6rem;
+      margin-bottom: 2.25rem;
+    }
+    .exec-summary-title {
+      font-size: 0.76rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--accent);
+      margin-bottom: 0.45rem;
+    }
+    .exec-summary p {
+      font-size: 0.96rem;
+      color: var(--text-secondary);
+      line-height: 1.68;
+      margin: 0;
+    }
+
+    /* Editorial Typography */
+    .article-body p {
+      font-size: 1.03rem;
+      color: var(--text-secondary);
+      margin-bottom: 1.35rem;
+    }
+    .article-body strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+    .article-body h2 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(1.4rem, 2.8vw, 1.75rem);
+      line-height: 1.28;
+      color: var(--text-primary);
+      margin: 2.35rem 0 1rem;
+    }
+    .article-body h3 {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.08rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin: 1.65rem 0 0.55rem;
+    }
+    .article-body ul,
+    .article-body ol {
+      margin: 0.75rem 0 1.5rem 1.35rem;
+      color: var(--text-secondary);
+      font-size: 1.01rem;
+    }
+    .article-body li {
+      margin-bottom: 0.75rem;
+      padding-left: 0.25rem;
+    }
+    .article-body li strong {
+      color: var(--text-primary);
+    }
+
+    .layer-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem 1.45rem;
+      margin-bottom: 1rem;
+    }
+    .layer-card h3 {
+      margin-top: 0;
+      margin-bottom: 0.45rem;
+    }
+    .layer-card p:last-child,
+    .layer-card ul:last-child {
+      margin-bottom: 0;
+    }
+
+    .closing-callout {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-strong);
+      border-radius: 14px;
+      padding: 1.55rem 1.7rem;
+      margin: 2.25rem 0 2.75rem;
+    }
+    .closing-callout-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--accent);
+      margin-bottom: 0.4rem;
+    }
+    .closing-callout p {
+      margin: 0;
+      font-size: 1rem;
+      color: var(--text-primary);
+      line-height: 1.7;
+    }
+
+    /* Newsletter Subscription Block */
+    .newsletter-section {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-strong);
+      border-radius: 16px;
+      padding: 2.15rem 1.85rem;
+    }
+    .newsletter-header {
+      max-width: 720px;
+      margin-bottom: 1.5rem;
+    }
+    .section-kicker {
+      display: block;
+      font-size: 0.76rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--accent);
+      margin-bottom: 0.4rem;
+    }
+    .newsletter-section h2 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(1.35rem, 2.6vw, 1.75rem);
+      color: var(--text-primary);
+      line-height: 1.25;
+      margin-bottom: 0.65rem;
+    }
+    .newsletter-section p {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.68;
+    }
+    .ml-embed-wrap {
+      width: 100%;
+      max-width: 520px;
+      margin: 0.5rem auto 0;
+      display: flex;
+      justify-content: center;
+    }
+    .ml-embed-wrap .ml-embedded,
+    .ml-embed-wrap .ml-form-embedWrapper {
+      width: 100%;
+      margin-left: auto !important;
+      margin-right: auto !important;
+    }
+    .newsletter-note {
+      margin-top: 2rem;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+    .newsletter-note a {
+      color: var(--cyan);
+      text-decoration: none;
+    }
+    .newsletter-note a:hover { text-decoration: underline; }
+
+    /* Footer */
+    .site-footer {
+      border-top: 1px solid var(--border);
+      background: var(--bg-secondary);
+      padding: 2.35rem 1.25rem;
+      text-align: center;
+    }
+    .footer-inner { max-width: 960px; margin: 0 auto; }
+    .footer-brand {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      margin-bottom: 1rem;
+      text-decoration: none;
+      color: var(--text-primary);
+    }
+    .footer-logo {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1px solid var(--border-strong);
+      display: block;
+    }
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.15rem;
+      margin-bottom: 1.15rem;
+    }
+    .footer-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+    .footer-links a:hover { color: var(--accent); }
+    .footer-share {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 1.25rem;
+    }
+    .footer-share-label {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      margin-right: 2px;
+    }
+    .share-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      padding: 0;
+      color: var(--text-secondary);
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      text-decoration: none;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease, transform 0.15s ease;
+    }
+    .share-btn:hover {
+      border-color: var(--border-strong);
+      color: var(--accent);
+      background: var(--bg-card-hover);
+      transform: translateY(-1px);
+    }
+    .share-btn svg {
+      width: 18px;
+      height: 18px;
+      min-width: 18px;
+      min-height: 18px;
+      max-width: 18px;
+      max-height: 18px;
+      display: block;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.75;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .footer-copy { font-size: 0.8rem; color: var(--text-muted); }
+    .footer-legal-line { margin-top: 0.45rem; }
+    .footer-legal-line a { color: inherit; text-decoration: none; transition: color 0.2s ease; }
+    .footer-legal-line a:hover { color: var(--accent); text-decoration: underline; }
+  </style>
+  <script data-goatcounter="https://mariusmarai.goatcounter.com/count"
+          async src="//gc.zgo.at/count.js"></script>
+  <!-- MailerLite Universal -->
+  <script>
+      (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
+      .push(arguments);},l=d.createElement(e),l.async=1,l.src=u,
+      n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})
+      (window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
+      ml('account', '2815590');
+  </script>
+  <!-- End MailerLite Universal -->
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="header-top">
+        <a href="../../index.html" class="brand-link">
+          <img src="../../mariusmarAI_Logo.jpg" alt="mariusmarAI Logo" class="brand-logo" />
+          <span class="brand-title">mariusmar<span>AI</span></span>
+        </a>
+        <button type="button" class="hamburger-btn" id="hamburger-btn" aria-label="Alternar menú de navegación" aria-expanded="false" aria-controls="nav-drawer">☰</button>
+      </div>
+      <div class="lang-row">
+        <div class="lang-switcher" aria-label="Selector de idioma">
+          <a href="../en/industrial-ai-compute-energy-bottlenecks.html" class="lang-btn" data-lang="en">EN</a>
+          <a href="../es/industrial-ai-compute-energy-bottlenecks.html" class="lang-btn active" data-lang="es">ES</a>
+          <a href="../fr/industrial-ai-compute-energy-bottlenecks.html" class="lang-btn" data-lang="fr">FR</a>
+          <a href="../it/industrial-ai-compute-energy-bottlenecks.html" class="lang-btn" data-lang="it">IT</a>
+          <a href="../pt/industrial-ai-compute-energy-bottlenecks.html" class="lang-btn" data-lang="pt">PT</a>
+          <a href="../ro/industrial-ai-compute-energy-bottlenecks.html" class="lang-btn" data-lang="ro">RO</a>
+        </div>
+      </div>
+      <nav class="nav-drawer" id="nav-drawer" aria-label="Navegación principal">
+        <a href="../../index.html" class="nav-link">Inicio</a>
+        <a href="../../cv.html" class="nav-link">CV</a>
+        <a href="../../projects.html" class="nav-link">Proyectos</a>
+        <a href="../../interactive-play.html" class="nav-link">Interactive Play</a>
+        <a href="./" class="nav-link active">Blog</a>
+        <a href="../../contact.html" class="nav-link">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="article-container">
+    <a href="./" class="back-link">← Volver al Blog de mariusmarAI</a>
+
+    <header class="article-header">
+      <div class="badge-row">
+        <span class="topic-tag">Market Trends &amp; Pulse</span>
+      </div>
+      <h1>El Cuello de Botella Físico de la IA Empresarial: Energía, Infraestructura y Asignación de Capital</h1>
+      <div class="article-meta">Noviembre 2026 · 5 min de lectura · Por Marius Marai</div>
+    </header>
+
+    <aside class="exec-summary" aria-label="Resumen Ejecutivo">
+      <div class="exec-summary-title">Resumen Ejecutivo</div>
+      <p>
+        Mientras el debate público se centra en los benchmarks de modelos y las interfaces de software, la restricción principal para escalar la IA empresarial se ha desplazado hacia la infraestructura física: energía de carga base, plazos de conexión a red, gestión térmica y economía unitaria del cómputo. Los líderes que alineen la arquitectura de cargas de trabajo con disciplina energética y de capital superarán a quienes persigan capacidad en la nube sin diferenciación.
+      </p>
+    </aside>
+
+    <article class="article-body">
+      <p>
+        Durante varios ciclos tecnológicos, la estrategia empresarial trató la capacidad de cómputo como un recurso infinitamente elástico. Si una aplicación requería más potencia, bastaba con aprovisionar instancias mayores en la nube. Ese supuesto se quiebra cuando los clústeres de IA de alta densidad chocan con las redes eléctricas físicas, los plazos de subestaciones y los límites de inversión de capital.
+      </p>
+      <p>
+        En operaciones industriales, redes logísticas y software empresarial, la frontera competitiva se desplaza del mero acceso a modelos hacia la eficiencia de infraestructura: cuánto valor de negocio verificable extrae una organización por kilovatio-hora y por cada dólar invertido en cómputo.
+      </p>
+
+      <h2>Dónde la Ambición de Software Choca con la Realidad Física</h2>
+      <p>
+        Cuatro presiones estructurales están redefiniendo la evaluación ejecutiva de las inversiones tecnológicas:
+      </p>
+      <ol>
+        <li>
+          <strong>Disponibilidad Eléctrica por Encima del Suministro de Silicio:</strong> Los centros de datos de alta densidad exigen energía de base fiable, refuerzos de red y sistemas de refrigeración cuyos permisos y construcción se miden en años, no en trimestres.
+        </li>
+        <li>
+          <strong>Costes Recurrentes de Inferencia al Alza:</strong> Entrenar modelos es un evento periódico de capital, mientras que la inferencia continua sobre millones de transacciones diarias de clientes, cadena de suministro o finanzas se convierte en un gasto operativo permanente.
+        </li>
+        <li>
+          <strong>Restricciones de Latencia y Soberanía del Dato:</strong> Enviar cada lectura de sensores, inspección de calidad o registro operativo a centros centralizados introduce costes de ancho de banda, latencia y fricciones regulatorias transfronterizas.
+        </li>
+        <li>
+          <strong>Disciplina de Capital Bajo Escrutinio:</strong> Los CFO e inversores están dejando atrás los presupuestos experimentales y exigen atribución clara de economía unitaria antes de aprobar compromisos plurianuales de infraestructura.
+        </li>
+      </ol>
+
+      <h2>Implicaciones Estratégicas para los Líderes Empresariales</h2>
+      <p>
+        Afrontar este cambio no requiere construir centrales eléctricas propias; exige selectividad arquitectónica y asignación disciplinada de recursos:
+      </p>
+
+      <div class="layer-card">
+        <h3>1. Dimensionar los Modelos Según la Complejidad de la Tarea</h3>
+        <p>
+          Enrutar cada flujo rutinario de clasificación, extracción o resumen hacia modelos de frontera desperdicia cómputo y aumenta la latencia. Las organizaciones eficientes reservan los modelos de razonamiento pesado para síntesis estratégicas ambiguas y emplean modelos compactos —o lógica determinista— para flujos operativos de alta frecuencia.
+        </p>
+      </div>
+
+      <div class="layer-card">
+        <h3>2. Equilibrar la Elasticidad Cloud con la Ejecución en el Edge</h3>
+        <p>
+          En manufactura, energía y logística distribuida, ejecutar inferencia cerca del activo operativo —en el edge industrial— reduce costes de transmisión, preserva la respuesta en tiempo real y mantiene sistemas críticos operativos incluso ante degradaciones de conectividad.
+        </p>
+      </div>
+
+      <div class="layer-card">
+        <h3>3. Integrar Métricas FinOps y Energéticas en las Revisiones Operativas</h3>
+        <p>
+          El consumo de cómputo debe gobernarse con el mismo rigor que el transporte, el inventario o la plantilla. Medir el coste por incidencia resuelta, por ciclo de previsión y por tasa de utilización evita la erosión silenciosa de márgenes a medida que crece la adopción.
+        </p>
+      </div>
+
+      <div class="layer-card">
+        <h3>4. Priorizar Socios y Regiones con Solvencia de Infraestructura</h3>
+        <p>
+          Al seleccionar regiones cloud, proveedores de colocación o socios de automatización industrial, la seguridad energética, la resiliencia de red y la transparencia tarifaria a largo plazo se consolidan como diferenciadores comerciales decisivos.
+        </p>
+      </div>
+
+      <h2>Perspectiva</h2>
+      <p>
+        A medida que la IA se integra en el núcleo de la infraestructura industrial y comercial, los líderes del mercado no serán quienes acumulen mayores facturas experimentales de cómputo, sino quienes gestionen energía, procesamiento y arquitectura de datos como una disciplina integrada de P&amp;L.
+      </p>
+
+      <div class="closing-callout">
+        <div class="closing-callout-label">Principio Rector</div>
+        <p>
+          El software escala a la velocidad del código, pero la IA empresarial escala a la velocidad de la energía, la refrigeración y la economía unitaria. La ventaja competitiva sostenible pertenece a los líderes que diseñan eficiencia en cada capa tecnológica.
+        </p>
+      </div>
+    </article>
+
+    <section class="newsletter-section" id="newsletter-subscribe">
+      <div class="newsletter-header">
+        <span class="section-kicker">Envío Directo · Cero Ruido</span>
+        <h2>Recibe Nuevos Ensayos e Informes Ejecutivos por Correo</h2>
+        <p>
+          Marcos prácticos, notas de casos operativos y análisis de mercado — enviados únicamente cuando se publica un nuevo artículo. Los boletines se envían en inglés, mientras que cada artículo completo también está disponible en el sitio en español, francés, italiano, portugués y rumano.
+        </p>
+      </div>
+
+      <div class="ml-embed-wrap">
+        <div class="ml-embedded" data-form="3IyZ20"></div>
+      </div>
+
+      <p class="newsletter-note">
+        Se requiere confirmación mediante doble opt-in. Puedes darte de baja con un clic en cualquier momento. Lee nuestra <a href="../../privacy.html">Política de Privacidad</a>.
+      </p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <a href="../../index.html" class="footer-brand">
+        <img src="../../mariusmarAI_Logo.jpg" alt="mariusmarAI" class="footer-logo" />
+        <span style="font-family: 'Playfair Display', Georgia, serif; font-weight: 700; font-size: 1rem;">mariusmar<span style="color: var(--accent);">AI</span></span>
+      </a>
+      <div class="footer-links">
+        <a href="https://www.linkedin.com/in/marius-marai" target="_blank" rel="noopener noreferrer">mariusmarAI en LinkedIn ↗</a>
+        <a href="https://www.linkedin.com/newsletters/humans-of-linked-in-holi-7161329778250162176/" target="_blank" rel="noopener noreferrer">Humans of Linked In (HoLI) ↗</a>
+        <a href="https://www.linkedin.com/groups/40607397/" target="_blank" rel="noopener noreferrer">HoLI Networking ↗</a>
+        <a href="https://www.linkedin.com/groups/14608931/" target="_blank" rel="noopener noreferrer">HoLI Jobs ↗</a>
+        <a href="https://www.linkedin.com/groups/16185013/" target="_blank" rel="noopener noreferrer">HoLI Candidates ↗</a>
+      </div>
+      <div class="footer-share" aria-label="Compartir esta página">
+        <span class="footer-share-label">Compartir página:</span>
+        <a class="share-btn" id="share-linkedin" target="_blank" rel="noopener noreferrer" title="LinkedIn" aria-label="Compartir en LinkedIn">
+          <svg viewBox="0 0 24 24" width="18" height="18">
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+            <rect x="2" y="9" width="4" height="12"/>
+            <circle cx="4" cy="4" r="2"/>
+          </svg>
+        </a>
+        <a class="share-btn" id="share-whatsapp" target="_blank" rel="noopener noreferrer" title="WhatsApp" aria-label="Compartir en WhatsApp">
+          <svg viewBox="0 0 24 24" width="18" height="18">
+            <path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21"/>
+            <path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1"/>
+          </svg>
+        </a>
+        <a class="share-btn" id="share-email" title="Correo electrónico" aria-label="Compartir por correo electrónico">
+          <svg viewBox="0 0 24 24" width="18" height="18">
+            <rect x="2" y="4" width="20" height="16" rx="2"/>
+            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+          </svg>
+        </a>
+        <button type="button" class="share-btn" id="share-copy" title="Copiar enlace" aria-label="Copiar enlace de la página">
+          <svg id="icon-copy" viewBox="0 0 24 24" width="18" height="18">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+          <svg id="icon-check" viewBox="0 0 24 24" width="18" height="18" style="display: none; color: var(--accent);">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        </button>
+      </div>
+      <p class="footer-copy">© mariusmarAI. Operaciones Globales, Liderazgo Comercial y Transformación impulsada por IA.</p>
+      <p class="footer-copy footer-legal-line">
+        <a href="../../terms.html">Términos y Condiciones</a>
+        <span> · </span>
+        <a href="../../privacy.html">Política de Privacidad</a>
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    try { localStorage.setItem('mariusmarai_lang', 'es'); } catch (e) {}
+
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        try { localStorage.setItem('mariusmarai_lang', btn.dataset.lang); } catch (e) {}
+      });
+    });
+
+    const hamburgerBtn = document.getElementById('hamburger-btn');
+    const navDrawer = document.getElementById('nav-drawer');
+    hamburgerBtn.addEventListener('click', () => {
+      const isOpen = navDrawer.classList.toggle('open');
+      hamburgerBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      hamburgerBtn.textContent = isOpen ? '✕' : '☰';
+    });
+
+    (function () {
+      const pageUrl = window.location.href;
+      const encodedUrl = encodeURIComponent(pageUrl);
+      const encodedTitle = encodeURIComponent(document.title);
+
+      const li = document.getElementById('share-linkedin');
+      const wa = document.getElementById('share-whatsapp');
+      const em = document.getElementById('share-email');
+      const cp = document.getElementById('share-copy');
+
+      if (li) li.href = `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`;
+      if (wa) wa.href = `https://api.whatsapp.com/send?text=${encodedTitle}%20-%20${encodedUrl}`;
+      if (em) em.href = `mailto:?subject=${encodedTitle}&body=${encodedTitle}%0A${encodedUrl}`;
+
+      if (cp) {
+        cp.addEventListener('click', function () {
+          navigator.clipboard.writeText(pageUrl).then(function () {
+            const copyIcon = document.getElementById('icon-copy');
+            const checkIcon = document.getElementById('icon-check');
+            if (!copyIcon || !checkIcon) return;
+            copyIcon.style.display = 'none';
+            checkIcon.style.display = 'block';
+            setTimeout(function () {
+              checkIcon.style.display = 'none';
+              copyIcon.style.display = 'block';
+            }, 2000);
+          });
+        });
+      }
+    })();
+  </script>
+  <script src="../../cookie-consent.js"></script>
+</body>
+</html>

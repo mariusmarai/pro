@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Main Pages -->
   <url>
     <loc>https://mariusmarai.com/</loc>
     <lastmod>2026-11-22</lastmod>
@@ -25,6 +26,8 @@
     <lastmod>2026-11-22</lastmod>
     <priority>0.8</priority>
   </url>
+
+  <!-- Blog Index Pages -->
   <url>
     <loc>https://mariusmarai.com/blog/en/</loc>
     <lastmod>2026-11-22</lastmod>
@@ -55,6 +58,136 @@
     <lastmod>2026-11-22</lastmod>
     <priority>0.8</priority>
   </url>
+
+  <!-- Article 1: Hybrid Operational Architecture -->
+  <url>
+    <loc>https://mariusmarai.com/blog/en/hybrid-operational-architecture.html</loc>
+    <lastmod>2026-11-23</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://mariusmarai.com/blog/es/hybrid-operational-architecture.html</loc>
+    <lastmod>2026-11-23</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://mariusmarai.com/blog/fr/hybrid-operational-architecture.html</loc>
+    <lastmod>2026-11-23</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://mariusmarai.com/blog/it/hybrid-operational-architecture.html</loc>
+    <lastmod>2026-11-23</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://mariusmarai.com/blog/pt/hybrid-operational-architecture.html</loc>
+    <lastmod>2026-11-23</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://mariusmarai.com/blog/ro/hybrid-operational-architecture.html</loc>
+    <lastmod>2026-11-23</lastmod>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Article 2: Margin Discipline Across Borders -->
+  <url>
+    <loc>https://mariusmarai.com/blog/en/margin-discipline-across-borders.html</loc>
+    <lastmod>2026-11-23</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://mariusmarai.com/blog/es/margin-discipline-across-borders.html</loc>
+    <lastmod>2026-11-23</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://mariusmarai.com/blog/fr/margin-discipline-across-borders.html</loc>
+    <lastmod>2026-11-23</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://mariusmarai.com/blog/it/margin-discipline-across-borders.html</loc>
+    <lastmod>2026-11-23</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://mariusmarai.com/blog/pt/margin-discipline-across-borders.html</loc>
+    <lastmod>2026-11-23</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://mariusmarai.com/blog/ro/margin-discipline-across-borders.html</loc>
+    <lastmod>2026-11-23</lastmod>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Article 3: Executive Positioning in Distributed Organizations -->
+  <url>
+    <loc>https://mariusmarai.com/blog/en/executive-positioning-distributed-organizations.html</loc>
+    <lastmod>2026-11-23</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://mariusmarai.com/blog/es/executive-positioning-distributed-organizations.html</loc>
+    <lastmod>2026-11-23</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://mariusmarai.com/blog/fr/executive-positioning-distributed-organizations.html</loc>
+    <lastmod>2026-11-23</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://mariusmarai.com/blog/it/executive-positioning-distributed-organizations.html</loc>
+    <lastmod>2026-11-23</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://mariusmarai.com/blog/pt/executive-positioning-distributed-organizations.html</loc>
+    <lastmod>2026-11-23</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://mariusmarai.com/blog/ro/executive-positioning-distributed-organizations.html</loc>
+    <lastmod>2026-11-23</lastmod>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Article 4: Industrial AI Compute & Energy Bottlenecks -->
+  <url>
+    <loc>https://mariusmarai.com/blog/en/industrial-ai-compute-energy-bottlenecks.html</loc>
+    <lastmod>2026-11-23</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://mariusmarai.com/blog/es/industrial-ai-compute-energy-bottlenecks.html</loc>
+    <lastmod>2026-11-23</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://mariusmarai.com/blog/fr/industrial-ai-compute-energy-bottlenecks.html</loc>
+    <lastmod>2026-11-23</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://mariusmarai.com/blog/it/industrial-ai-compute-energy-bottlenecks.html</loc>
+    <lastmod>2026-11-23</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://mariusmarai.com/blog/pt/industrial-ai-compute-energy-bottlenecks.html</loc>
+    <lastmod>2026-11-23</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://mariusmarai.com/blog/ro/industrial-ai-compute-energy-bottlenecks.html</loc>
+    <lastmod>2026-11-23</lastmod>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Legal Pages -->
   <url>
     <loc>https://mariusmarai.com/terms.html</loc>
     <lastmod>2026-11-22</lastmod>

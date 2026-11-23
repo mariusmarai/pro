@@ -30,9 +30,10 @@
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    html, body { max-width: 100%; overflow-x: clip; }
+    html { scroll-behavior: smooth; width: 100%; }
     body {
+      width: 100%;
+      overflow-x: hidden;
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       background-color: var(--bg-primary);
       color: var(--text-primary);
@@ -52,6 +53,7 @@
       width: 100%;
     }
     .header-inner {
+      width: 100%;
       max-width: 1060px;
       margin: 0 auto;
       padding: 0.65rem 1.25rem;
@@ -184,9 +186,11 @@
 
     /* Article Layout */
     .article-container {
+      display: block;
       width: 100%;
       max-width: 820px;
-      margin: 0 auto;
+      margin-left: auto;
+      margin-right: auto;
       padding: 2.5rem 1.25rem 4.5rem;
       overflow-wrap: break-word;
       word-wrap: break-word;
@@ -208,6 +212,7 @@
     }
 
     .article-header {
+      width: 100%;
       margin-bottom: 2rem;
       padding-bottom: 1.75rem;
       border-bottom: 1px solid var(--border);
@@ -247,6 +252,7 @@
 
     /* Executive Summary Box */
     .exec-summary {
+      width: 100%;
       background: var(--bg-secondary);
       border-left: 3.5px solid var(--accent);
       border-top: 1px solid var(--border);
@@ -273,6 +279,7 @@
 
     /* Editorial Typography */
     .article-body {
+      width: 100%;
       min-width: 0;
     }
     .article-body p {
@@ -315,6 +322,7 @@
     }
 
     .layer-card {
+      width: 100%;
       background: var(--bg-secondary);
       border: 1px solid var(--border);
       border-radius: 12px;
@@ -331,6 +339,7 @@
     }
 
     .closing-callout {
+      width: 100%;
       background: var(--bg-secondary);
       border: 1px solid var(--border-strong);
       border-radius: 14px;
@@ -354,10 +363,12 @@
 
     /* Newsletter Subscription Block */
     .newsletter-section {
+      width: 100%;
       background: var(--bg-secondary);
       border: 1px solid var(--border-strong);
       border-radius: 16px;
       padding: 2.15rem 1.85rem;
+      overflow: hidden;
     }
     .newsletter-header {
       max-width: 720px;
@@ -390,12 +401,17 @@
       margin: 0.5rem auto 0;
       display: flex;
       justify-content: center;
+      overflow: hidden;
     }
     .ml-embed-wrap .ml-embedded,
+    .ml-embed-wrap .ml-form-embedContainer,
+    .ml-embed-wrap .ml-form-align-center,
     .ml-embed-wrap .ml-form-embedWrapper {
-      width: 100%;
+      width: 100% !important;
+      max-width: 100% !important;
       margin-left: auto !important;
       margin-right: auto !important;
+      box-sizing: border-box !important;
     }
     .newsletter-note {
       margin-top: 2rem;
@@ -410,12 +426,13 @@
 
     /* Footer */
     .site-footer {
+      width: 100%;
       border-top: 1px solid var(--border);
       background: var(--bg-secondary);
       padding: 2.35rem 1.25rem;
       text-align: center;
     }
-    .footer-inner { max-width: 960px; margin: 0 auto; }
+    .footer-inner { width: 100%; max-width: 960px; margin: 0 auto; }
     .footer-brand {
       display: inline-flex;
       align-items: center;

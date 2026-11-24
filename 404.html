@@ -7,7 +7,6 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/favicon.png" />
   <title>404 — Page Not Found | mariusmarAI</title>
   <meta name="robots" content="noindex" />
-  <link rel="icon" type="image/jpeg" href="/mariusmarAI_Logo.jpg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
@@ -336,17 +335,17 @@
 
   <main class="container">
     <section class="not-found-card">
-      <div class="code-badge" data-i18n="nf_badge">Error 404 · Route Not Found</div>
-      <h1 data-i18n="nf_title">This route does not exist on mariusmarAI.</h1>
+      <div class="code-badge" data-i18n="nf_badge">Error 404 · Page Not Found</div>
+      <h1 data-i18n="nf_title">This page does not exist on mariusmarAI.</h1>
       <p class="lead" data-i18n="nf_desc">
         The address you requested was moved, mistyped, or does not exist. Use the button below or the navigation menu to continue.
       </p>
       <div class="requested-path-box">
         <span data-i18n="nf_path_label">Requested path:</span>
-        <code id="requested-path">/</code>
+        <code id="requested-path" data-i18n="nf_path_unknown">Unknown</code>
       </div>
       <div class="actions-row">
-        <a href="/index.html" class="btn-primary" id="nf-back-btn" data-i18n="nf_cta_home">← Back to Home</a>
+        <a href="/index.html" class="btn-primary" id="nf-back-btn" data-i18n="nf_cta_home">← Back to mariusmarAI</a>
       </div>
     </section>
   </main>
@@ -380,22 +379,24 @@
         "ft_profile": "mariusmarAI on LinkedIn ↗", "ft_news": "Humans of Linked In (HoLI) ↗", "ft_net": "HoLI Networking ↗", "ft_jobs": "HoLI Jobs ↗", "ft_cand": "HoLI Candidates ↗",
         "ft_copy": "© mariusmarAI. Global Operations, Commercial Leadership & AI-Driven Transformation.",
         "ft_terms": "Terms and Conditions", "ft_privacy": "Privacy Policy",
-        "nf_badge": "Error 404 · Route Not Found",
-        "nf_title": "This route does not exist on mariusmarAI.",
+        "nf_badge": "Error 404 · Page Not Found",
+        "nf_title": "This page does not exist on mariusmarAI.",
         "nf_desc": "The address you requested was moved, mistyped, or does not exist. Use the button below or the navigation menu to continue.",
         "nf_path_label": "Requested path:",
-        "nf_cta_home": "← Back to Home"
+        "nf_path_unknown": "Unknown",
+        "nf_cta_home": "← Back to mariusmarAI"
       },
       "es": {
         "nav_home": "Inicio", "nav_cv": "CV", "nav_projects": "Proyectos", "nav_play": "Interactive Play", "nav_blog": "Blog", "nav_contact": "Contacto",
         "ft_profile": "mariusmarAI en LinkedIn ↗", "ft_news": "Humans of Linked In (HoLI) ↗", "ft_net": "HoLI Networking ↗", "ft_jobs": "HoLI Jobs ↗", "ft_cand": "HoLI Candidates ↗",
         "ft_copy": "© mariusmarAI. Operaciones Globales, Liderazgo Comercial y Transformación impulsada por IA.",
         "ft_terms": "Términos y Condiciones", "ft_privacy": "Política de Privacidad",
-        "nf_badge": "Error 404 · Ruta no encontrada",
-        "nf_title": "Esta ruta no existe en mariusmarAI.",
+        "nf_badge": "Error 404 · Página no encontrada",
+        "nf_title": "Esta página no existe en mariusmarAI.",
         "nf_desc": "La dirección solicitada se movió, se escribió mal o no existe. Usa el botón de abajo o el menú de navegación para continuar.",
         "nf_path_label": "Ruta solicitada:",
-        "nf_cta_home": "← Volver al Inicio"
+        "nf_path_unknown": "Desconocida",
+        "nf_cta_home": "← Volver a mariusmarAI"
       },
       "fr": {
         "nav_home": "Accueil", "nav_cv": "CV", "nav_projects": "Projets", "nav_play": "Interactive Play", "nav_blog": "Blog", "nav_contact": "Contact",
@@ -403,10 +404,11 @@
         "ft_copy": "© mariusmarAI. Opérations Globales, Leadership Commercial & Transformation par l'IA.",
         "ft_terms": "Conditions Générales", "ft_privacy": "Politique de Confidentialité",
         "nf_badge": "Erreur 404 · Page introuvable",
-        "nf_title": "Cette adresse n'existe pas sur mariusmarAI.",
-        "nf_desc": "Le chemin demandé a été déplacé, mal saisi ou n'existe pas. Utilisez le bouton ci-dessous ou le menu de navigation pour continuer.",
+        "nf_title": "Cette page n'existe pas sur mariusmarAI.",
+        "nf_desc": "L'adresse demandée a été déplacée, mal saisie ou n'existe pas. Utilisez le bouton ci-dessous ou le menu de navigation pour continuer.",
         "nf_path_label": "Chemin demandé :",
-        "nf_cta_home": "← Retour à l'Accueil"
+        "nf_path_unknown": "Inconnu",
+        "nf_cta_home": "← Retour sur mariusmarAI"
       },
       "it": {
         "nav_home": "Home", "nav_cv": "CV", "nav_projects": "Progetti", "nav_play": "Interactive Play", "nav_blog": "Blog", "nav_contact": "Contatti",
@@ -414,10 +416,11 @@
         "ft_copy": "© mariusmarAI. Operazioni Globali, Leadership Commerciale e Trasformazione guidata dall'IA.",
         "ft_terms": "Termini e Condizioni", "ft_privacy": "Informativa sulla Privacy",
         "nf_badge": "Errore 404 · Pagina non trovata",
-        "nf_title": "Questo percorso non esiste su mariusmarAI.",
+        "nf_title": "Questa pagina non esiste su mariusmarAI.",
         "nf_desc": "L'indirizzo richiesto è stato spostato, digitato in modo errato o non esiste. Usa il pulsante qui sotto o il menu di navigazione per continuare.",
         "nf_path_label": "Percorso richiesto:",
-        "nf_cta_home": "← Torna alla Home"
+        "nf_path_unknown": "Sconosciuto",
+        "nf_cta_home": "← Torna su mariusmarAI"
       },
       "pt": {
         "nav_home": "Início", "nav_cv": "CV", "nav_projects": "Projetos", "nav_play": "Interactive Play", "nav_blog": "Blog", "nav_contact": "Contacto",
@@ -425,5 +428,96 @@
         "ft_copy": "© mariusmarAI. Operações Globais, Liderança Comercial e Transformação impulsionada por IA.",
         "ft_terms": "Termos e Condições", "ft_privacy": "Política de Privacidade",
         "nf_badge": "Erro 404 · Página não encontrada",
-        "nf_title": "Este endereço não existe em mariusmarAI.",
-        "nf_desc": "O endereço pedido foi movido, digitado incorretamente ou
+        "nf_title": "Esta página não existe em mariusmarAI.",
+        "nf_desc": "O endereço pedido foi movido, digitado incorretamente ou não existe. Utilize o botão abaixo ou o menu de navegação para continuar.",
+        "nf_path_label": "Caminho pedido:",
+        "nf_path_unknown": "Desconhecido",
+        "nf_cta_home": "← Voltar para mariusmarAI"
+      },
+      "ro": {
+        "nav_home": "Acasă", "nav_cv": "CV", "nav_projects": "Proiecte", "nav_play": "Interactive Play", "nav_blog": "Blog", "nav_contact": "Contact",
+        "ft_profile": "mariusmarAI pe LinkedIn ↗", "ft_news": "Humans of Linked In (HoLI) ↗", "ft_net": "HoLI Networking ↗", "ft_jobs": "HoLI Jobs ↗", "ft_cand": "HoLI Candidates ↗",
+        "ft_copy": "© mariusmarAI. Operațiuni Globale, Leadership Comercial și Transformare prin AI.",
+        "ft_terms": "Termeni și Condiții", "ft_privacy": "Politica de Confidențialitate",
+        "nf_badge": "Eroare 404 · Pagină negăsită",
+        "nf_title": "Această pagină nu există pe mariusmarAI.",
+        "nf_desc": "Adresa accesată a fost mutată, tastată greșit sau nu există. Folosește butonul de mai jos sau meniul de navigare pentru a continua.",
+        "nf_path_label": "Cale accesată:",
+        "nf_path_unknown": "Necunoscută",
+        "nf_cta_home": "← Înapoi la mariusmarAI"
+      }
+    };
+
+    document.addEventListener('DOMContentLoaded', function () {
+      const pathEl = document.getElementById('requested-path');
+      const rawPath = (window.location.pathname || '') + (window.location.search || '');
+      const hasKnownPath = Boolean(rawPath && rawPath !== '/' && rawPath !== '/404.html');
+
+      if (pathEl && hasKnownPath) {
+        pathEl.removeAttribute('data-i18n');
+        pathEl.textContent = rawPath;
+      }
+
+      const backBtn = document.getElementById('nf-back-btn');
+      if (backBtn) {
+        try {
+          if (document.referrer) {
+            const refUrl = new URL(document.referrer);
+            if (refUrl.origin === window.location.origin && refUrl.href !== window.location.href) {
+              backBtn.href = refUrl.href;
+              backBtn.addEventListener('click', function (e) {
+                if (window.history.length > 1) {
+                  e.preventDefault();
+                  window.history.back();
+                }
+              });
+            }
+          }
+        } catch (err) {}
+      }
+
+      const hamburgerBtn = document.getElementById('hamburger-btn');
+      const navDrawer = document.getElementById('nav-drawer');
+      if (hamburgerBtn && navDrawer) {
+        hamburgerBtn.addEventListener('click', function () {
+          const isOpen = navDrawer.classList.toggle('open');
+          hamburgerBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+          hamburgerBtn.textContent = isOpen ? '✕' : '☰';
+        });
+      }
+
+      let currentLang = 'en';
+      try {
+        const saved = localStorage.getItem('mariusmarai_lang');
+        if (saved && translations[saved]) currentLang = saved;
+      } catch (e) {}
+
+      function applyLanguage(lang) {
+        currentLang = translations[lang] ? lang : 'en';
+        try { localStorage.setItem('mariusmarai_lang', currentLang); } catch (e) {}
+        document.documentElement.lang = currentLang;
+
+        document.querySelectorAll('.lang-btn').forEach(function (btn) {
+          btn.classList.toggle('active', btn.dataset.lang === currentLang);
+        });
+
+        const dict = translations[currentLang];
+        document.querySelectorAll('[data-i18n]').forEach(function (el) {
+          const key = el.dataset.i18n;
+          if (dict[key] !== undefined) el.textContent = dict[key];
+        });
+
+        const blogLink = document.getElementById('menu-blog-link');
+        if (blogLink) blogLink.href = '/blog/' + currentLang + '/';
+      }
+
+      document.querySelectorAll('.lang-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () { applyLanguage(btn.dataset.lang); });
+      });
+
+      applyLanguage(currentLang);
+    });
+  </script>
+  <script src="/cookie-consent.js"></script>
+</body>
+</html>

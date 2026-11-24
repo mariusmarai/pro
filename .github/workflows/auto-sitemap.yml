@@ -1,0 +1,148 @@
+name: Auto-Update Sitemap & Ping Bing
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '**.html'
+      - '!404.html'
+
+permissions:
+  contents: write
+
+jobs:
+  update-sitemap:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Generate clean sitemap.xml
+        run: |
+          python3 - << 'EOF'
+          import os
+          from datetime import datetime, timezone
+
+          DOMAIN = "https://mariusmarai.com"
+          EXCLUDE_FILES = {"404.html"}
+          EXCLUDE_PREFIXES = ("google", "BingSiteAuth")
+
+          urls = []
+          today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+
+          for root, dirs, files in os.walk("."):
+              # Ignora folderele ascunse (.git, .github etc.)
+              dirs[:] = [d for d in dirs if not d.startswith(".")]
+              for file in files:
+                  if not file.endswith(".html"):
+                      continue
+                  if file in EXCLUDE_FILES or file.startswith(EXCLUDE_PREFIXES):
+                      continue
+
+                  rel_path = os.path.relpath(os.path.join(root, file), ".").replace("\\", "/")
+
+                  if rel_path == "index.html":
+                      loc = f"{DOMAIN}/"
+                      priority = "1.0"
+                  elif rel_path.endswith("/index.html"):
+                      folder = rel_path[:-len("index.html")]
+                      loc = f"{DOMAIN}/{folder}"
+                      priority = "0.8"
+                  else:
+                      loc = f"{DOMAIN}/{rel_path}"
+                      if rel_path in {"cv.html", "projects.html"}:
+                          priority = "0.9"
+                      elif rel_path in {"contact.html"}:
+                          priority = "0.8"
+                      elif rel_path in {"terms.html", "privacy.html"}:
+                          priority = "0.4"
+                      else:
+                          priority = "0.7"
+
+                  urls.append((loc, today, priority))
+
+          urls.sort(key=lambda x: (-float(x[2]), x[0]))
+
+          lines = [
+              '<?xml version="1.0" encoding="UTF-8"?>',
+              '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
+          ]
+          for loc, lastmod, priority in urls:
+              lines.extend([
+                  "  <url>",
+                  f"    <loc>{loc}</loc>",
+                  f"    <lastmod>{lastmod}</lastmod>",
+                  f"    <priority>{priority}</priority>",
+                  "  </url>"
+              ])
+          lines.append("</urlset>")
+
+          with open("sitemap.xml", "w", encoding="utf-8", newline="\n") as f:
+              f.write("\n".join(lines) + "\n")
+
+          print(f"Generated sitemap.xml with {len(urls)} URLs.")
+          EOF
+
+      - name: Commit and push sitemap.xml if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add sitemap.xml
+          if ! git diff --cached --quiet; then
+            git commit -m "chore: auto-update sitemap.xml"
+            git push
+          else
+            echo "No changes to sitemap.xml"
+          fi
+
+      - name: Notify Bing via IndexNow (if key file exists)
+        run: |
+          KEY_FILE=$(ls -1 *.txt 2>/dev/null | grep -E '^[a-f0-9]{32}\.txt$' | head -n 1 || true)
+          if [ -z "$KEY_FILE" ]; then
+            echo "IndexNow key file not found in root; skipping Bing ping."
+            exit 0
+          fi
+
+          KEY="${KEY_FILE%.txt}"
+          CHANGED_HTML=$(git diff --name-only HEAD~1 HEAD -- '*.html' | grep -v '^404.html$' || true)
+          if [ -z "$CHANGED_HTML" ]; then
+            echo "No changed HTML files to ping."
+            exit 0
+          fi
+
+          python3 - << EOF
+          import json, urllib.request
+
+          key = "${KEY}"
+          files = """${CHANGED_HTML}""".strip().splitlines()
+          url_list = []
+          for f in files:
+              if f == "index.html":
+                  url_list.append("https://mariusmarai.com/")
+              elif f.endswith("/index.html"):
+                  url_list.append("https://mariusmarai.com/" + f[:-len("index.html")])
+              else:
+                  url_list.append("https://mariusmarai.com/" + f)
+
+          payload = json.dumps({
+              "host": "mariusmarai.com",
+              "key": key,
+              "keyLocation": f"https://mariusmarai.com/{key}.txt",
+              "urlList": url_list
+          }).encode("utf-8")
+
+          req = urllib.request.Request(
+              "https://api.indexnow.org/indexnow",
+              data=payload,
+              headers={"Content-Type": "application/json; charset=utf-8"},
+              method="POST"
+          )
+          try:
+              with urllib.request.urlopen(req, timeout=15) as resp:
+                  print("IndexNow response:", resp.status)
+          except Exception as e:
+              print("IndexNow ping warning (non-blocking):", e)
+          EOF

@@ -3,13 +3,34 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.png">
   <title>Contact | mariusmarAI</title>
-  <link rel="icon" type="image/jpeg" href="mariusmarAI_Logo.jpg" />
+  <meta name="description" content="Connect with Marius Marai on LinkedIn and join Humans of Linked In (HoLI) for executive leadership mandates, operational & commercial advisory, networking, and career opportunities." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://mariusmarai.com/contact.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://mariusmarai.com/contact.html" />
+  <meta property="og:title" content="Contact | mariusmarAI" />
+  <meta property="og:description" content="Start a direct conversation with Marius Marai on LinkedIn or join the Humans of Linked In (HoLI) ecosystem." />
+  <meta property="og:site_name" content="mariusmarAI" />
+  <meta property="og:image" content="https://mariusmarai.com/mariusmarAI_Logo.jpg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ContactPage",
+      "url": "https://mariusmarai.com/contact.html",
+      "name": "Contact | mariusmarAI",
+      "about": {
+        "@type": "Person",
+        "name": "Marius Marai",
+        "url": "https://mariusmarai.com/"
+      }
+    }
+  </script>
   <style>
     :root {
       --bg-primary: #0B1220;
@@ -227,8 +248,6 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      text-decoration: none;
-      color: inherit;
       transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
     }
     .card-tag {
@@ -373,8 +392,8 @@
   <header class="site-header">
     <div class="header-inner">
       <div class="header-top">
-        <a href="index.html" class="brand-link">
-          <img src="mariusmarAI_Logo.jpg" alt="mariusmarAI Logo" class="brand-logo" />
+        <a href="/" class="brand-link">
+          <img src="mariusmarAI_Logo.jpg" alt="mariusmarAI Logo" class="brand-logo" loading="eager" decoding="async" />
           <span class="brand-title">mariusmar<span>AI</span></span>
         </a>
         <button type="button" class="hamburger-btn" id="hamburger-btn" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-drawer">☰</button>
@@ -390,11 +409,11 @@
         </div>
       </div>
       <nav class="nav-drawer" id="nav-drawer" aria-label="Main navigation">
-        <a href="index.html" class="nav-link" data-i18n="nav_home">Home</a>
+        <a href="/" class="nav-link" data-i18n="nav_home">Home</a>
         <a href="cv.html" class="nav-link" data-i18n="nav_cv">CV</a>
         <a href="projects.html" class="nav-link" data-i18n="nav_projects">Projects</a>
         <a href="interactive-play.html" class="nav-link" data-i18n="nav_play">Interactive Play</a>
-        <a href="blog/en/" class="nav-link" id="menu-blog-link" data-i18n="nav_blog">Blog</a>
+        <a href="/blog/en/" class="nav-link" id="menu-blog-link" data-i18n="nav_blog">Blog</a>
         <a href="contact.html" class="nav-link active" data-i18n="nav_contact">Contact</a>
       </nav>
     </div>
@@ -447,8 +466,8 @@
 
   <footer class="site-footer">
     <div class="footer-inner">
-      <a href="index.html" class="footer-brand">
-        <img src="mariusmarAI_Logo.jpg" alt="mariusmarAI" class="footer-logo" />
+      <a href="/" class="footer-brand">
+        <img src="mariusmarAI_Logo.jpg" alt="mariusmarAI" class="footer-logo" loading="lazy" decoding="async" />
         <span style="font-family: 'Playfair Display', Georgia, serif; font-weight: 700; font-size: 1rem;">mariusmar<span style="color: var(--accent);">AI</span></span>
       </a>
       <div class="footer-links">
@@ -616,11 +635,13 @@
 
     const hamburgerBtn = document.getElementById('hamburger-btn');
     const navDrawer = document.getElementById('nav-drawer');
-    hamburgerBtn.addEventListener('click', () => {
-      const isOpen = navDrawer.classList.toggle('open');
-      hamburgerBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-      hamburgerBtn.textContent = isOpen ? '✕' : '☰';
-    });
+    if (hamburgerBtn && navDrawer) {
+      hamburgerBtn.addEventListener('click', () => {
+        const isOpen = navDrawer.classList.toggle('open');
+        hamburgerBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        hamburgerBtn.textContent = isOpen ? '✕' : '☰';
+      });
+    }
 
     function applyLanguage(lang) {
       currentLang = lang;
@@ -644,10 +665,7 @@
       });
       const menuBlogLink = document.getElementById('menu-blog-link');
       if (menuBlogLink) {
-        menuBlogLink.href = `blog/${lang}/`;
-      }
-      if (typeof onLanguageApplied === 'function') {
-        onLanguageApplied(lang, dict);
+        menuBlogLink.href = `/blog/${lang}/`;
       }
     }
 
@@ -669,7 +687,7 @@
       if (wa) wa.href = `https://api.whatsapp.com/send?text=${encodedTitle}%20-%20${encodedUrl}`;
       if (em) em.href = `mailto:?subject=${encodedTitle}&body=${encodedTitle}%0A${encodedUrl}`;
 
-      if (cp) {
+      if (cp && navigator.clipboard) {
         cp.addEventListener('click', function () {
           navigator.clipboard.writeText(pageUrl).then(function () {
             const copyIcon = document.getElementById('icon-copy');
@@ -681,13 +699,13 @@
               checkIcon.style.display = 'none';
               copyIcon.style.display = 'block';
             }, 2000);
-          });
+          }).catch(function () {});
         });
       }
     })();
 
     applyLanguage(currentLang);
   </script>
-  <script src="cookie-consent.js"></script>
+  <script src="cookie-consent.js" defer></script>
 </body>
 </html>

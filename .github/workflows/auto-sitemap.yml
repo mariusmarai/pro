@@ -18,12 +18,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 2
+          fetch-depth: 0
 
       - name: Generate clean sitemap.xml
         run: |
           python3 - << 'EOF'
           import os
+          import subprocess
           from datetime import datetime, timezone
 
           DOMAIN = "https://mariusmarai.com"
@@ -31,10 +32,22 @@ jobs:
           EXCLUDE_PREFIXES = ("google", "BingSiteAuth")
 
           urls = []
-          today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+          fallback_today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+
+          def get_last_commit_date(filepath):
+              try:
+                  res = subprocess.run(
+                      ["git", "log", "-1", "--format=%cs", "--", filepath],
+                      capture_output=True,
+                      text=True,
+                      check=True
+                  )
+                  date_str = res.stdout.strip()
+                  return date_str if date_str else fallback_today
+              except Exception:
+                  return fallback_today
 
           for root, dirs, files in os.walk("."):
-              # Ignora folderele ascunse (.git, .github etc.)
               dirs[:] = [d for d in dirs if not d.startswith(".")]
               for file in files:
                   if not file.endswith(".html"):
@@ -43,6 +56,7 @@ jobs:
                       continue
 
                   rel_path = os.path.relpath(os.path.join(root, file), ".").replace("\\", "/")
+                  lastmod = get_last_commit_date(rel_path)
 
                   if rel_path == "index.html":
                       loc = f"{DOMAIN}/"
@@ -62,7 +76,7 @@ jobs:
                       else:
                           priority = "0.7"
 
-                  urls.append((loc, today, priority))
+                  urls.append((loc, lastmod, priority))
 
           urls.sort(key=lambda x: (-float(x[2]), x[0]))
 
@@ -113,12 +127,13 @@ jobs:
             exit 0
           fi
 
-          python3 - << EOF
-          import json, urllib.request
+          INDEXNOW_KEY="$KEY" CHANGED_FILES="$CHANGED_HTML" python3 - << 'EOF'
+          import json, os, urllib.request
 
-          key = "${KEY}"
-          files = """${CHANGED_HTML}""".strip().splitlines()
+          key = os.environ["INDEXNOW_KEY"]
+          files = os.environ["CHANGED_FILES"].strip().splitlines()
           url_list = []
+
           for f in files:
               if f == "index.html":
                   url_list.append("https://mariusmarai.com/")

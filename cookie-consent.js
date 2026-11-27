@@ -1,4 +1,7 @@
 (function () {
+    const MAILERLITE_ACCOUNT_ID = '2815590';
+    const MAILERLITE_SCRIPT_URL = 'https://assets.mailerlite.com/js/universal.js';
+
     const translations = {
         en: {
             text: "This site uses essential local storage for language preferences and security, plus privacy-friendly, cookieless analytics.",
@@ -38,6 +41,29 @@
         }
     };
 
+    let mailerLiteLoaded = false;
+
+    function loadMailerLite() {
+        if (mailerLiteLoaded || typeof window.ml === 'function') {
+            mailerLiteLoaded = true;
+            return;
+        }
+        mailerLiteLoaded = true;
+
+        (function (w, d, e, u, f, l, n) {
+            w[f] = w[f] || function () {
+                (w[f].q = w[f].q || []).push(arguments);
+            };
+            l = d.createElement(e);
+            l.async = 1;
+            l.src = u;
+            n = d.getElementsByTagName(e)[0];
+            n.parentNode.insertBefore(l, n);
+        })(window, document, 'script', MAILERLITE_SCRIPT_URL, 'ml');
+
+        window.ml('account', MAILERLITE_ACCOUNT_ID);
+    }
+
     function getPrivacyHref() {
         const path = window.location.pathname;
         return path.includes('/blog/') ? '../../privacy.html' : 'privacy.html';
@@ -72,6 +98,11 @@
             localStorage.setItem('cookieConsent', choice);
             localStorage.setItem('cookieConsentDate', new Date().toISOString());
         } catch (e) {}
+
+        if (choice === 'all') {
+            loadMailerLite();
+        }
+
         const popup = document.getElementById('cookie-popup');
         if (popup) popup.style.display = 'none';
     }
@@ -81,7 +112,15 @@
         try {
             consent = localStorage.getItem('cookieConsent');
         } catch (e) {}
-        if (consent === 'essential' || consent === 'all' || consent === 'true') return;
+
+        if (consent === 'all') {
+            loadMailerLite();
+            return;
+        }
+
+        if (consent === 'essential' || consent === 'true') {
+            return;
+        }
 
         const popup = document.createElement('div');
         popup.id = 'cookie-popup';

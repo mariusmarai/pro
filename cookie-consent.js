@@ -5,6 +5,8 @@
   const MAILERLITE_ACCOUNT = '2815590';
   const MAILERLITE_SRC = 'https://assets.mailerlite.com/js/universal.js';
 
+  let needsReloadForMailerLite = false;
+
   const i18n = {
     en: {
       bannerTitle: 'Cookie & Privacy Preferences',
@@ -290,6 +292,9 @@
   }
 
   function disableMailerLite() {
+    if (window.__mmMailerLiteLoaded) {
+      needsReloadForMailerLite = true;
+    }
     document.querySelectorAll('script[src*="mailerlite.com"]').forEach(s => s.remove());
     document.querySelectorAll('.ml-form-embedWrapper, .ml-subscribe-form, iframe[src*="mailerlite"]').forEach(el => el.remove());
     window.__mmMailerLiteLoaded = false;
@@ -410,6 +415,10 @@
     if (banner) banner.classList.remove('visible');
 
     if (choice === 'all') {
+      if (needsReloadForMailerLite) {
+        window.location.reload();
+        return;
+      }
       loadMailerLite();
     } else {
       disableMailerLite();

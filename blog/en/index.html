@@ -7,6 +7,13 @@
   <meta name="description" content="Field-tested frameworks on AI and deterministic automation, global operations, commercial strategy, geopolitical shifts, and modern career architecture." />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://mariusmarai.com/blog/en/" />
+  <link rel="alternate" hreflang="en" href="https://mariusmarai.com/blog/en/" />
+  <link rel="alternate" hreflang="es" href="https://mariusmarai.com/blog/es/" />
+  <link rel="alternate" hreflang="fr" href="https://mariusmarai.com/blog/fr/" />
+  <link rel="alternate" hreflang="it" href="https://mariusmarai.com/blog/it/" />
+  <link rel="alternate" hreflang="pt" href="https://mariusmarai.com/blog/pt/" />
+  <link rel="alternate" hreflang="ro" href="https://mariusmarai.com/blog/ro/" />
+  <link rel="alternate" hreflang="x-default" href="https://mariusmarai.com/blog/en/" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://mariusmarai.com/blog/en/" />
   <meta property="og:title" content="mariusmarAI Blog | Executive Perspectives &amp; Applied Insights" />
@@ -570,15 +577,6 @@
   </style>
   <script data-goatcounter="https://mariusmarai.goatcounter.com/count"
           async src="//gc.zgo.at/count.js"></script>
-  <!-- MailerLite Universal -->
-  <script>
-      (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
-      .push(arguments);},l=d.createElement(e),l.async=1,l.src=u,
-      n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})
-      (window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
-      ml('account', '2815590');
-  </script>
-  <!-- End MailerLite Universal -->
 </head>
 <body>
   <header class="site-header">
@@ -620,12 +618,12 @@
       </p>
     </section>
 
-    <div class="filter-bar" role="tablist" aria-label="Filter articles by topic">
-      <button type="button" class="filter-btn active" data-filter="all">All Articles</button>
-      <button type="button" class="filter-btn" data-filter="ai-automation-ops">AI, Automation &amp; Ops</button>
-      <button type="button" class="filter-btn" data-filter="business-geo-fintech">Business, Geo &amp; FinTech</button>
-      <button type="button" class="filter-btn" data-filter="career-remote-hybridskills">Career, Remote &amp; Hybrid Skills</button>
-      <button type="button" class="filter-btn" data-filter="market-trends-pulse">Market Trends &amp; Pulse</button>
+    <div class="filter-bar" role="group" aria-label="Filter articles by topic">
+      <button type="button" class="filter-btn active" data-filter="all" aria-pressed="true">All Articles</button>
+      <button type="button" class="filter-btn" data-filter="ai-automation-ops" aria-pressed="false">AI, Automation &amp; Ops</button>
+      <button type="button" class="filter-btn" data-filter="business-geo-fintech" aria-pressed="false">Business, Geo &amp; FinTech</button>
+      <button type="button" class="filter-btn" data-filter="career-remote-hybridskills" aria-pressed="false">Career, Remote &amp; Hybrid Skills</button>
+      <button type="button" class="filter-btn" data-filter="market-trends-pulse" aria-pressed="false">Market Trends &amp; Pulse</button>
     </div>
 
     <article class="featured-card" data-topic="ai-automation-ops">
@@ -794,7 +792,11 @@
     filterBtns.forEach(btn => {
       btn.addEventListener('click', () => {
         const selected = btn.dataset.filter;
-        filterBtns.forEach(b => b.classList.toggle('active', b === btn));
+        filterBtns.forEach(b => {
+          const isSelected = b === btn;
+          b.classList.toggle('active', isSelected);
+          b.setAttribute('aria-pressed', isSelected ? 'true' : 'false');
+        });
 
         let visibleCount = 0;
         allArticles.forEach(card => {

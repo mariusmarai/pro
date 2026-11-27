@@ -1,30 +1,47 @@
 (function () {
     const translations = {
         en: {
-            text: "This site uses essential cookies to ensure proper functionality.",
-            button: "Got it"
+            text: "This site uses essential local storage for language preferences and security, plus privacy-friendly, cookieless analytics.",
+            linkText: "Privacy Policy",
+            essentialBtn: "Essential only",
+            acceptBtn: "Accept all"
         },
         ro: {
-            text: "Acest site folosește cookie-uri esențiale pentru a asigura funcționarea corectă.",
-            button: "Am înțeles"
+            text: "Acest site folosește stocare locală esențială pentru preferința de limbă și securitate, plus statistici fără cookie-uri.",
+            linkText: "Politica de Confidențialitate",
+            essentialBtn: "Doar esențiale",
+            acceptBtn: "Acceptă tot"
         },
         fr: {
-            text: "Ce site utilise des cookies essentiels pour assurer son bon fonctionnement.",
-            button: "J'ai compris"
+            text: "Ce site utilise un stockage local essentiel pour la langue et la sécurité, ainsi que des statistiques sans cookies.",
+            linkText: "Politique de Confidentialité",
+            essentialBtn: "Essentiels uniquement",
+            acceptBtn: "Tout accepter"
         },
         it: {
-            text: "Questo sito utilizza cookie essenziali per garantire il corretto funzionamento.",
-            button: "Ho capito"
+            text: "Questo sito utilizza archiviazione locale essenziale per lingua e sicurezza, oltre a statistiche senza cookie.",
+            linkText: "Informativa sulla Privacy",
+            essentialBtn: "Solo essenziali",
+            acceptBtn: "Accetta tutto"
         },
         pt: {
-            text: "Este site utiliza cookies essenciais para garantir o funcionamento adequado.",
-            button: "Entendi"
+            text: "Este site utiliza armazenamento local essencial para idioma e segurança, além de estatísticas sem cookies.",
+            linkText: "Política de Privacidade",
+            essentialBtn: "Apenas essenciais",
+            acceptBtn: "Aceitar tudo"
         },
         es: {
-            text: "Este sitio utiliza cookies esenciales para garantizar su correcto funcionamento.",
-            button: "Entendido"
+            text: "Este sitio utiliza almacenamiento local esencial para el idioma y la seguridad, además de estadísticas sin cookies.",
+            linkText: "Política de Privacidad",
+            essentialBtn: "Solo esenciales",
+            acceptBtn: "Aceptar todo"
         }
     };
+
+    function getPrivacyHref() {
+        const path = window.location.pathname;
+        return path.includes('/blog/') ? '../../privacy.html' : 'privacy.html';
+    }
 
     function getActiveLanguage() {
         let savedLang = null;
@@ -38,60 +55,80 @@
 
     function updateCookieText() {
         const textEl = document.getElementById('cookie-popup-text');
-        const btnEl = document.getElementById('cookie-popup-btn');
-        if (!textEl || !btnEl) return;
+        const linkEl = document.getElementById('cookie-privacy-link');
+        const essBtn = document.getElementById('cookie-btn-essential');
+        const accBtn = document.getElementById('cookie-btn-accept');
+        if (!textEl || !linkEl || !essBtn || !accBtn) return;
 
         const lang = getActiveLanguage();
-        textEl.textContent = translations[lang].text;
-        btnEl.textContent = translations[lang].button;
+        textEl.textContent = translations[lang].text + ' ';
+        linkEl.textContent = translations[lang].linkText;
+        essBtn.textContent = translations[lang].essentialBtn;
+        accBtn.textContent = translations[lang].acceptBtn;
+    }
+
+    function saveChoice(choice) {
+        try {
+            localStorage.setItem('cookieConsent', choice);
+            localStorage.setItem('cookieConsentDate', new Date().toISOString());
+        } catch (e) {}
+        const popup = document.getElementById('cookie-popup');
+        if (popup) popup.style.display = 'none';
     }
 
     function initCookieBanner() {
-        let consented = false;
+        let consent = null;
         try {
-            consented = localStorage.getItem('cookieConsent') === 'true';
+            consent = localStorage.getItem('cookieConsent');
         } catch (e) {}
-        if (consented) return;
+        if (consent === 'essential' || consent === 'all' || consent === 'true') return;
 
         const popup = document.createElement('div');
         popup.id = 'cookie-popup';
+        popup.setAttribute('role', 'region');
+        popup.setAttribute('aria-label', 'Cookie and privacy notice');
         popup.style.cssText = [
             'position: fixed',
             'bottom: 20px',
             'left: 20px',
             'right: 20px',
-            'max-width: 450px',
+            'max-width: 520px',
             'background: #0B1220',
             'color: #F8FAFC',
             'padding: 16px 20px',
             'border-radius: 12px',
-            'box-shadow: 0 10px 25px rgba(0,0,0,0.3)',
+            'box-shadow: 0 10px 25px rgba(0,0,0,0.35)',
             "font-family: 'Inter', -apple-system, sans-serif",
-            'font-size: 14px',
+            'font-size: 13.5px',
             'z-index: 9999',
             'display: flex',
-            'align-items: center',
-            'justify-content: space-between',
-            'gap: 15px',
+            'flex-direction: column',
+            'gap: 12px',
             'border: 1px solid rgba(245, 158, 11, 0.42)'
         ].join(';');
 
         popup.innerHTML = `
-            <div id="cookie-popup-text" style="line-height: 1.4;"></div>
-            <button id="cookie-popup-btn" style="background: #F59E0B; color: #0B1220; border: none; padding: 8px 16px; border-radius: 6px; font-weight: 700; cursor: pointer; white-space: nowrap; transition: background 0.2s;"></button>
+            <div style="line-height: 1.5; color: #CBD5E1;">
+                <span id="cookie-popup-text"></span>
+                <a id="cookie-privacy-link" href="${getPrivacyHref()}" style="color: #38BDF8; text-decoration: underline;"></a>.
+            </div>
+            <div style="display: flex; gap: 10px; justify-content: flex-end; flex-wrap: wrap;">
+                <button id="cookie-btn-essential" type="button" style="background: #162238; color: #F8FAFC; border: 1px solid rgba(148, 163, 184, 0.35); padding: 8px 14px; border-radius: 6px; font-weight: 600; font-size: 13px; cursor: pointer;"></button>
+                <button id="cookie-btn-accept" type="button" style="background: #F59E0B; color: #0B1220; border: 1px solid #F59E0B; padding: 8px 14px; border-radius: 6px; font-weight: 700; font-size: 13px; cursor: pointer;"></button>
+            </div>
         `;
 
         document.body.appendChild(popup);
         updateCookieText();
 
-        document.getElementById('cookie-popup-btn').addEventListener('click', function () {
-            try {
-                localStorage.setItem('cookieConsent', 'true');
-            } catch (e) {}
-            popup.style.display = 'none';
+        document.getElementById('cookie-btn-essential').addEventListener('click', function () {
+            saveChoice('essential');
         });
 
-        // Observă automat dacă atributul lang de pe <html> se schimbă când utilizatorul folosește selectorul de limbă
+        document.getElementById('cookie-btn-accept').addEventListener('click', function () {
+            saveChoice('all');
+        });
+
         const observer = new MutationObserver(updateCookieText);
         observer.observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
     }

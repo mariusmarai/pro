@@ -105,6 +105,27 @@
     } catch (e) {}
   }
 
+  function clearNonEssentialCookies() {
+    if (!document.cookie) return;
+    const cookies = document.cookie.split(';');
+    const host = window.location.hostname;
+    const domainParts = host.split('.');
+    const domains = ['', host];
+    if (domainParts.length >= 2) {
+      domains.push('.' + domainParts.slice(-2).join('.'));
+    }
+
+    cookies.forEach(cookie => {
+      const eqPos = cookie.indexOf('=');
+      const name = (eqPos > -1 ? cookie.slice(0, eqPos) : cookie).trim();
+      if (!name) return;
+      domains.forEach(domain => {
+        const domainAttr = domain ? `; domain=${domain}` : '';
+        document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/${domainAttr}`;
+      });
+    });
+  }
+
   function injectStyles() {
     if (document.getElementById('mm-cookie-styles')) return;
     const style = document.createElement('style');
@@ -268,6 +289,18 @@
     document.querySelectorAll('.mm-ml-fallback').forEach(el => el.remove());
   }
 
+  function disableMailerLite() {
+    document.querySelectorAll('script[src*="mailerlite.com"]').forEach(s => s.remove());
+    document.querySelectorAll('.ml-form-embedWrapper, .ml-subscribe-form, iframe[src*="mailerlite"]').forEach(el => el.remove());
+    window.__mmMailerLiteLoaded = false;
+    try {
+      delete window.ml;
+    } catch (e) {
+      window.ml = undefined;
+    }
+    clearNonEssentialCookies();
+  }
+
   function renderMailerLiteFallbacks() {
     if (getConsent() === 'all') {
       clearMailerLiteFallbacks();
@@ -275,18 +308,14 @@
     }
     const dict = i18n[getLang()];
     document.querySelectorAll('.ml-embedded').forEach(container => {
-      let box = container.querySelector('.mm-ml-fallback');
-      if (!box) {
-        box = document.createElement('div');
-        box.className = 'mm-ml-fallback';
-        container.appendChild(box);
-      }
-      box.innerHTML = `
-        <div class="mm-ml-fallback-title">${dict.mlTitle}</div>
-        <p class="mm-ml-fallback-desc">${dict.mlDesc}</p>
-        <button type="button" class="mm-ml-fallback-btn">${dict.mlBtn}</button>
+      container.innerHTML = `
+        <div class="mm-ml-fallback">
+          <div class="mm-ml-fallback-title">${dict.mlTitle}</div>
+          <p class="mm-ml-fallback-desc">${dict.mlDesc}</p>
+          <button type="button" class="mm-ml-fallback-btn">${dict.mlBtn}</button>
+        </div>
       `;
-      const btn = box.querySelector('.mm-ml-fallback-btn');
+      const btn = container.querySelector('.mm-ml-fallback-btn');
       if (btn) {
         btn.addEventListener('click', () => {
           applyConsentDecision('all');
@@ -383,6 +412,7 @@
     if (choice === 'all') {
       loadMailerLite();
     } else {
+      disableMailerLite();
       renderMailerLiteFallbacks();
     }
   }
@@ -400,6 +430,7 @@
       loadMailerLite();
       renderBanner(false);
     } else if (currentConsent === 'essentials') {
+      disableMailerLite();
       renderMailerLiteFallbacks();
       renderBanner(false);
     } else {
